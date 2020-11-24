@@ -1,40 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Header from "./components/Header";
+import Usuarios from './components/Usuarios';
+import NuevoUsuario from './components/NuevoUsuario';
+import EditarUsuario from './components/EditarUsuario';
+
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 function App() {
-
-  const getGeoLocation = () => {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((pos) => {
-        console.log(pos);
-        return pos;
-      });
-    } else {
-      console.log("Geo Location not supported by browser");
-      return 'Error';
-    }
-  }
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-          <span>{getGeoLocation()}</span>
-      </header>
-    </div>
+    <Router>
+      <Header />      
+      <div className="container mt-5">
+        <Switch>
+            <Route exact path="/" component={Usuarios}/>
+            <Route exact path="/usuarios/nuevo" component={NuevoUsuario}/>
+            <Route exact path="/usuarios/editar/:id" component={EditarUsuario} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
+/**1. React router dom npm i react-router-dom */
