@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/passportDigital/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/passportDigital/static/js/main.ac745fb6.chunk.js",
+    "main.js.map": "/passportDigital/static/js/main.ac745fb6.chunk.js.map",
+    "runtime-main.js": "/passportDigital/static/js/runtime-main.994217fa.js",
+    "runtime-main.js.map": "/passportDigital/static/js/runtime-main.994217fa.js.map",
+    "static/js/2.b2034d6c.chunk.js": "/passportDigital/static/js/2.b2034d6c.chunk.js",
+    "static/js/2.b2034d6c.chunk.js.map": "/passportDigital/static/js/2.b2034d6c.chunk.js.map",
+    "static/js/3.ab9855f7.chunk.js": "/passportDigital/static/js/3.ab9855f7.chunk.js",
+    "static/js/3.ab9855f7.chunk.js.map": "/passportDigital/static/js/3.ab9855f7.chunk.js.map",
+    "index.html": "/passportDigital/index.html",
+    "service-worker.js": "/passportDigital/service-worker.js",
+    "service-worker.js.map": "/passportDigital/service-worker.js.map",
+    "static/css/main.8c8b27cf.chunk.css.map": "/passportDigital/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.b2034d6c.chunk.js.LICENSE.txt": "/passportDigital/static/js/2.b2034d6c.chunk.js.LICENSE.txt",
+    "static/media/logo.103b5fa1.svg": "/passportDigital/static/media/logo.103b5fa1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.994217fa.js",
+    "static/js/2.b2034d6c.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.ac745fb6.chunk.js"
+  ]
+}
