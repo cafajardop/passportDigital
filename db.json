@@ -4,6 +4,16 @@
       "nombre": "Carlos Andres",
       "cedula": "222222",
       "id": 2
+    },
+    {
+      "nombre": "camilo",
+      "cedula": "10293873",
+      "id": 3
+    },
+    {
+      "nombre": "daniel",
+      "cedula": "1092837261",
+      "id": 4
     }
   ]
 }

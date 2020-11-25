@@ -8,7 +8,7 @@ const initialState = {
   alerta: null
 }
 
-export default function (state = initialState, action){
+ function adminAlert(state = initialState, action){
   switch(action.type){
     case MOSTRAR_ALERTA:
       return{
@@ -24,3 +24,5 @@ export default function (state = initialState, action){
       return state;
   }
 }
+
+export default adminAlert;
