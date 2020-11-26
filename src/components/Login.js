@@ -9,7 +9,7 @@ import styled from 'styled-components'
 const Contenedor = styled.div`
   max-width: 700px;
   margin: 0 auto;
-  margin-top: 250px;
+  margin-top: 200px;
   @media (min-width: 992px) {
     display: grid;
     grid-template-columns: 1fr;
