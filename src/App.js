@@ -49,3 +49,7 @@ export default App;
 /**3. Configuración en Redux
  * npm i react-redux redux redux-thunk
  */
+/**4. Deplegar gitpages
+ * npm run build
+ * npm run deploy
+ */
