@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
+    <nav className="navbar navbar-expand-lg navbar-dark justify-content-between">
         <div className="container">
           <h1>
               <Link to={'/'} 
-                    className="text-light">Pasaporte Digital
+                    className="text-black">Pasaporte Digital
               </Link>
           </h1>
         </div>
