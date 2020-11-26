@@ -14,7 +14,7 @@ import {
   USUARIO_EDITADO_ERROR
 } from "../types";
 
-import clienteAxios from "../config/axios";
+import http from "../http/http";
 import Swal from "sweetalert2";
 
 /**Creacion de usuarios */
@@ -22,22 +22,22 @@ export function crearNuevoUsuarioAction(usuario) {
   return async (dispatch) => {
     dispatch(agreagarUsuario());
     /**Consulta a la base de datos */
-    try {
-      await clienteAxios.post("/usuarios", usuario);
+    http.post("usuarios", usuario).then( resp => {
       dispatch(agregarUsuarioExito(usuario));
       Swal.fire(
-        "Correcto",
-        `El Usuario con el id: ${usuario.cedula} se creo correctamente`,
-        "success"
+          "Correcto",
+          `El Usuario con el id: ${usuario.cedula} se creo correctamente`,
+          "success"
       );
-    } catch (error) {
+    }).catch(err => {
+      console.log(err);
       dispatch(agregarUsuarioError(true));
       Swal.fire({
         icon: "error",
         title: "Hubo un error",
         text: "Hubo un error, intenta de nuevo",
       });
-    }
+    });
   };
 }
 
@@ -62,12 +62,12 @@ const agregarUsuarioError = (estado) => ({
 export function obtenerUsuariosAction() {
   return async (dispatch) => {
     dispatch(obtenerUsuarios());
-    try {
-      const respuesta = await clienteAxios.get("/usuarios");
-      dispatch(getUsuariosExito(respuesta.data));
-    } catch (error) {
+    http.get("usuarios").then(response => {
+      dispatch(getUsuariosExito(response.data));
+    }).catch(err => {
+      console.log(err);
       dispatch(getUsuariosError());
-    }
+    });
   };
 }
 
@@ -89,21 +89,19 @@ const getUsuariosError = () => ({
 
 /**Selecciona y elimina usuario */
 export function borrarUsuarioAction(id){
-  return async (dispatch)=>{
+  return async (dispatch) => {
     dispatch(obtenerUsuarioEliminar(id));
-    try {
-        await clienteAxios.delete(`/usuarios/${id}`)
-        dispatch( eliminarUsuarioExito());
-
-        Swal.fire(
+    http.delete(`usuarios/${id}`).then(resp => {
+      dispatch( eliminarUsuarioExito());
+      Swal.fire(
           'Eliminado!',
           'El usuario se eliminó correctamente.',
           'success'
-        )
-    } catch (error) {
-        console.log(error);
-        dispatch( eliminarUsuarioError() );
-    }
+      )
+    }).catch(err => {
+      console.log(err);
+      dispatch( eliminarUsuarioError() );
+    });
   }
 }
 
@@ -137,13 +135,12 @@ const obtenerUsuarioEditar = usuario => ({
 export function editarUsuarioAction(usuario){
   return async (dispatch) =>{
     dispatch(editarUsuario(usuario));
-    try {
-      await clienteAxios.put(`/usuarios/${usuario.id}`,usuario);
-      dispatch(editarUsuarioExito(usuario))
-    } catch (error) {
-      console.log(error);
-      dispatch(editarUsuarioError())    
-    }
+    http.put(`usuarios/${usuario.id}`, usuario).then(resp => {
+      dispatch(editarUsuarioExito(usuario));
+    }).catch(err => {
+      console.log(err);
+      dispatch(editarUsuarioError())
+    });
   }
 }
 

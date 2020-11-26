@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { editarUsuarioAction } from '../actions/usuarioActions';
-import { useHistory } from 'react-router-dom';/**Redireccionamiento  */ 
+import { useHistory } from 'react-router-dom';/**Redireccionamiento  */
 
 const EditarUsuario = () => {
 
@@ -12,14 +12,14 @@ const EditarUsuario = () => {
   const [usuario, guardarUsuario] = useState({
     nombre:'',
     cedula:''
-  })
+  });
 
   /**Usuario a editar */
   const usuarioEditar = useSelector(state => state.usuarios.usuarioEditar);
-  
+
   /**Llenado de información edición */
   useEffect(() => {
-    guardarUsuario(usuarioEditar)    
+    guardarUsuario(usuarioEditar)
   }, [usuarioEditar])
 
   /**Leer los datos del formulario */
@@ -29,7 +29,7 @@ const EditarUsuario = () => {
       [e.target.name] : e.target.value
     })
   }
-  
+
   const {nombre, cedula} = usuario;
 
   const submitEditarUsuario = e =>{
@@ -39,7 +39,7 @@ const EditarUsuario = () => {
     history.push('/');
   }
 
-  return (    
+  return (
       <div className="row justify-content-center">
         <div className="col-md-8">
           <div className="card">

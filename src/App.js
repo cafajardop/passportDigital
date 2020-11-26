@@ -1,43 +1,39 @@
 import React, { useState } from "react";
-import Header from "./components/Header";
-
+import Header from "./components/shared/Header";
 import Usuarios from "./components/Usuarios";
 import NuevoUsuario from "./components/NuevoUsuario";
 import EditarUsuario from "./components/EditarUsuario";
 import Login from "./components/Login";
+import NavBar from "./components/shared/NavBar";
+import IraForm from "./components/ira-form";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Dexie from "dexie";
 
 /**Redux */
-import { Provider } from "react-redux";
+import { Provider, useSelector,useDispatch } from "react-redux";
 import store from "./store";
-import {useSelector,useDispatch} from 'react-redux';
 
 function App() {
-  
-  const [login, mostrarLogin] = useState(true);
+
+  const [login, mostrarLogin] = useState(false);
 
   return (
     <Router>
       <Provider store={store}>
-        { login ? (
-          <Login/>
-        ) : (
-          <>
-            <Header />
-            <div className="container mt-5">
-              <Switch>
-                <Route exact path="/" component={Usuarios} />
-                <Route exact path="/usuarios/nuevo" component={NuevoUsuario} />
-                <Route
-                  exact
-                  path="/usuarios/editar/:id"
-                  component={EditarUsuario}
-                />
-              </Switch>
-            </div>
-          </>
-        )}
+        { login ? <Login/> :
+            <React.Fragment>
+              <Header />
+              <div className="container mt-5">
+                <Switch>
+                  <Route exact path="/" render={(props) => <NavBar info={props}> <Usuarios info={props} /> </NavBar>} />
+                  <Route exact path="/usuarios/nuevo" component={NuevoUsuario} />
+                  <Route exact path="/usuarios/editar/:id" component={EditarUsuario} />
+                  <Route exact path="/iraForm" render={(props) => <NavBar info={props}> <IraForm db={new Dexie('FormDatabase')} /> </NavBar>} />
+                </Switch>
+              </div>
+            </React.Fragment>
+        }
       </Provider>
     </Router>
   );

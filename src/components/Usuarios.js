@@ -6,12 +6,13 @@ import Usuario from './Usuario'
 
 
 const Usuarios = () => {
-  
+
   const dispatch = useDispatch();
 
   useEffect(()=>{
+      debugger;
     /**Consultar api */
-    const cargarUsuarios = ()=> dispatch (obtenerUsuariosAction());
+    const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
     cargarUsuarios();
     // eslint-disable-next-line
   },[]);
@@ -20,14 +21,14 @@ const Usuarios = () => {
   const error = useSelector(state => state.usuarios.error);
   const cargando = useSelector(state => state.usuarios.loading);
 
-  return ( 
+  return (
     <Fragment>
       <h2 className="text-center my-5">Listado de Usuarios</h2>
 
-      { error ? <p className="font-weight-bold alert alert-danger text-center 
+      { error ? <p className="font-weight-bold alert alert-danger text-center
       mt-4">Hubo un error</p>: null}
       { cargando ? <p className="text-center">Cargando...</p>: null}
-      
+
       <table className="table table-striped">
         <thead className="bg-primary table-dark">
             <tr>
@@ -37,10 +38,10 @@ const Usuarios = () => {
             </tr>
         </thead>
         <tbody>
-          { usuarios.length === 0 ? 'No hay usuarios': (
+          { usuarios.length === 0 ? (<tr><td colSpan={3}>No hay usuarios</td></tr>) : (
             usuarios.map(usuario => (
-              <Usuario 
-                key={usuario.id} 
+              <Usuario
+                key={usuario.id}
                 usuario={usuario}
               />
             ))
@@ -50,5 +51,5 @@ const Usuarios = () => {
     </Fragment>
    );
 }
- 
+
 export default Usuarios;
