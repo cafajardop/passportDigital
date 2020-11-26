@@ -5,8 +5,10 @@ import {useDispatch, useSelector} from 'react-redux'
 import { crearNuevoUsuarioAction } from '../actions/usuarioActions'
 import { mostrarAlertaAction, ocultarAlertaAction } from '../actions/alertaActions';
 
-const NuevoUsuario = ({history}) => {
+const NuevoUsuario = (props) => {
 
+    console.log("propiedades");
+    console.log(props);
   /**State del componente */
   const [nombre, guardarnombre] = useState('');
   const [cedula, guardarCedula] = useState('');
@@ -47,7 +49,7 @@ const NuevoUsuario = ({history}) => {
     });
 
     /**Redireccionar */
-    history.push('/');
+    props.info.history.push('/');
   }
 
   return (
