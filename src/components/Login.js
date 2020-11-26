@@ -7,9 +7,9 @@ import {mostrarEstadoLoginAction} from '../actions/estadoLoginActions'
 import styled from 'styled-components'
 
 const Contenedor = styled.div`
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
-  margin-top: 300px;
+  margin-top: 250px;
   @media (min-width: 992px) {
     display: grid;
     grid-template-columns: 1fr;
