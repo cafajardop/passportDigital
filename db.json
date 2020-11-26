@@ -6,9 +6,14 @@
       "id": 2
     },
     {
-      "nombre": "cafajardop",
-      "cedula": "8019944",
+      "nombre": "camilo",
+      "cedula": "10293873",
       "id": 3
+    },
+    {
+      "nombre": "daniel",
+      "cedula": "1092837261",
+      "id": 4
     }
   ]
 }
