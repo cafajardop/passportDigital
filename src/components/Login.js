@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 /**Actions Redux */
 import {mostrarAlertaAction, ocultarAlertaAction} from "../actions/alertaActions";
-import {mostrarEstadoLoginAction} from '../actions/estadoLoginActions'
+import {mostrarEstadoLoginAction} from '../actions/estadoLoginActions';
 import styled from 'styled-components'
 
 const Contenedor = styled.div`
@@ -16,7 +16,7 @@ const Contenedor = styled.div`
     column-gap: 2rem;
 }`;
 
-const Login = () => {
+const Login = ({eventLogin}) => {
   /**State del componente */
   const [nombre, guardarnombre] = useState("");
   const [cedula, guardarCedula] = useState("");
@@ -41,13 +41,17 @@ const Login = () => {
       };
 
       dispatch(mostrarAlertaAction(alerta));
-      dispatch(mostrarEstadoLoginAction(true))
+      dispatch(mostrarEstadoLoginAction(true));
+      eventLogin(true);
       return;
     }
 
+    console.log(dispatch);
+
     /**Si no hay errores */
     dispatch(ocultarAlertaAction());
-    dispatch(mostrarEstadoLoginAction(false))    
+    dispatch(mostrarEstadoLoginAction(false));
+    eventLogin(false);
   };
 
   return (

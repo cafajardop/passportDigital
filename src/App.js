@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {Component} from "react";
 import Header from "./components/shared/Header";
 import Usuarios from "./components/Usuarios";
 import NuevoUsuario from "./components/NuevoUsuario";
@@ -10,34 +10,55 @@ import IraForm from "./components/ira-form";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dexie from "dexie";
 
-/**Redux */
-import { Provider, useSelector,useDispatch } from "react-redux";
-import store from "./store";
+import Auth from "./components/auth";
 
-function App() {
+/*Redux*/
+import configureStore from './reducers/index';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import LogOut from "./components/logOut";
 
-  const [login, mostrarLogin] = useState(false);
+const { store, persistor } = configureStore();
 
-  return (
-    <Router>
-      <Provider store={store}>
-        { login ? <Login/> :
-            <React.Fragment>
-              <Header />
-              <div className="container mt-5">
-                <Switch>
-                  <Route exact path="/" render={(props) => <NavBar info={props}> <Usuarios info={props} /> </NavBar>} />
-                  <Route exact path="/passportDigital" render={(props) => <NavBar info={props}> <Usuarios info={props} /> </NavBar>} />
-                  <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props}> <NuevoUsuario info={props} /> </NavBar>}/>
-                  <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props}> <EditarUsuario info={props} /> </NavBar>}/>
-                  <Route exact path="/iraForm" render={(props) => <NavBar info={props}> <IraForm db={new Dexie('FormDatabase')} /> </NavBar>} />
-                </Switch>
-              </div>
-            </React.Fragment>
-        }
-      </Provider>
-    </Router>
-  );
+class App extends Component {
+
+    state = {
+        login: true
+    }
+
+    getSession = (session) => {
+        this.setState({
+            login: session
+        });
+    }
+
+    render() {
+        return (
+            <Router>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <Auth eventLogin={this.getSession}>
+                            { this.state.login ? <Login eventLogin={this.getSession}/> :
+                                <React.Fragment>
+                                    <Header />
+                                    <div className="container mt-5">
+                                        <Switch>
+                                            <Route exact path="/" render={(props) => <NavBar info={props}> <Usuarios info={props} /> </NavBar>} />
+                                            <Route exact path="/passportDigital" render={(props) => <NavBar info={props}> <Usuarios info={props} /> </NavBar>} />
+                                            <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props}> <NuevoUsuario info={props} /> </NavBar>}/>
+                                            <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props}> <EditarUsuario info={props} /> </NavBar>}/>
+                                            <Route exact path="/iraForm" render={(props) => <NavBar info={props}> <IraForm db={new Dexie('FormDatabase')} /> </NavBar>} />
+                                            <Route path="/logOn" component={LogOut} />
+                                        </Switch>
+                                    </div>
+                                </React.Fragment>
+                            }
+                        </Auth>
+                    </PersistGate>
+                </Provider>
+            </Router>
+        );
+    }
 }
 
 export default App;

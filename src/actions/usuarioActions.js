@@ -112,7 +112,7 @@ const obtenerUsuarioEliminar = id => ({
 
 const eliminarUsuarioExito = () =>({
     type:USUARIO_ELIMINADO_EXITO
-})
+});
 
 const eliminarUsuarioError = () => ({
   type: USUARIO_ELIMINADO_ERROR,
@@ -129,7 +129,7 @@ export function obtenerUsuarioEditarAction(usuario){
 const obtenerUsuarioEditar = usuario => ({
   type: OBTENER_USUARIO_EDITAR,
   payload: usuario
-})
+});
 
 /**Actualiza un registro en la api y state */
 export function editarUsuarioAction(usuario){

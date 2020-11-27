@@ -17,6 +17,7 @@ export const USUARIO_EDITADO_ERROR = 'USUARIO_EDITADO_ERROR';
 
 /**Login Exito */
 export const LOGIN_EXITO = 'LOGIN_EXITO';
+export const LOG_OUT = 'LOG_OUT';
 
 /**Alertas */
 export const MOSTRAR_ALERTA = 'MOSTRAR_ALERTA';

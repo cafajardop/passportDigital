@@ -31,7 +31,7 @@ function NavBar(props) {
                         <NavText>
                             Charts
                         </NavText>
-                        <NavItem eventKey="charts/linechart">
+                        <NavItem eventKey="usuarios/nuevo">
                             <NavText>
                                 Line Chart
                             </NavText>
@@ -48,6 +48,14 @@ function NavBar(props) {
                         </NavIcon>
                         <NavText>
                             Formulario
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="logOn">
+                        <NavIcon>
+                            <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+                        </NavIcon>
+                        <NavText>
+                            Cerrar Sesion
                         </NavText>
                     </NavItem>
                 </SideNav.Nav>
