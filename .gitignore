@@ -24,3 +24,4 @@ yarn-error.log*
 .eslintcache
 .eslintcache~1940ee54b81ed2f04d88d4e9ac8bdfa7e5ae391c
 package-lock.json
+debug.log
