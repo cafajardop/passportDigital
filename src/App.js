@@ -27,6 +27,7 @@ function App() {
               <div className="container mt-5">
                 <Switch>
                   <Route exact path="/" render={(props) => <NavBar info={props}> <Usuarios info={props} /> </NavBar>} />
+                  <Route exact path="/passportDigital" render={(props) => <NavBar info={props}> <Usuarios info={props} /> </NavBar>} />
                   <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props}> <NuevoUsuario info={props} /> </NavBar>}/>
                   <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props}> <EditarUsuario info={props} /> </NavBar>}/>
                   <Route exact path="/iraForm" render={(props) => <NavBar info={props}> <IraForm db={new Dexie('FormDatabase')} /> </NavBar>} />

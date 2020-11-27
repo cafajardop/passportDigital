@@ -60,9 +60,9 @@ export default function (state = initialState, action) {
       }
     case USUARIO_ELIMINADO_EXITO:
       return{
-        ...state,
+        ...state,        
         usuarios: state.usuarios.filter(usuario => usuario.id !== state.usuarioEliminar),
-        usuarioEliminar: null        
+        usuarioEliminar: null
       }
     case OBTENER_USUARIO_EDITAR:
       return{

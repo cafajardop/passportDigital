@@ -35,7 +35,7 @@ const put = (action, params) => {
 }
 
 const _delete = (action, params) => {
-    return axios.put(URL + action, params)
+    return axios.delete(URL + action)
         .then(response => {
             return response;
         }).catch(error => {

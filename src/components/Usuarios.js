@@ -10,7 +10,6 @@ const Usuarios = () => {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-      debugger;
     /**Consultar api */
     const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
     cargarUsuarios();

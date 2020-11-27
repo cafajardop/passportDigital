@@ -14,7 +14,6 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuario
 
    /**Confirmacion de eliminar el usuario */
    const confirmarEliminarUsuario = id => {
-
     Swal.fire({
       title: 'Esta seguro?',
       text: "Un usuario que se elimina no se puede recuperar!",
@@ -31,6 +30,7 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuario
       }
     });
    }
+   
   /**Función que redirige de forma programada */   
   const redireccionarEdicion = usuario => {
     dispatch( obtenerUsuarioEditarAction(usuario));
