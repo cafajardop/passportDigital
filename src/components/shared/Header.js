@@ -13,8 +13,7 @@ const Header = () => {
         </div>
         <Link 
           to={"/login"}
-          className="btn btn-outline-dark nuevo-post d-block d-md-inline-block"
-          ico
+          className="btn btn-outline-dark nuevo-post d-block d-md-inline-block"          
           >
             Cerrar Sesión
         </Link>

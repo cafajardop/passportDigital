@@ -45,18 +45,18 @@ import { Link } from 'react-router-dom';
           <td className="acciones">
             <Link 
               to={"/usuarios/nuevo"}
-              className="btn btn-warning mr-2">
+              className="btn btn-warning btn-sm mr-2">
                 Agregar
             </Link>
             <button
                 type="button"
                 onClick={()=> redireccionarEdicion(usuario)}
-                className= "btn btn-primary mr-2"
+                className= "btn btn-primary btn-sm mr-2"
                 >Editar
             </button>
             <button 
               type="button"
-              className="btn btn-danger"
+              className="btn btn-danger btn-sm"
               onClick={() => confirmarEliminarUsuario(id)}
               >Eliminar
             </button> 
