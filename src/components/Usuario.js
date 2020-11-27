@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 /**Redux */
 import {useDispatch} from 'react-redux';
 import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuarioActions'; 
+import { Link } from 'react-router-dom';
 
  const Usuario = ({usuario}) => {
    const { nombre, cedula , id } = usuario
@@ -42,6 +43,11 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuario
           <td>{nombre}</td>
           <td>{cedula}</td>
           <td className="acciones">
+            <Link 
+              to={"/usuarios/nuevo"}
+              className="btn btn-warning mr-2">
+                Agregar
+            </Link>
             <button
                 type="button"
                 onClick={()=> redireccionarEdicion(usuario)}
@@ -53,7 +59,7 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuario
               className="btn btn-danger"
               onClick={() => confirmarEliminarUsuario(id)}
               >Eliminar
-            </button>
+            </button> 
           </td>
         </tr>
     );
