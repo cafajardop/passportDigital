@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 /**Actions Redux */
 import {mostrarAlertaAction, ocultarAlertaAction} from "../actions/alertaActions";
 import {mostrarEstadoLoginAction} from '../actions/estadoLoginActions';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Contenedor = styled.div`
   max-width: 700px;

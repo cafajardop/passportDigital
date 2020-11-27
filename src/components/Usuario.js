@@ -5,10 +5,10 @@ import Swal from 'sweetalert2';
 /**Redux */
 import {useDispatch} from 'react-redux';
 import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuarioActions'; 
-import { Link } from 'react-router-dom';
 
  const Usuario = ({usuario}) => {
-   const { nombre, cedula , id } = usuario
+   
+   const {id,primerapellido,segundoapellido, primernombre, segundonombre,cedula,tipodocumento, telefono, correo} = usuario;
 
    const dispatch = useDispatch();
    const history = useHistory();/**Habilitar history para redirección */
@@ -38,28 +38,33 @@ import { Link } from 'react-router-dom';
     history.push(`/usuarios/editar/${usuario.id}`)
   }
 
+  const redireccionarNuevo = () => {    
+    history.push('/usuarios/nuevo/')
+  }
+
    return ( 
         <tr>          
-          <td>{nombre}</td>
+          <td>{primerapellido} {segundoapellido}</td>          
+          <td>{primernombre} {segundonombre} </td>
+          <td>{tipodocumento}</td>
           <td>{cedula}</td>
-          <td className="acciones">
-            <Link 
-              to={"/usuarios/nuevo"}
-              className="btn btn-warning btn-sm mr-2">
-                Agregar
-            </Link>
+          <td>{telefono}</td>
+          <td>{correo}</td>          
+          <td className="acciones">            
+            <button 
+                onClick={()=> redireccionarNuevo()}                
+                >Agregar
+            </button>
+
             <button
-                type="button"
-                onClick={()=> redireccionarEdicion(usuario)}
-                className= "btn btn-primary btn-sm mr-2"
+                onClick={()=> redireccionarEdicion(usuario)}                
                 >Editar
             </button>
-            <button 
-              type="button"
-              className="btn btn-danger btn-sm"
+
+            <button            
               onClick={() => confirmarEliminarUsuario(id)}
-              >Eliminar
-            </button> 
+            >Eliminar
+           </button>
           </td>
         </tr>
     );

@@ -1,9 +1,10 @@
 import React, {Fragment, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+
 /**Redux */
 import {useSelector,useDispatch} from 'react-redux';
 import {obtenerUsuariosAction} from '../actions/usuarioActions';
 import Usuario from './Usuario'
-
 
 const Usuarios = () => {
 
@@ -22,17 +23,34 @@ const Usuarios = () => {
 
   return (
     <Fragment>
-      <h2 className="text-center my-5">Listado de Usuarios</h2>
+      <h2 className="text-center my-5">Listado de Funcionarios</h2>
+      
+          { usuarios.length === 0 
+          ?
+          <div className="col-md-12 align-self-center text-right">
+              <div className="mb-2">
+                  <Link 
+                    to={"/usuarios/nuevo"}
+                    className="btn btn-success btn-sm mr-2">
+                      Agregar &#43;
+                  </Link>
+              </div>
+            </div>
+          : null }      
 
       { error ? <p className="font-weight-bold alert alert-danger text-center
       mt-4">Hubo un error</p>: null}
       { cargando ? <p className="text-center">Cargando...</p>: null}
 
-      <table className="table table-striped">
-        <thead className="bg-primary table-dark">
+      <table className="table table">
+        <thead>
             <tr>
               <th scope="col">Nombres</th>
+              <th scope="col">Apellidos</th>              
+              <th scope="col">Documento Identidad</th>
               <th scope="col">Cedula</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Correo</th>
               <th scope="col">Acciones</th>
             </tr>
         </thead>

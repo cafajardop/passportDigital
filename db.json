@@ -1,14 +1,48 @@
 {
   "usuarios": [
     {
-      "nombre": "vodkassas",
-      "cedula": "8019944",
+      "primerapellido": "carlos",
+      "segundoapellido": "andres",
+      "primernombre": "fajardo",
+      "segundonombre": "pedraza",
+      "cedula": "1014204900",
+      "tipodocumento": "CC",
+      "telefono": "318043192",
+      "correo": "cafajardop03@gmail.com",
+      "direccion": "calle",
+      "direccion2": "calle 2",
       "id": 1
     },
     {
-      "nombre": "carlos",
-      "cedula": "222222",
-      "id": 3
+      "primerapellido": "carlos",
+      "segundoapellido": "adnres",
+      "primernombre": "fajardo",
+      "segundonombre": "pedrazq",
+      "cedula": "12313132",
+      "tipodocumento": "CC",
+      "telefono": "121321",
+      "correo": "cafajardop03@gmail.com",
+      "direccion": "direccion 1",
+      "direccion2": "dicreccion 2",
+      "id": 2
+    }
+  ],
+  "tipodocumento": [
+    {
+      "id": 1,
+      "value": "CC"
+    },
+    {
+      "id": 2,
+      "value": "TI"
+    },
+    {
+      "id": 3,
+      "value": "RC"
+    },
+    {
+      "id": 4,
+      "value": "CE"
     }
   ]
 }
