@@ -4,11 +4,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 /**Actions Redux */
-import { crearNuevoUsuarioAction } from "../actions/usuarioActions";
+import { crearNuevoUsuarioAction } from "../../actions/usuarioActions";
 import {
   mostrarAlertaAction,
   ocultarAlertaAction,
-} from "../actions/alertaActions";
+} from "../../actions/alertaActions";
 
 const NuevoUsuario = (props) => {
   /**State del componente */
@@ -24,9 +24,9 @@ const NuevoUsuario = (props) => {
     direccion:"",
     direccion2:""
   });
-  
+
   const {primerapellido,segundoapellido, primernombre, segundonombre,cedula,tipodocumento, telefono, correo, direccion, direccion2 } = usuario;
-  
+
   const [documento, guardardocumento] = useState([]);
   useEffect(() => {
     const obtenerTipoDocumento = async () => {
@@ -60,7 +60,7 @@ const NuevoUsuario = (props) => {
   /**Enviando Datos */
   const submitNuevoUsuario = (e) => {
     e.preventDefault();
-    
+
     /**Validar Formulario */
     if (primerapellido.trim() === "" || segundoapellido.trim() === "" || primernombre.trim() === "" || tipodocumento.trim() === "" || cedula.trim() === "") {
       const alerta = {
@@ -93,11 +93,11 @@ const NuevoUsuario = (props) => {
               <h4 className="mb-3 align-self-center text-center mb-5">Agregar Funcionario Externo </h4>
               {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
 
-              <form 
+              <form
                 onSubmit={submitNuevoUsuario}
                 autocomplete="off"
                 >
-                
+
                 <div className="form-row">
                   <div className="form-group col-sm-3">
                   <label>Primer Apellido</label>
@@ -152,20 +152,20 @@ const NuevoUsuario = (props) => {
                   <div className="form-group col-sm-4">
 
                   <label>Tipo Documento</label>
-                    <select 
+                    <select
                         className="form-control"
                         name="tipodocumento"
                         value={tipodocumento}
-                        onChange={onChange}                    
+                        onChange={onChange}
                         >
                       <option value="">-- Seleccione --</option>
                       {documento.map((categoria) => (
-                        <option 
-                              key={categoria.id} 
+                        <option
+                              key={categoria.id}
                               value={categoria.value}>
                           {categoria.value}
                         </option>
-                      ))}                      
+                      ))}
                     </select>
                   </div>
 
@@ -234,7 +234,7 @@ const NuevoUsuario = (props) => {
 
                 <div className="form-row mt-3">
                   <div className="form-group mr-2">
-                    <button 
+                    <button
                         type="submit">
                       Guardar
                     </button>
@@ -257,7 +257,7 @@ const NuevoUsuario = (props) => {
                 <p className="alert alert-danger p2 mt-4 text-center">
                   Hubo un error
                 </p>
-              ) : null}            
+              ) : null}
             </div>
           </div>
         </div>

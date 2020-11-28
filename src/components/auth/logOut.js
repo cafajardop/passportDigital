@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {logOutAction} from '../actions/estadoLoginActions';
+import {logOutAction} from '../../actions/estadoLoginActions';
 
 const LogOut = (props) => {
 

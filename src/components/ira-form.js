@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Offline, Online } from 'react-detect-offline'
+import {crearNuevoUsuarioAction} from "../actions/usuarioActions";
+import {useDispatch} from "react-redux";
 
 const IraForm = ({db}) => {
     // store form values in a state hook
     const [names, setNames] = useState({ firstname: '', lastname: '' });
+    const dispatch = useDispatch();
 
     // set firstname and lastname to whatever is in the database
     // if no values are in the database, set the database values to ''
@@ -60,6 +63,22 @@ const IraForm = ({db}) => {
         setName('lastname')('');
     }
 
+    const saveOffline = e => {
+        //prueba background sync
+        dispatch(crearNuevoUsuarioAction({
+            primerapellido: "sync",
+            segundoapellido: "sync",
+            primernombre: "sync",
+            segundonombre: "syn",
+            cedula: "10000000000",
+            tipodocumento: "CC",
+            telefono:"0",
+            correo:"sync@",
+            direccion:"cll sync",
+            direccion2:"cll 2 sync"
+        }));
+    }
+
     return (<form onSubmit={handleSubmit}>
         <span>Nombre:</span>
         <br />
@@ -81,9 +100,11 @@ const IraForm = ({db}) => {
         <br />
         {/* Handle whether or not the user is offline */}
         <Online>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Guardar" />
         </Online>
-        <Offline>You are currently offline!</Offline>
+        <Offline>
+            <input type="button" value="Guardar sin Conexion" onClick={saveOffline} />
+        </Offline>
     </form>
     )
 }

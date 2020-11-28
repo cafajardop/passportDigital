@@ -12,6 +12,7 @@ import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
+import {Queue} from 'workbox-background-sync';
 
 clientsClaim();
 
@@ -70,3 +71,16 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+const queue = new Queue('queueForm');
+
+self.addEventListener('fetch', (event) => {
+    // Clone the request to ensure it's safe to read when
+    // adding to the Queue.
+    const promiseChain = fetch(event.request.clone()).catch((err) => {
+        return queue.pushRequest({request: event.request});
+    });
+
+    event.waitUntil(promiseChain);
+});
+
+

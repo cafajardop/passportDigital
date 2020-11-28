@@ -4,10 +4,10 @@ import Swal from 'sweetalert2';
 
 /**Redux */
 import {useDispatch} from 'react-redux';
-import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuarioActions'; 
+import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usuarioActions';
 
  const Usuario = ({usuario}) => {
-   
+
    const {id,primerapellido,segundoapellido, primernombre, segundonombre,cedula,tipodocumento, telefono, correo} = usuario;
 
    const dispatch = useDispatch();
@@ -27,41 +27,41 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuario
     }).then((result) => {
       if (result.isConfirmed) {
         /**Pasarlo al action */
-          dispatch(borrarUsuarioAction(id));        
+          dispatch(borrarUsuarioAction(id));
       }
     });
    }
-   
-  /**Función que redirige de forma programada */   
+
+  /**Función que redirige de forma programada */
   const redireccionarEdicion = usuario => {
     dispatch( obtenerUsuarioEditarAction(usuario));
     history.push(`/usuarios/editar/${usuario.id}`)
   }
 
-  const redireccionarNuevo = () => {    
+  const redireccionarNuevo = () => {
     history.push('/usuarios/nuevo/')
   }
 
-   return ( 
-        <tr>          
-          <td>{primerapellido} {segundoapellido}</td>          
+   return (
+        <tr>
+          <td>{primerapellido} {segundoapellido}</td>
           <td>{primernombre} {segundonombre} </td>
           <td>{tipodocumento}</td>
           <td>{cedula}</td>
           <td>{telefono}</td>
-          <td>{correo}</td>          
-          <td className="acciones">            
-            <button 
-                onClick={()=> redireccionarNuevo()}                
+          <td>{correo}</td>
+          <td className="acciones">
+            <button
+                onClick={()=> redireccionarNuevo()}
                 >Agregar
             </button>
 
             <button
-                onClick={()=> redireccionarEdicion(usuario)}                
+                onClick={()=> redireccionarEdicion(usuario)}
                 >Editar
             </button>
 
-            <button            
+            <button
               onClick={() => confirmarEliminarUsuario(id)}
             >Eliminar
            </button>
@@ -69,5 +69,5 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../actions/usuario
         </tr>
     );
  }
-  
+
  export default Usuario;

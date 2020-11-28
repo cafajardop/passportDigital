@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editarUsuarioAction } from "../actions/usuarioActions";
+import { editarUsuarioAction } from "../../actions/usuarioActions";
 import { useHistory } from "react-router-dom"; /**Redireccionamiento  */
 import axios from 'axios';
 
 const EditarUsuario = () => {
-  
-  const history = useHistory();  
+
+  const history = useHistory();
   const dispatch = useDispatch();
 
   /**Nuevo state */
@@ -51,7 +51,7 @@ const EditarUsuario = () => {
       [e.target.name]: e.target.value,
     });
   };
-  
+
   const submitEditarUsuario = (e) => {
     e.preventDefault();
 
@@ -59,7 +59,7 @@ const EditarUsuario = () => {
     history.push("/");
   };
 
-  const redireccionarNuevo = () => {    
+  const redireccionarNuevo = () => {
     history.push('/')
   }
 
@@ -127,10 +127,10 @@ const EditarUsuario = () => {
                 <div className="form-row">
                   <div className="form-group col-sm-4">
                     <label>Documento de Identidad</label>
-                    
+
                     <select
                       type="text"
-                      className="form-control"                      
+                      className="form-control"
                       name="tipodocumento"
                       value={tipodocumento}
                       onChange={onChangeFormulario}
@@ -209,14 +209,14 @@ const EditarUsuario = () => {
 
                 <div className="form-row mt-3">
                   <div className="form-group mr-2">
-                    <button 
+                    <button
                       type="submit">
                       Guardar
                     </button>
                   </div>
 
                   <div className="form-group">
-                    <button 
+                    <button
                         onClick={()=> redireccionarNuevo()}
                         >Cancelar
                     </button>
