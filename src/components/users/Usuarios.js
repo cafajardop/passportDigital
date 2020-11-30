@@ -20,11 +20,11 @@ const Usuarios = () => {
   const usuarios = useSelector(state => state.usuarios.usuarios);
   const error = useSelector(state => state.usuarios.error);
   const cargando = useSelector(state => state.usuarios.loading);
-
+  
   return (
     <Fragment>
-      <h2 className="text-center my-5">Listado de Funcionarios</h2>
-
+      <h2 className="text-center mt-4">Listado de Funcionarios</h2>
+      <hr/>
           { usuarios.length === 0
           ?
           <div className="col-md-12 align-self-center text-right">

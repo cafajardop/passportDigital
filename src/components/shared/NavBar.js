@@ -51,15 +51,15 @@ function NavBar(props) {
                         </NavItem>
                         <NavItem eventKey="iraForm">
                             <NavIcon>
-                                <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+                                <i className="fa fa-fw fa-user" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
                             <NavText>
                                 Formulario
                             </NavText>
                         </NavItem>
-                        <NavItem eventKey="logOn">
+                        <NavItem eventKey="passportDigital">
                             <NavIcon>
-                                <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+                                <i className="fa fa-fw fa-power-off" style={{ fontSize: '1.75em' }} />
                             </NavIcon>
                             <NavText>
                                 Cerrar Sesion
@@ -85,7 +85,7 @@ function NavBar(props) {
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                             </NavDropdown>
                             <Nav.Link href="/iraForm">Formulario</Nav.Link>
-                            <Nav.Link href="/logOn">Cerrar Sesion</Nav.Link>
+                            <Nav.Link href="/passportDigital">Cerrar Sesion</Nav.Link>
                         </Nav>
                         <Form inline>
                             <FormControl type="text" placeholder="Search" className="mr-sm-2" />

@@ -1,24 +1,57 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-danger justify-content-between">
-        <div className="container">
-          <h1>
-              <Link to={'/'} 
-                    className="text-light">Pasaporte Digital
-              </Link>
-          </h1>
-        </div>
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+
         <Link 
-          to={"/login"}
-          className="btn btn-outline-dark nuevo-post d-block d-md-inline-block"          
-          >
-            Cerrar Sesión
+            className="navbar-brand" 
+            to="/">
+            Pasaporte Digital
         </Link>
+
+        <a className="navbar-brand " href="#" >
+          <img src="https://w7.pngwing.com/pngs/413/324/png-transparent-barrancabermeja-logo-ecopetrol-business-product-eco-energy-text-logo-business.png" className="rounded" width="125" height="35" alt=""/>
+        </a>
+
+        <div className="navbar-collapse">
+            <div className="navbar-nav">
+
+                <NavLink 
+                    activeClassName="active"
+                    className="nav-item nav-link" 
+                    exact
+                    to="/Usuarios"
+                >
+                    Reportes
+                </NavLink>
+
+                <NavLink 
+                    activeClassName="active"
+                    className="nav-item nav-link" 
+                    exact
+                    to="/Usuarios"
+                >
+                    Documentación
+                </NavLink>                
+            </div>
+        </div>
+
+        <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul className="navbar-nav ml-auto">
+                <NavLink 
+                    activeClassName="active"
+                    className="nav-item nav-link" 
+                    exact
+                    to="/passportDigital"
+                >
+                    Cerrar Sesión
+                </NavLink>
+            </ul>
+        </div>
     </nav>
-  );
+)
 }
  
 export default Header;

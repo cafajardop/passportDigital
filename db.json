@@ -5,26 +5,13 @@
       "segundoapellido": "andres",
       "primernombre": "fajardo",
       "segundonombre": "pedraza",
-      "cedula": "1014204900",
-      "tipodocumento": "CC",
-      "telefono": "318043192",
+      "cedula": "8019944",
+      "tipodocumento": "CE",
+      "telefono": "3184043192",
       "correo": "cafajardop03@gmail.com",
-      "direccion": "calle",
-      "direccion2": "calle 2",
+      "direccion": "sss",
+      "direccion2": "calle 3",
       "id": 1
-    },
-    {
-      "primerapellido": "carlos",
-      "segundoapellido": "adnres",
-      "primernombre": "fajardo",
-      "segundonombre": "pedrazq",
-      "cedula": "12313132",
-      "tipodocumento": "CC",
-      "telefono": "121321",
-      "correo": "cafajardop03@gmail.com",
-      "direccion": "direccion 1",
-      "direccion2": "dicreccion 2",
-      "id": 2
     }
   ],
   "tipodocumento": [
