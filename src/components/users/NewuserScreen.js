@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editarUsuarioAction } from "../../actions/usuarioActions";
-import { useHistory } from "react-router-dom"; /**Redireccionamiento  */
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const EditarUsuario = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
+/**Actions Redux */
+import { crearNuevoUsuarioAction } from "../../actions/usuarioActions";
+import {
+  mostrarAlertaAction,
+  ocultarAlertaAction,
+} from "../../actions/alertaActions";
 
-  /**Nuevo state */
-  const [usuario, guardarUsuario] = useState({
+const NewuserScreen = (props) => {
+  /**State del componente */
+  const [usuario, guardarnombre] = useState({
     primerapellido: "",
     segundoapellido: "",
     primernombre: "",
@@ -36,7 +39,6 @@ const EditarUsuario = () => {
   } = usuario;
 
   const [documento, guardardocumento] = useState([]);
-
   useEffect(() => {
     const obtenerTipoDocumento = async () => {
       const url = "http://localhost:4000/tipodocumento";
@@ -46,48 +48,76 @@ const EditarUsuario = () => {
     obtenerTipoDocumento();
   }, []);
 
-  /**Usuario a editar */
-  const usuarioEditar = useSelector((state) => state.usuarios.usuarioEditar);
+  /**Acceder al state del store */
+  const cargando = useSelector((state) => state.usuarios.state);
+  const error = useSelector((state) => state.usuarios.error);
+  const alerta = useSelector((state) => state.alerta.alerta);
 
-  /**Llenado de información edición */
-  useEffect(() => {
-    guardarUsuario(usuarioEditar);
-  }, [usuarioEditar]);
-
-  /**Leer los datos del formulario */
-  const onChangeFormulario = (e) => {
-    guardarUsuario({
+  const onChange = (e) => {
+    guardarnombre({
       ...usuario,
       [e.target.name]: e.target.value,
     });
   };
 
-  const submitEditarUsuario = (e) => {
+  /**Utilizar dispatch y crear funcion */
+  const dispatch = useDispatch();
+
+  /**Enviar la accion */
+  const agregarUsuario = (usuario) =>
+    dispatch(crearNuevoUsuarioAction(usuario));
+
+  /**Enviando Datos */
+  const submitNuevoUsuario = (e) => {
     e.preventDefault();
 
-    dispatch(editarUsuarioAction(usuario));
-    history.push("/");
-  };
+    /**Validar Formulario */
+    if (
+      primerapellido.trim() === "" ||
+      segundoapellido.trim() === "" ||
+      primernombre.trim() === "" ||
+      tipodocumento.trim() === "" ||
+      cedula.trim() === ""
+    ) {
+      const alerta = {
+        msg: "Campos Obligatorios",
+        classes: "alert alert-danger text-center text-uppercase p3",
+      };
 
-  const redireccionarNuevo = () => {
-    history.push("/");
+      dispatch(mostrarAlertaAction(alerta));
+      return;
+    }
+
+    /**Si no hay errores */
+    dispatch(ocultarAlertaAction());
+
+    /**Crear nuevo usuario */
+    agregarUsuario({
+      ...usuario,
+    });
+
+    /**Redireccionar */
+    props.info.history.push("/");
   };
 
   return (
+    <div className="row justify-content-center">
+      <div className="col-md-12">
         <div className="col-sm-12 order-sm-1">
-          <h2 className="mb-3 align-self-center text-center mt-4">{" "}Datos del Funcionario{" "}</h2>
+          <h2 className="mb-3 align-self-center text-center mt-4"> Agregar Funcionario Externo{" "} </h2>
           <hr/>
-          <form onSubmit={submitEditarUsuario}>
+          {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
+
+          <form onSubmit={submitNuevoUsuario}>
             <div className="form-row">
               <div className="form-group col-sm-3">
                 <label>Primer Apellido</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Primer apellido"
                   name="primerapellido"
                   value={primerapellido}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
 
@@ -96,10 +126,9 @@ const EditarUsuario = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Segundo apellido"
                   name="segundoapellido"
                   value={segundoapellido}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
 
@@ -108,10 +137,9 @@ const EditarUsuario = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Primer nombre"
                   name="primernombre"
                   value={primernombre}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
 
@@ -120,24 +148,21 @@ const EditarUsuario = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Segundo nombre"
                   name="segundonombre"
                   value={segundonombre}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group col-sm-4">
-                <label>Documento de Identidad</label>
-
+                <label>Tipo Documento</label>
                 <select
-                  type="text"
                   className="form-control"
                   name="tipodocumento"
                   value={tipodocumento}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 >
                   <option value="">-- Seleccione --</option>
                   {documento.map((categoria) => (
@@ -156,7 +181,7 @@ const EditarUsuario = () => {
                   placeholder="Cedula"
                   name="cedula"
                   value={cedula}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
 
@@ -168,7 +193,7 @@ const EditarUsuario = () => {
                   placeholder="Telefono"
                   name="telefono"
                   value={telefono}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
             </div>
@@ -182,7 +207,7 @@ const EditarUsuario = () => {
                   placeholder="Correo"
                   name="correo"
                   value={correo}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
 
@@ -194,7 +219,7 @@ const EditarUsuario = () => {
                   placeholder="Direccion"
                   name="direccion"
                   value={direccion}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
 
@@ -206,7 +231,7 @@ const EditarUsuario = () => {
                   placeholder="Direccion2"
                   name="direccion2"
                   value={direccion2}
-                  onChange={onChangeFormulario}
+                  onChange={onChange}
                 />
               </div>
             </div>
@@ -217,12 +242,23 @@ const EditarUsuario = () => {
               </div>
 
               <div className="form-group">
-                <button onClick={() => redireccionarNuevo()}>Cancelar</button>
+                <Link to={"/"} type="submit" className="btn btn-danger btn-sm">
+                  Cancelar
+                </Link>
               </div>
             </div>
           </form>
-        </div>      
+
+          {cargando ? <p>Cargando..</p> : null}
+          {error ? (
+            <p className="alert alert-danger p2 mt-4 text-center">
+              Hubo un error
+            </p>
+          ) : null}
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default EditarUsuario;
+export default NewuserScreen;

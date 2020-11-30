@@ -13,6 +13,7 @@ function NavBar(props) {
             <BrowserView>
                 <SideNav
                     onSelect={(selected) => {
+                        debugger;
                         // Add your code here
                         const to = '/' + selected;
                         if (props.info.location.pathname !== to) {

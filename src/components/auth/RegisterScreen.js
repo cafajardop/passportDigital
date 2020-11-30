@@ -44,7 +44,7 @@ const Logo = styled.img`
   }
 `;
 
-export const Register = ({ history }) => {
+export const RegisterScreen = ({ history }) => {
   /**State del componente */
   const [nombre, guardarnombre] = useState("");
   const [cedula, guardarCedula] = useState("");

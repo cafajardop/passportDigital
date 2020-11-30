@@ -1,18 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Login }  from "../components/auth/Login";
-import { Register } from "../components/auth/Register";
+import { LoginScreen }  from "../components/auth/LoginScreen";
+import { RegisterScreen } from "../components/auth/RegisterScreen";
 
 import { DashboardRoutes } from "./DashboardRoutes";
 
 export const AppRouter = () => {
   return (
-      <Router>        
+      <Router>
           <Switch>
-            <Route exact path="/passportDigital" component={Login} />
-            <Route exact path="/Registro" component={Register} />
-            <Route path="/" component={DashboardRoutes} />
-          </Switch>        
+            <Route exact path="/passportDigital" component={LoginScreen} />
+            <Route exact path="/Registro" component={RegisterScreen} />
+            <Route path="/" render={(props) => <DashboardRoutes info={props} />} />
+          </Switch>
       </Router>
   );
 };

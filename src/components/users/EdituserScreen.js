@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { editarUsuarioAction } from "../../actions/usuarioActions";
+import { useHistory } from "react-router-dom"; /**Redireccionamiento  */
 import axios from "axios";
-import { Link } from "react-router-dom";
 
-/**Actions Redux */
-import { crearNuevoUsuarioAction } from "../../actions/usuarioActions";
-import {
-  mostrarAlertaAction,
-  ocultarAlertaAction,
-} from "../../actions/alertaActions";
+const EdituserScreen = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-const NuevoUsuario = (props) => {
-  /**State del componente */
-  const [usuario, guardarnombre] = useState({
+  /**Nuevo state */
+  const [usuario, guardarUsuario] = useState({
     primerapellido: "",
     segundoapellido: "",
     primernombre: "",
@@ -39,6 +36,7 @@ const NuevoUsuario = (props) => {
   } = usuario;
 
   const [documento, guardardocumento] = useState([]);
+
   useEffect(() => {
     const obtenerTipoDocumento = async () => {
       const url = "http://localhost:4000/tipodocumento";
@@ -48,76 +46,48 @@ const NuevoUsuario = (props) => {
     obtenerTipoDocumento();
   }, []);
 
-  /**Acceder al state del store */
-  const cargando = useSelector((state) => state.usuarios.state);
-  const error = useSelector((state) => state.usuarios.error);
-  const alerta = useSelector((state) => state.alerta.alerta);
+  /**User a editar */
+  const usuarioEditar = useSelector((state) => state.usuarios.usuarioEditar);
 
-  const onChange = (e) => {
-    guardarnombre({
+  /**Llenado de información edición */
+  useEffect(() => {
+    guardarUsuario(usuarioEditar);
+  }, [usuarioEditar]);
+
+  /**Leer los datos del formulario */
+  const onChangeFormulario = (e) => {
+    guardarUsuario({
       ...usuario,
       [e.target.name]: e.target.value,
     });
   };
 
-  /**Utilizar dispatch y crear funcion */
-  const dispatch = useDispatch();
-
-  /**Enviar la accion */
-  const agregarUsuario = (usuario) =>
-    dispatch(crearNuevoUsuarioAction(usuario));
-
-  /**Enviando Datos */
-  const submitNuevoUsuario = (e) => {
+  const submitEditarUsuario = (e) => {
     e.preventDefault();
 
-    /**Validar Formulario */
-    if (
-      primerapellido.trim() === "" ||
-      segundoapellido.trim() === "" ||
-      primernombre.trim() === "" ||
-      tipodocumento.trim() === "" ||
-      cedula.trim() === ""
-    ) {
-      const alerta = {
-        msg: "Campos Obligatorios",
-        classes: "alert alert-danger text-center text-uppercase p3",
-      };
+    dispatch(editarUsuarioAction(usuario));
+    history.push("/");
+  };
 
-      dispatch(mostrarAlertaAction(alerta));
-      return;
-    }
-
-    /**Si no hay errores */
-    dispatch(ocultarAlertaAction());
-
-    /**Crear nuevo usuario */
-    agregarUsuario({
-      ...usuario,
-    });
-
-    /**Redireccionar */
-    props.info.history.push("/");
+  const redireccionarNuevo = () => {
+    history.push("/");
   };
 
   return (
-    <div className="row justify-content-center">
-      <div className="col-md-12">
         <div className="col-sm-12 order-sm-1">
-          <h2 className="mb-3 align-self-center text-center mt-4"> Agregar Funcionario Externo{" "} </h2>
+          <h2 className="mb-3 align-self-center text-center mt-4">{" "}Datos del Funcionario{" "}</h2>
           <hr/>
-          {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
-
-          <form onSubmit={submitNuevoUsuario}>
+          <form onSubmit={submitEditarUsuario}>
             <div className="form-row">
               <div className="form-group col-sm-3">
                 <label>Primer Apellido</label>
                 <input
                   type="text"
-                  className="form-control"                  
+                  className="form-control"
+                  placeholder="Primer apellido"
                   name="primerapellido"
                   value={primerapellido}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
 
@@ -125,10 +95,11 @@ const NuevoUsuario = (props) => {
                 <label>Segundo Apellido</label>
                 <input
                   type="text"
-                  className="form-control"                  
+                  className="form-control"
+                  placeholder="Segundo apellido"
                   name="segundoapellido"
                   value={segundoapellido}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
 
@@ -136,10 +107,11 @@ const NuevoUsuario = (props) => {
                 <label>Primer Nombre</label>
                 <input
                   type="text"
-                  className="form-control"                  
+                  className="form-control"
+                  placeholder="Primer nombre"
                   name="primernombre"
                   value={primernombre}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
 
@@ -147,22 +119,25 @@ const NuevoUsuario = (props) => {
                 <label>Segundo Nombre</label>
                 <input
                   type="text"
-                  className="form-control"                  
+                  className="form-control"
+                  placeholder="Segundo nombre"
                   name="segundonombre"
                   value={segundonombre}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
             </div>
 
             <div className="form-row">
               <div className="form-group col-sm-4">
-                <label>Tipo Documento</label>
+                <label>Documento de Identidad</label>
+
                 <select
+                  type="text"
                   className="form-control"
                   name="tipodocumento"
                   value={tipodocumento}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 >
                   <option value="">-- Seleccione --</option>
                   {documento.map((categoria) => (
@@ -181,7 +156,7 @@ const NuevoUsuario = (props) => {
                   placeholder="Cedula"
                   name="cedula"
                   value={cedula}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
 
@@ -193,7 +168,7 @@ const NuevoUsuario = (props) => {
                   placeholder="Telefono"
                   name="telefono"
                   value={telefono}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
             </div>
@@ -207,7 +182,7 @@ const NuevoUsuario = (props) => {
                   placeholder="Correo"
                   name="correo"
                   value={correo}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
 
@@ -219,7 +194,7 @@ const NuevoUsuario = (props) => {
                   placeholder="Direccion"
                   name="direccion"
                   value={direccion}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
 
@@ -231,7 +206,7 @@ const NuevoUsuario = (props) => {
                   placeholder="Direccion2"
                   name="direccion2"
                   value={direccion2}
-                  onChange={onChange}
+                  onChange={onChangeFormulario}
                 />
               </div>
             </div>
@@ -242,23 +217,12 @@ const NuevoUsuario = (props) => {
               </div>
 
               <div className="form-group">
-                <Link to={"/"} type="submit" className="btn btn-danger btn-sm">
-                  Cancelar
-                </Link>
+                <button onClick={() => redireccionarNuevo()}>Cancelar</button>
               </div>
             </div>
           </form>
-
-          {cargando ? <p>Cargando..</p> : null}
-          {error ? (
-            <p className="alert alert-danger p2 mt-4 text-center">
-              Hubo un error
-            </p>
-          ) : null}
         </div>
-      </div>
-    </div>
   );
 };
 
-export default NuevoUsuario;
+export default EdituserScreen;

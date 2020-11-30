@@ -29,7 +29,7 @@ const SideBar = styled.div`
   width: 50%;
 `;
 
-export const Login = ({ history }) => {
+export const LoginScreen = ({ history }) => {
   /**State del componente */
   const [nombre, guardarnombre] = useState("");
   const [cedula, guardarCedula] = useState("");
@@ -100,7 +100,7 @@ export const Login = ({ history }) => {
                   />
                 </div>
 
-                <div className="form-group">                  
+                <div className="form-group">
                   <input
                     type="password"
                     className="form-control"
@@ -126,9 +126,9 @@ export const Login = ({ history }) => {
                   </div>
 
                   <div class="col align-self-center text-right">
-                    <Link 
-                      to={"/Registro"} 
-                      type="text" 
+                    <Link
+                      to={"/Registro"}
+                      type="text"
                       >
                           Registrarse
                     </Link>

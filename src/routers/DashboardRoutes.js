@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Header from "../components/shared/Header";
-import Usuarios from "../components/users/Usuarios";
+import UsersScreen from "../components/users/UsersScreen";
 import NavBar from "../components/shared/NavBar";
-import NuevoUsuario from "../components/users/NuevoUsuario";
-import EditarUsuario from "../components/users/EditarUsuario";
+import NewuserScreen from "../components/users/NewuserScreen";
+import EdituserScreen from "../components/users/EdituserScreen";
 import styled from 'styled-components';
 
 const Contenedor = styled.div`      
@@ -28,7 +28,7 @@ const Main = styled.div `
   margin: 50px 25px 0 25px;  
 `
 
-export const DashboardRoutes = () => { 
+export const DashboardRoutes = (props) => {
   return (
     <>
         <Contenedor>
@@ -37,17 +37,17 @@ export const DashboardRoutes = () => {
            </Headers>
             <SideBar>
                 <NavBar/>
-            </SideBar>           
+            </SideBar>
            <Main>
                 <Switch>
-                    <Route exact path="/" render={(props) => (<NavBar info={props} toggleMenu='true'>{" "} <Usuarios info={props} />{" "} </NavBar>)}/>
-                    <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props} toggleMenu='true'> <NuevoUsuario info={props} /> </NavBar>}/>
-                    <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props} toggleMenu='true'> <EditarUsuario info={props} /> </NavBar>}/>
+                    <Route exact path="/" render={(props) => (<NavBar info={props} toggleMenu='true'>{" "} <UsersScreen info={props} />{" "} </NavBar>)}/>
+                    <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props} toggleMenu='true'> <NewuserScreen info={props} /> </NavBar>}/>
+                    <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props} toggleMenu='true'> <EdituserScreen info={props} /> </NavBar>}/>
 
-                    <Redirect to="/usuarios" />
+
               </Switch>
-            
-           </Main>           
+
+           </Main>
         </Contenedor>
     </>
   );

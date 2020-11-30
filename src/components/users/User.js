@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import {useDispatch} from 'react-redux';
 import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usuarioActions';
 
- const Usuario = ({usuario}) => {
+ const User = ({usuario}) => {
 
    const {id,primerapellido,segundoapellido, primernombre, segundonombre,cedula,tipodocumento, telefono, correo} = usuario;
 
@@ -70,4 +70,4 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usua
     );
  }
 
- export default Usuario;
+ export default User;

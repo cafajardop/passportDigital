@@ -1,48 +1,49 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
+import logo from '../../resources/images/logo-head-ecopetrol.png';
 
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
 
-        <Link 
-            className="navbar-brand" 
+        <Link
+            className="navbar-brand"
             to="/">
             Pasaporte Digital
         </Link>
 
         <a className="navbar-brand " href="#" >
-          <img src="https://w7.pngwing.com/pngs/413/324/png-transparent-barrancabermeja-logo-ecopetrol-business-product-eco-energy-text-logo-business.png" className="rounded" width="125" height="35" alt=""/>
+          <img src={logo} className="rounded" width="125" height="35" alt=""/>
         </a>
 
         <div className="navbar-collapse">
             <div className="navbar-nav">
 
-                <NavLink 
+                <NavLink
                     activeClassName="active"
-                    className="nav-item nav-link" 
+                    className="nav-item nav-link"
                     exact
-                    to="/Usuarios"
+                    to="/UsersScreen"
                 >
                     Reportes
                 </NavLink>
 
-                <NavLink 
+                <NavLink
                     activeClassName="active"
-                    className="nav-item nav-link" 
+                    className="nav-item nav-link"
                     exact
-                    to="/Usuarios"
+                    to="/UsersScreen"
                 >
                     Documentación
-                </NavLink>                
+                </NavLink>
             </div>
         </div>
 
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul className="navbar-nav ml-auto">
-                <NavLink 
+                <NavLink
                     activeClassName="active"
-                    className="nav-item nav-link" 
+                    className="nav-item nav-link"
                     exact
                     to="/passportDigital"
                 >
@@ -53,5 +54,5 @@ const Header = () => {
     </nav>
 )
 }
- 
+
 export default Header;

@@ -15,7 +15,7 @@ export const COMENZAR_EDITAR_USUARIO = 'COMENZAR_EDITAR_USUARIO';
 export const USUARIO_EDITADO_EXITO = 'USUARIO_EDITADO_EXITO';
 export const USUARIO_EDITADO_ERROR = 'USUARIO_EDITADO_ERROR';
 
-/**Login Exito */
+/**LoginScreen Exito */
 export const LOGIN_EXITO = 'LOGIN_EXITO';
 export const LOG_OUT = 'LOG_OUT';
 

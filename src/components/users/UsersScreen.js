@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 /**Redux */
 import {useSelector,useDispatch} from 'react-redux';
 import {obtenerUsuariosAction} from '../../actions/usuarioActions';
-import Usuario from './Usuario'
+import User from './User'
 
-const Usuarios = () => {
+const UsersScreen = () => {
 
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const Usuarios = () => {
   const usuarios = useSelector(state => state.usuarios.usuarios);
   const error = useSelector(state => state.usuarios.error);
   const cargando = useSelector(state => state.usuarios.loading);
-  
+
   return (
     <Fragment>
       <h2 className="text-center mt-4">Listado de Funcionarios</h2>
@@ -56,7 +56,7 @@ const Usuarios = () => {
         <tbody>
           { usuarios.length === 0 ? (<tr><td colSpan={3}>No hay usuarios</td></tr>) : (
             usuarios.map(usuario => (
-              <Usuario
+              <User
                 key={usuario.id}
                 usuario={usuario}
               />
@@ -68,4 +68,4 @@ const Usuarios = () => {
    );
 }
 
-export default Usuarios;
+export default UsersScreen;
