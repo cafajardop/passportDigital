@@ -5,11 +5,11 @@
       "segundoapellido": "andres",
       "primernombre": "fajardo",
       "segundonombre": "pedraza",
-      "cedula": "8019944",
-      "tipodocumento": "CE",
+      "cedula": "1014204900",
+      "tipodocumento": "CC",
       "telefono": "3184043192",
       "correo": "cafajardop03@gmail.com",
-      "direccion": "sss",
+      "direccion": "ssssss",
       "direccion2": "calle 3",
       "id": 1
     }
@@ -30,6 +30,32 @@
     {
       "id": 4,
       "value": "CE"
+    }
+  ],
+  "menu": [
+    {
+      "tipoUsuario":"ADMIN",
+      "administracion": [
+        {
+
+        }
+      ]
+    },
+    {
+      "tipoUsuario":"ROLE",
+      "administracion":[
+      {
+
+      }
+    ]
+    },
+    {
+      "tipoUsuario":"EXTERNO",
+      "administracion":[
+        {
+
+        }
+      ]
     }
   ]
 }
