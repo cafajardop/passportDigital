@@ -25,6 +25,7 @@
     "redux-thunk": "^2.3.0",
     "serve": "^11.3.2",
     "styled-components": "^5.2.1",
+    "survey-react": "^1.8.17",
     "sweetalert2": "^10.10.2",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.3",
