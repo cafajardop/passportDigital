@@ -54,9 +54,9 @@ const UsersScreen = () => {
         </thead>
         <tbody>
           { usuarios.length === 0 ? (<tr><td colSpan={3}>No hay usuarios</td></tr>) : (
-            usuarios.map(usuario => (
+            usuarios.map((usuario, index) => (
               <User
-                key={usuario.id}
+                key={index}
                 usuario={usuario}
               />
             ))
