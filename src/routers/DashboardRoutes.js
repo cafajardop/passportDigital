@@ -6,6 +6,8 @@ import NavBar from "../components/shared/NavBar";
 import NewuserScreen from "../components/users/NewuserScreen";
 import EdituserScreen from "../components/users/EdituserScreen";
 import styled from 'styled-components';
+import IraformScreen from "../components/questions/IraformScreen";
+import Dexie from "dexie";
 
 const Contenedor = styled.div`      
   height:auto;
@@ -36,14 +38,14 @@ export const DashboardRoutes = (props) => {
               <Header/>
            </Headers>
             <SideBar>
-                <NavBar/>
+
             </SideBar>
            <Main>
                 <Switch>
                     <Route exact path="/" render={(props) => (<NavBar info={props} toggleMenu='true'>{" "} <UsersScreen info={props} />{" "} </NavBar>)}/>
                     <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props} toggleMenu='true'> <NewuserScreen info={props} /> </NavBar>}/>
                     <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props} toggleMenu='true'> <EdituserScreen info={props} /> </NavBar>}/>
-
+                    <Route exact path="/iraForm" render={ (props) => <NavBar info={props} toggleMenu='true'> <IraformScreen db={new Dexie('FormDatabase')} /> </NavBar> } />
 
               </Switch>
 

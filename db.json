@@ -64,5 +64,24 @@
         {}
       ]
     }
+  ],
+  "questions": [
+    {
+      "type": "radiogroup",
+      "name": "car",
+      "title": "Que marca de carro te gusta?",
+      "isRequired": true,
+      "colCount": 4,
+      "choices": ["None", "Ford", "Vauxhall", "Volkswagen", "Nissan", "Audi", "Mercedes-Benz", "BMW", "Peugeot", "Toyota", "Citroen"] },
+    {"name":"name", "type":"text", "title": "Dinos tu nombre:", "placeHolder":"Son Goku", "isRequired": true, "autoComplete": "name"},
+    {"name":"temp", "type":"text", "inputType":"number", "title": "Tu temperatura:", "placeHolder":"10", "isRequired": true },
+    {
+      "type": "checkbox",
+      "name": "opSystem",
+      "title": "Presenta alguno de los siguientes sintomas",
+      "hasOther": true,
+      "isRequired": true,
+      "choices": ["Tos", "Picazon", "Mocos"]
+    }
   ]
 }

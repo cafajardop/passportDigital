@@ -14,7 +14,6 @@ const UsersScreen = () => {
     /**Consultar api */
     const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
     cargarUsuarios();
-    // eslint-disable-next-line
   },[]);
 
   const usuarios = useSelector(state => state.usuarios.usuarios);
