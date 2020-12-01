@@ -1,17 +1,30 @@
 {
   "usuarios": [
     {
-      "primerapellido": "carlos",
-      "segundoapellido": "andres",
-      "primernombre": "fajardo",
-      "segundonombre": "pedraza",
-      "cedula": "1014204900",
-      "tipodocumento": "CC",
-      "telefono": "3184043192",
-      "correo": "cafajardop03@gmail.com",
-      "direccion": "ssssss",
-      "direccion2": "calle 3",
+      "nombreusuario": "cafajardop",
+      "constraseña": "123",
+      "rol": "USER",
+      "primerapellido": "",
+      "segundoapellido": "",
+      "primernombre": "",
+      "segundonombre": "",
+      "cedula": "",
+      "tipodocumento": "",
+      "telefono": "",
+      "correo": "",
+      "direccion": "",
+      "direccion2": "",
       "id": 1
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "rol": "ADMIN"
+    },
+    {
+      "id": 1,
+      "rol": "USER"
     }
   ],
   "tipodocumento": [
@@ -34,27 +47,21 @@
   ],
   "menu": [
     {
-      "tipoUsuario":"ADMIN",
+      "tipoUsuario": "ADMIN",
       "administracion": [
-        {
-
-        }
+        {}
       ]
     },
     {
-      "tipoUsuario":"ROLE",
-      "administracion":[
-      {
-
-      }
-    ]
+      "tipoUsuario": "ROLE",
+      "administracion": [
+        {}
+      ]
     },
     {
-      "tipoUsuario":"EXTERNO",
-      "administracion":[
-        {
-
-        }
+      "tipoUsuario": "EXTERNO",
+      "administracion": [
+        {}
       ]
     }
   ]

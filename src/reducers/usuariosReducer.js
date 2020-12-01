@@ -11,7 +11,10 @@ import {
   USUARIO_ELIMINADO_ERROR,
   OBTENER_USUARIO_EDITAR,
   USUARIO_EDITADO_EXITO,
-  USUARIO_EDITADO_ERROR
+  USUARIO_EDITADO_ERROR,
+  REGISTRO_USUARIO,
+  REGISTRO_USUARIO_EXITO,
+  REGISTRO_USUARIO_ERROR
 } from "../types";
 
 /**1. Cada reducer tiene su propio state */
@@ -25,6 +28,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case REGISTRO_USUARIO:
     case COMENZAR_OBTENER_USUARIOS:
     case AGREGAR_USUARIO:
       return {
@@ -32,6 +36,7 @@ export default function (state = initialState, action) {
         loading: action.payload,
       };
     case AGREGAR_USUARIO_EXITO:
+    case REGISTRO_USUARIO_EXITO:
       return {
         ...state,
         loading: false,
@@ -41,6 +46,7 @@ export default function (state = initialState, action) {
     case DESCARGA_USUARIOS_ERROR:
     case USUARIO_ELIMINADO_ERROR:
     case USUARIO_EDITADO_ERROR:
+    case REGISTRO_USUARIO_ERROR:
       return {
         ...state,
         loading: false,

@@ -53,16 +53,19 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usua
           <td className="acciones">
             <button
                 onClick={()=> redireccionarNuevo()}
+                className="btn-ecopetrol"
                 >Agregar
             </button>
 
             <button
                 onClick={()=> redireccionarEdicion(usuario)}
+                className="btn-ecopetrol"
                 >Editar
             </button>
 
             <button
               onClick={() => confirmarEliminarUsuario(id)}
+              className="btn-ecopetrol"
             >Eliminar
            </button>
           </td>

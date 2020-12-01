@@ -23,3 +23,7 @@ export const LOG_OUT = 'LOG_OUT';
 export const MOSTRAR_ALERTA = 'MOSTRAR_ALERTA';
 export const OCULTAR_ALERTA = 'OCULTAR_ALERTA';
 
+/**Registro Usuario */
+export const REGISTRO_USUARIO =  'REGISTRO_USUARIO';
+export const REGISTRO_USUARIO_EXITO  =  'REGISTRO_USUARIO_EXITO';
+export const REGISTRO_USUARIO_ERROR  =  'REGISTRO_USUARIO_ERROR';

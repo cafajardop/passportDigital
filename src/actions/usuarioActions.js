@@ -11,7 +11,10 @@ import {
   OBTENER_USUARIO_EDITAR,
   COMENZAR_EDITAR_USUARIO,
   USUARIO_EDITADO_EXITO,
-  USUARIO_EDITADO_ERROR
+  USUARIO_EDITADO_ERROR,
+  REGISTRO_USUARIO,
+  REGISTRO_USUARIO_EXITO,
+  REGISTRO_USUARIO_ERROR
 } from "../types";
 
 import http from "../http/http";
@@ -159,3 +162,48 @@ const editarUsuarioError = () => ({
   payload: true
 });
 
+/**Registro Usuario */
+export function registroUsuarioAction(usuario) {
+  return async (dispatch) => {
+    dispatch(registrorUsuario());
+    /**Consulta a la base de datos */
+    http.post("usuarios", usuario).then( resp => {
+      
+      Swal.fire(
+        "Correcto",
+        `Registro Exitoso Inicie Sesión`,
+        "success"
+        );  
+
+      setTimeout(() => {
+        dispatch(registroUsuarioExito(usuario));
+      }, 3000);
+
+    }).catch(err => {
+      console.log(err);
+      dispatch(registroUsuarioError(true));
+      Swal.fire({
+        icon: "error",
+        title: "Hubo un error al registrarse",
+        text: "Hubo un error, intenta de nuevo",
+      });
+    });
+  };
+}
+
+const registrorUsuario = () => ({
+  type: REGISTRO_USUARIO,
+  payload: true,
+});
+
+/**Si usuario se guarda en la base de datos */
+const registroUsuarioExito = (usuario) => ({
+  type: REGISTRO_USUARIO_EXITO,
+  payload: usuario,
+});
+
+/**Si hay error */
+const registroUsuarioError = (estado) => ({
+  type: REGISTRO_USUARIO_ERROR,
+  payload: estado,
+});

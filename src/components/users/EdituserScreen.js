@@ -213,11 +213,15 @@ const EdituserScreen = () => {
 
             <div className="form-row mt-3">
               <div className="form-group mr-2">
-                <button type="submit">Guardar</button>
+                <button 
+                  type="submit"
+                  className="btn-ecopetrol">Guardar</button>
               </div>
 
               <div className="form-group">
-                <button onClick={() => redireccionarNuevo()}>Cancelar</button>
+                <button 
+                  onClick={() => redireccionarNuevo()}
+                  className="btn-ecopetrol">Cancelar</button>
               </div>
             </div>
           </form>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 /**Actions Redux */
 import { crearNuevoUsuarioAction } from "../../actions/usuarioActions";
@@ -10,9 +10,10 @@ import {
   ocultarAlertaAction,
 } from "../../actions/alertaActions";
 
-const NewuserScreen = (props) => {
+const NewuserScreen = (props) => {  
+  const history = useHistory();
   /**State del componente */
-  const [usuario, guardarnombre] = useState({
+  const [usuario, guardarusuario] = useState({
     primerapellido: "",
     segundoapellido: "",
     primernombre: "",
@@ -54,7 +55,7 @@ const NewuserScreen = (props) => {
   const alerta = useSelector((state) => state.alerta.alerta);
 
   const onChange = (e) => {
-    guardarnombre({
+    guardarusuario({
       ...usuario,
       [e.target.name]: e.target.value,
     });
@@ -98,6 +99,10 @@ const NewuserScreen = (props) => {
 
     /**Redireccionar */
     props.info.history.push("/");
+  };
+
+  const redireccionarNuevo = () => {
+    history.push("/");
   };
 
   return (
@@ -238,13 +243,14 @@ const NewuserScreen = (props) => {
 
             <div className="form-row mt-3">
               <div className="form-group mr-2">
-                <button type="submit">Guardar</button>
+                <button className="btn-ecopetrol" type="submit">Guardar</button>
               </div>
 
               <div className="form-group">
-                <Link to={"/"} type="submit" className="btn btn-danger btn-sm">
-                  Cancelar
-                </Link>
+                  <button 
+                    onClick={() => redireccionarNuevo()}
+                    className="btn-ecopetrol">Cancelar
+                  </button>
               </div>
             </div>
           </form>
