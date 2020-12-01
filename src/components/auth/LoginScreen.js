@@ -95,8 +95,8 @@ export const LoginScreen = ({ history }) => {
             className="rounded mb-4"
             src={logo}
             alt=""
-            width="125"
-            height="35"
+            width="250"
+            height="65"
           />
           <h1 className="h3 mb-3 font-weight-normal">Pasaporte Digital</h1>
           {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
