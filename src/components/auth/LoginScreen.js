@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import logo from '../../resources/images/logo-head-ecopetrol.png';
 import { getFullYear } from "../../selectors/getFullYear";
+import {obtenerUsuariosAction} from '../../actions/usuarioActions';
 
 /**Actions Redux */
 import {
@@ -10,19 +11,30 @@ import {
   ocultarAlertaAction,
 } from "../../actions/alertaActions";
 import { mostrarEstadoLoginAction } from "../../actions/estadoLoginActions";
+import { getAlertMessages } from "../../selectors/getAlertMessages";
 
 export const LoginScreen = ({ history }) => {
+    
   /**State del componente */
-  const [nombre, guardarnombre] = useState("");
-  const [cedula, guardarCedula] = useState("");
-
-  /**Acceder al state del store */
-  const cargando = useSelector((state) => state.usuarios.state);
-  const error = useSelector((state) => state.usuarios.error);
-  const alerta = useSelector((state) => state.alerta.alerta);
+  const [nombreusuarioLogin, guardarnombreusuario] = useState("");
+  const [constraseñaLogin, guardarconstraseña] = useState("");
 
   /**Utilizar dispatch y crear funcion */
   const dispatch = useDispatch();
+
+  /** */
+  useEffect(()=>{
+    /**Consultar api */
+    const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
+    cargarUsuarios();
+    // eslint-disable-next-line
+  },[]);
+
+  /**Acceder al state del store */
+  const usuarios = useSelector(state => state.usuarios.usuarios);
+  const cargando = useSelector((state) => state.usuarios.state);
+  const error = useSelector((state) => state.usuarios.error);
+  const alerta = useSelector((state) => state.alerta.alerta);
 
   /**Obtener el año */
   const year = getFullYear();
@@ -32,19 +44,42 @@ export const LoginScreen = ({ history }) => {
     e.preventDefault();
 
     /**Validar Formulario */
-    if (nombre.trim() === "" || cedula.trim() === "") {
-      const alerta = {
-        msg: "Campos Obligatorios",
-        classes: "alert alert-danger text-center text-uppercase p3",
-      };
+    if(nombreusuarioLogin.trim() === "" || constraseñaLogin.trim() === ""){
+      
+      const alerta = getAlertMessages("Campos Obligatorios");
 
-      dispatch(mostrarAlertaAction(alerta));
-      dispatch(mostrarEstadoLoginAction(true));
+      dispatch(mostrarAlertaAction(alerta));      
+      setTimeout(() => {
+        dispatch(ocultarAlertaAction());        
+      }, 3000);
       return;
     }
 
     /**Buscar el usuario en la lista*/
-
+    /* const filter =  usuarios.find(user => user.nombreusuario?.toLocaleLowerCase() ===  nombreusuario.toLocaleLowerCase()); */
+    const filter = usuarios.filter(user => user.nombreusuario === nombreusuarioLogin)
+    if(filter.length !== 0){
+      const [ obj ] = filter;
+      const {constraseña } = obj;
+      
+      if(constraseña !== constraseñaLogin){
+        const alerta =  getAlertMessages("Contraseña Inválida");
+      
+        dispatch(mostrarAlertaAction(alerta));      
+        setTimeout(() => {
+          dispatch(ocultarAlertaAction());        
+        }, 3000);
+        return;
+      }
+    }else{
+      const alerta =  getAlertMessages("Usuario no existe");
+      
+        dispatch(mostrarAlertaAction(alerta));      
+        setTimeout(() => {
+          dispatch(ocultarAlertaAction());        
+        }, 3000);
+      return;
+    }
 
     /**Si no hay errores */
     dispatch(ocultarAlertaAction());
@@ -71,18 +106,18 @@ export const LoginScreen = ({ history }) => {
             type="text"            
             className="form-control"
             placeholder="alguien@example.com"            
-            name="nombre"
-            value={nombre}
-            onChange={(e) => guardarnombre(e.target.value)}
+            name="nombreusuarioLogin"
+            value={nombreusuarioLogin}
+            onChange={(e) => guardarnombreusuario(e.target.value)}
           />
           
           <input
             type="password"            
             className="form-control"
             placeholder="Contraseña"
-            name="cedula"
-            value={cedula}
-            onChange={(e) => guardarCedula(e.target.value)}   
+            name="constraseñaLogin"
+            value={constraseñaLogin}
+            onChange={(e) => guardarconstraseña(e.target.value)}   
           />
 
           <div className="checkbox mb-3">

@@ -90,11 +90,14 @@ export const RegisterScreen = ({ history }) => {
         classes: "alert alert-danger text-center text-uppercase p3",
       };
       dispatch(mostrarAlertaAction(alerta));      
+      setTimeout(() => {
+        dispatch(ocultarAlertaAction());        
+      }, 3000);
       return;
     }
-
+    
     /**Validar que no exista el usuario en la BD */
-    const filter =  filtrarusuarios.filter(user => user.nombreusuario.toLocaleLowerCase().includes(nombreusuario.toLocaleLowerCase()));
+    const filter =  filtrarusuarios.filter(user => user.nombreusuario?.toLocaleLowerCase().includes(nombreusuario.toLocaleLowerCase()));
       if(filter.length !== 0){
         const alerta = {
           msg: "El usuario ya existe inicie sesión",
