@@ -17,6 +17,7 @@ export const RegisterScreen = ({ history }) => {
   /**State del componente */
   const [repetirconstraseña, guardarrepetircontraseña] = useState("");
   const [registerusuario, guardarregisterusuario] = useState({
+    ingreso: false,
     nombreusuario:"",
     constraseña:"",    
     rol:"USER",
@@ -30,11 +31,12 @@ export const RegisterScreen = ({ history }) => {
     correo: "",
     direccion: "",
     direccion2: "",
+    observacion:""
   });
 
   const {
     nombreusuario,
-    constraseña    
+    constraseña 
   } = registerusuario;
 
   const [filtrarusuarios, filtrarguardarusuarios] = useState([]);
@@ -124,7 +126,11 @@ export const RegisterScreen = ({ history }) => {
 
   return (    
       <div className="contenedor-form-signin">
-        <form onSubmit={submitRegistroUsuario} className="form-signin">
+        <form 
+          onSubmit={submitRegistroUsuario} 
+          className="form-signin"
+          autoComplete="off"
+          >
           <img
             className="rounded mb-4"
             src={logo}

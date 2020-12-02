@@ -93,7 +93,10 @@ export const LoginScreen = ({ history }) => {
 
   return (    
       <div className="contenedor-form-signin">
-        <form onSubmit={submitNuevoUsuario} className="form-signin">
+        <form 
+          onSubmit={submitNuevoUsuario} 
+          className="form-signin"
+          autoComplete="off">
           <img
             className="form-img rounded mb-4"
             src={logo}

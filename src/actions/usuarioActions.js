@@ -136,6 +136,7 @@ const obtenerUsuarioEditar = usuario => ({
 
 /**Actualiza un registro en la api y state */
 export function editarUsuarioAction(usuario){
+  console.log(usuario);
   return async (dispatch) =>{
     dispatch(editarUsuario(usuario));
     http.put(`usuarios/${usuario.id}`, usuario).then(resp => {

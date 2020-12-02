@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editarUsuarioAction } from "../../actions/usuarioActions";
 import { useHistory } from "react-router-dom"; /**Redireccionamiento  */
-import TypeDocument from '../../hooks/useTypeDocument';
+import TypeDocument from "../../hooks/useTypeDocument";
+import RoleUsers from "../../hooks/useRoleUsers";
+
 
 const EdituserScreen = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   /**Nuevo state */
-  const [usuario, guardarUsuario] = useState({
+  const [usuario, guardarUsuario] = useState({        
+    ingreso: "",
     nombreusuario: "",
     rol: "",
     primerapellido: "",
@@ -22,9 +25,10 @@ const EdituserScreen = () => {
     correo: "",
     direccion: "",
     direccion2: "",
+    observacion:""
   });
 
-  const {
+  const {    
     nombreusuario,
     rol,
     primerapellido,
@@ -37,32 +41,32 @@ const EdituserScreen = () => {
     correo,
     direccion,
     direccion2,
+    observacion
   } = usuario;
 
   /**Consumir hook tipo documento */
   const documento = TypeDocument();
+  const roles = RoleUsers();
 
   /**User a editar */
-  const usuarioEditar = useSelector((state) => state.usuarios.usuarioEditar);
-
+  const usuarioEditar = useSelector((state) => state.usuarios.usuarioEditar);  
+  
   /**Llenado de información edición */
   useEffect(() => {
-    guardarUsuario(usuarioEditar);
+    guardarUsuario(usuarioEditar);        
   }, [usuarioEditar]);
 
   /**Leer los datos del formulario */
-  const onChangeFormulario = (e) => {
-    guardarUsuario({
+  const onChangeFormulario = (e) => {        
+    guardarUsuario({            
       ...usuario,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,      
     });
   };
 
   const submitEditarUsuario = (e) => {
-    e.preventDefault();
-
+    e.preventDefault();    
     dispatch(editarUsuarioAction(usuario));
-
     history.push("/");
   };
 
@@ -72,12 +76,14 @@ const EdituserScreen = () => {
 
   return (
     <div className="col-sm-12 order-sm-1">
-      <h2 className="mb-3 align-self-center text-center mt-4">
-        {" "}
-        Datos del Funcionario{" "}
+      <h2 className="mb-3 align-self-center text-center mt-4">        
+        Datos del Funcionario
       </h2>
       <hr />
-      <form onSubmit={submitEditarUsuario}>
+      <form 
+        onSubmit={submitEditarUsuario} 
+        autoComplete="off">
+
         <div className="form-row">
           <div className="form-group col-sm-6">
             <label>Usuario</label>
@@ -94,16 +100,22 @@ const EdituserScreen = () => {
 
           <div className="form-group col-sm-6">
             <label>Rol</label>
-            <input
+
+            <select
               type="text"
               className="form-control"
-              placeholder="Rol"
               name="rol"
               value={rol}
               onChange={onChangeFormulario}
-              disabled
-            />
-          </div>
+            >
+              <option value="">-- Seleccione --</option>
+              {roles.map((roles) => (
+                <option key={roles.id} value={roles.rol}>
+                  {roles.rol}
+                </option>
+              ))}
+            </select>
+          </div>          
         </div>
 
         <div className="form-row">
@@ -237,6 +249,19 @@ const EdituserScreen = () => {
               onChange={onChangeFormulario}
             />
           </div>
+        </div>
+
+        <div className="form-group">
+          <label>Observaciones</label>
+          <textarea 
+            className="form-control"             
+            rows="4"
+            className="form-control"            
+            name="observacion"
+            value={observacion}
+            onChange={onChangeFormulario}
+            >
+          </textarea>
         </div>
 
         <div className="form-row mt-3">

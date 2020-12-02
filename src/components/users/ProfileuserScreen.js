@@ -59,7 +59,10 @@ const ProfileuserScreen = ({usuario}) => {
         Datos del Funcionario{" "}
       </h2>
       <hr />
-      <form onSubmit={submitEditarUsuario}> 
+      <form 
+        onSubmit={submitEditarUsuario}
+        autoComplete="off"
+        > 
         <div className="form-row">
           <div className="form-group col-sm-6">
             <label>Usuario</label>

@@ -25,8 +25,7 @@ const ListUsersScreen = () => {
     <Fragment>
       <h2 className="text-center mt-4">Listado de Funcionarios</h2>
       <hr/>
-          { usuarios.length === 0
-          ?
+          
           <div className="col-md-12 align-self-center text-right">
               <div className="mb-2">
                   <Link
@@ -35,8 +34,7 @@ const ListUsersScreen = () => {
                       Agregar &#43;
                   </Link>
               </div>
-            </div>
-          : null }
+            </div>          
 
       { error ? <p className="font-weight-bold alert alert-danger text-centermt-4">Hubo un error</p>: null}
       { cargando ? <p className="text-center">Cargando...</p>: null}
@@ -50,7 +48,7 @@ const ListUsersScreen = () => {
               <th scope="col">Cedula</th>
               <th scope="col">Telefono</th>
               <th scope="col">Correo</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">Acceso</th>              
             </tr>
         </thead>
         <tbody>

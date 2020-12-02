@@ -113,7 +113,10 @@ const NewuserScreen = (props) => {
           <hr/>
           {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
 
-          <form onSubmit={submitNuevoUsuario}>
+          <form 
+            onSubmit={submitNuevoUsuario}
+            autoComplete="off"
+            >
             <div className="form-row">
               <div className="form-group col-sm-3">
                 <label>Primer Apellido</label>
