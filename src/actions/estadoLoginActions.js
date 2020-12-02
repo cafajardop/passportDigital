@@ -19,3 +19,9 @@ export function logOutAction() {
     type: LOG_OUT
   }
 }
+
+export function getUserLogin() {
+  return {
+    type: 'CONSULTA_LOGIN'
+  }
+}

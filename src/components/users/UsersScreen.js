@@ -4,6 +4,7 @@ import {useSelector,useDispatch} from 'react-redux';
 import {obtenerUsuariosAction} from '../../actions/usuarioActions';
 import ListUsersScreen from './ListUsersScreen';
 import ProfileuserScreen from './ProfileuserScreen';
+import {getUserLogin} from '../../actions/estadoLoginActions';
 
 const UsersScreen = () => {
 
@@ -14,25 +15,27 @@ const UsersScreen = () => {
     /**Consultar api */
     const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
     cargarUsuarios();
+    const loadUserLogin = () => dispatch(getUserLogin());
+    loadUserLogin();
   },[]);
 
-  const nombreusuarioLogin = localStorage.getItem('userLocal');  
+  const userLogin = useSelector(state => state.form.login);
+  console.log("obtencion de usuario en screen")
+  console.log(userLogin);
 
-  const usuarios = useSelector(state => state.usuarios.usuarios);  
-  const filter = usuarios.filter(user => user.nombreusuario === nombreusuarioLogin);
-  const [ user ] = filter;
-  const {rol} = user;
-
-  return (    
+  return (
     <div>
-        {rol ==="ADMIN" ?
-          <ListUsersScreen/>
-        :        
-          <ProfileuserScreen
-            key={user.id}
-            usuario={user}
-          />
-        }
+      {
+        userLogin == null ?
+            <div>Cargando</div> :
+            userLogin.rol ==="ADMIN" ?
+                <ListUsersScreen/>
+                :
+                <ProfileuserScreen
+                    key={userLogin.id}
+                    usuario={userLogin}
+                />
+      }
     </div>
    );
 }

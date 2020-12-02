@@ -2,9 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../resources/images/logo-head-ecopetrol.png";
 
-const Header = () => {
-  
-  const user = localStorage.getItem('userLocal');
+const Header = ({user}) => {
  
   const redireccionarNuevo = () => {
     localStorage.removeItem("userLocal");
@@ -52,7 +50,7 @@ const Header = () => {
             to="/passportDigital"
             onClick={() => redireccionarNuevo()}
           >
-          Bienvenido {user.toLocaleUpperCase()}  -  Cerrar Sesión
+          Bienvenido {user === null ? "" : user.nombreusuario.toLocaleUpperCase()}  -  Cerrar Sesión
           </NavLink>
         </ul>
       </div>

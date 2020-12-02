@@ -18,14 +18,24 @@ body {
   small {
     font-size: 0.5rem;
   }
+  .card {
+    margin-left: -6%;
+    width: 90%;
+  }
+  .card .form-control {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width:480px){
   h2,h5 {
-    font-size: 0.5rem;
+    font-size: 0.9rem;
   }
   small {
     font-size: 0.2rem;
+  }
+  .card {
+    margin-left: -15%;
   }
 }
 
@@ -72,8 +82,6 @@ h1 a.text-light:hover {
   width: 100px;
   border-radius: 5px;
   background-color: #0F0C5A;
-  height: 32px;
-  width: 75px;
   color: #FFFFFF;
   font-family: Roboto;
   font-size: 16px;
@@ -143,5 +151,9 @@ h1 a.text-light:hover {
 }
 
 .navbar-light .navbar-brand {
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
   color: white;
 }

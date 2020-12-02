@@ -75,7 +75,7 @@ export const LoginScreen = ({ history }) => {
 
       /**Si no hay errores */
     dispatch(ocultarAlertaAction());
-    dispatch(mostrarEstadoLoginAction(false));
+    dispatch(mostrarEstadoLoginAction(user));
     
     localStorage.setItem('userLocal', nombreusuarioLogin);
     

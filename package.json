@@ -1,8 +1,8 @@
 {
-  "homepage": "https://cafajardop.github.io/passportDigital",
   "name": "pasaportedigital",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@emotion/react": "^11.1.1",
     "@testing-library/jest-dom": "^5.11.4",
@@ -12,6 +12,7 @@
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "dexie": "^3.0.3",
+    "ngrok": "^3.3.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
     "react-detect-offline": "^2.4.0",
@@ -43,6 +44,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prod": "serve ./build -s -p ${PORT:-5000}",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

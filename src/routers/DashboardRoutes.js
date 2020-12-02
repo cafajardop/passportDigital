@@ -8,10 +8,11 @@ import EdituserScreen from "../components/users/EdituserScreen";
 import styled from 'styled-components';
 import IraformScreen from "../components/questions/IraformScreen";
 import Dexie from "dexie";
+import {getUserLogin} from '../actions/estadoLoginActions';
 import {
-    BrowserView,
-    MobileView
+    BrowserView
 } from "react-device-detect";
+import {useDispatch, useSelector} from "react-redux";
 
 const Contenedor = styled.div`      
   height:auto;
@@ -35,12 +36,18 @@ const Main = styled.div `
 `
 
 export const DashboardRoutes = (props) => {
+  const dispatch = useDispatch();
+  const loadUserLogin = () => dispatch(getUserLogin());
+  loadUserLogin();
+  const userLogin = useSelector(state => state.form.login);
+    console.log("Usuario logueado .----")
+    console.log(userLogin);
   return (
-    <>
+    <React.Fragment>
         <Contenedor>
            <Headers>
                <BrowserView>
-                   <Header/>
+                   <Header user={userLogin} />
                 </BrowserView>
            </Headers>
             <SideBar>
@@ -57,6 +64,6 @@ export const DashboardRoutes = (props) => {
 
            </Main>
         </Contenedor>
-    </>
+    </React.Fragment>
   );
 };

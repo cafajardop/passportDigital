@@ -1,35 +1,35 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import Swal from "sweetalert2";
+import React from 'react';
+import {useHistory} from 'react-router-dom'
+import Swal from 'sweetalert2';
 
 /**Redux */
-import { useDispatch } from "react-redux";
-import {
-  borrarUsuarioAction,
-  obtenerUsuarioEditarAction,
-} from "../../actions/usuarioActions";
+import {useDispatch, useSelector} from 'react-redux';
+import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usuarioActions';
 
-const User = ({ usuario }) => {
-  const {
-    id,
-    nombreusuario,
-    primerapellido,
-    segundoapellido,
-    primernombre,
-    segundonombre,
-    cedula,
-    tipodocumento,
-    telefono,
-    correo,
-  } = usuario;
+ const User = ({usuario}) => {
 
-  const dispatch = useDispatch();
-  const history = useHistory(); /**Habilitar history para redirección */
-  const user = localStorage.getItem("userLocal");
+   const {
+       id,
+       nombreusuario,
+       primerapellido,
+       segundoapellido,
+       primernombre,
+       segundonombre,
+       cedula,
+       tipodocumento,
+       telefono,
+       correo} = usuario;
 
-  /**Confirmacion de eliminar el usuario */
-  const confirmarEliminarUsuario = (id) => {
-    if (nombreusuario === user) {
+   const dispatch = useDispatch();
+   const history = useHistory();/**Habilitar history para redirección */
+   const userLogin = useSelector(state => state.form.login);
+   console.log("login user probando 123")
+   console.log(userLogin);
+
+   /**Confirmacion de eliminar el usuario */
+   const confirmarEliminarUsuario = id => {
+
+    if(id === userLogin.id){
       Swal.fire({
         icon: "error",
         title: "No se puede eliminar asi mismo",
@@ -39,57 +39,61 @@ const User = ({ usuario }) => {
     }
 
     Swal.fire({
-      title: "Esta seguro?",
+      title: 'Esta seguro?',
       text: "Un usuario que se elimina no se puede recuperar!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, eliminar!",
-      cancelButtonText: "Cancelar",
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText:'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         /**Pasarlo al action */
-        dispatch(borrarUsuarioAction(id));
+          dispatch(borrarUsuarioAction(id));
       }
     });
-  };
+   }
 
   /**Función que redirige de forma programada */
-  const redireccionarEdicion = (usuario) => {
-    dispatch(obtenerUsuarioEditarAction(usuario));
-    history.push(`/usuarios/editar/${usuario.id}`);
-  };
+  const redireccionarEdicion = usuario => {
+    dispatch( obtenerUsuarioEditarAction(usuario));
+    history.push(`/usuarios/editar/${usuario.id}`)
+  }
 
-  return (
-    <tr>
-      <td>
-        {primerapellido} {segundoapellido}
-      </td>
-      <td>
-        {primernombre} {segundonombre}{" "}
-      </td>
-      <td>{tipodocumento}</td>
-      <td>{cedula}</td>
-      <td>{telefono}</td>
-      <td>{correo}</td>
-      <td className="acciones">
-        <button
-          onClick={() => redireccionarEdicion(usuario)}
-          className="btn-ecopetrol"
-        >
-          Editar
-        </button>
+  const redireccionarNuevo = () => {
+    history.push('/usuarios/nuevo/')
+  }
 
-        <button
-          onClick={() => confirmarEliminarUsuario(id)}
-          className="btn-ecopetrol"
-        >
-          Eliminar
-        </button>
-      </td>
-    </tr>
-  );
-};
+   return (
+        <tr>
+          <td>{primerapellido} {segundoapellido}</td>
+          <td>{primernombre} {segundonombre} </td>
+          <td>{tipodocumento}</td>
+          <td>{cedula}</td>
+          <td>{telefono}</td>
+          <td>{correo}</td>
+          <td className="acciones">
+            <button
+                onClick={()=> redireccionarNuevo()}
+                className="btn-ecopetrol"                
+                >Agregar
+            </button>
 
-export default User;
+            <button
+                onClick={()=> redireccionarEdicion(usuario)}
+                className="btn-ecopetrol"
+                >Editar
+            </button>
+
+            <button
+              onClick={() => confirmarEliminarUsuario(id)}
+              className="btn-ecopetrol"
+            >Eliminar
+           </button>
+          </td>
+        </tr>
+    );
+ }
+
+ export default User;

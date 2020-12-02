@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as Survey from "survey-react";
 import "survey-react/modern.css";
-import {obtenerPreguntasAction} from "../../actions/questionActions";
+import { Card, Row } from 'react-bootstrap';
 Survey.StylesManager.applyTheme("bootstrap");
 
 
@@ -9,9 +9,20 @@ class Questions extends Component {
 
     render() {
         const survey = new Survey.Model(this.props.questions);
+        console.log("preguntas cargadas");
         survey.completeText = "Finalizar";
         survey.completedHtml = "<span>Encuesta finalizada correctamente</span>";
         const handleSetAnswers = this.props.handleSetAnswers;
+
+        if(this.props.questions !== undefined && this.props.questions.questions !== undefined &&
+            this.props.questions.questions.length > 0) {
+            this.props.questions.questions.filter(x => x.type === "radiogroup").forEach(question => {
+                let q = survey.getQuestionByName(question.name);
+                q.colCount = 1;
+            });
+
+            survey.render();
+        }
 
         survey
             .onComplete
@@ -24,16 +35,14 @@ class Questions extends Component {
             });
 
         return (
-            <div className="card mt-4 mb-3 mh-80 overflow-auto">
-                <div className="card-header">
-                    Formulario Ira para Covid 19
-                </div>
-                <div className="card-body">
+            <Card className="mt-4">
+                <Card.Header>Formulario Ira para Covid 19</Card.Header>
+                <Card.Body>
                     <Survey.Survey
                         model={survey}
                     />
-                </div>
-            </div>
+                </Card.Body>
+            </Card>
         );
     }
 }

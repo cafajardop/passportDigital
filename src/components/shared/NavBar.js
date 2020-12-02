@@ -5,7 +5,7 @@ import {
     BrowserView,
     MobileView
 } from "react-device-detect";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Image } from 'react-bootstrap';
 import logo from "../../resources/images/logo-head-ecopetrol.png";
 
 function NavBar(props) {
@@ -68,7 +68,6 @@ function NavBar(props) {
             <MobileView>
                 <Navbar bg="light" className="bar-menu" expand="lg" collapseOnSelect={true} fixed="top">
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Brand href="passportDigital">Pasaporte Digital</Navbar.Brand>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
                             <Nav.Link href="passportDigital">Home</Nav.Link>
