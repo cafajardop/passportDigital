@@ -8,34 +8,16 @@ Survey.StylesManager.applyTheme("bootstrap");
 class Questions extends Component {
 
     render() {
-        const json = { "questions": [
-                {
-                    "type": "radiogroup",
-                    "name": "car",
-                    "title": "Que marca de carro te gusta?",
-                    "isRequired": true,
-                    "colCount": 4,
-                    "choices": ["None", "Ford", "Vauxhall", "Volkswagen", "Nissan", "Audi", "Mercedes-Benz", "BMW", "Peugeot", "Toyota", "Citroen"] },
-                {"name":"name", "type":"text", "title": "Dinos tu nombre:", "placeHolder":"Son Goku", "isRequired": true, "autoComplete": "name"},
-                {"name":"temp", "type":"text", "inputType":"number", "title": "Tu temperatura:", "placeHolder":"10", "isRequired": true },
-                {
-                    "type": "checkbox",
-                    "name": "opSystem",
-                    "title": "Presenta alguno de los siguientes sintomas",
-                    "hasOther": true,
-                    "isRequired": true,
-                    "choices": ["Tos", "Picazon", "Mocos"]
-                }
-            ] };
-
-        const survey = new Survey.Model(json);
+        const survey = new Survey.Model(this.props.questions);
         survey.completeText = "Finalizar";
         survey.completedHtml = "<span>Encuesta finalizada correctamente</span>";
+        const handleSetAnswers = this.props.handleSetAnswers;
 
         survey
             .onComplete
-            .add(function (result) {
+            .add(function (result) {debugger;
                 console.log(result.data);
+                handleSetAnswers(result.data);
                 // document
                 //     .querySelector('#surveyResult')
                 //     .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);

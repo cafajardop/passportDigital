@@ -5,6 +5,8 @@ import storage from "redux-persist/lib/storage";
 import loginReducer from "./loginReducer";
 import usuariosReducer from "./usuariosReducer";
 import alertaReducer from "./alertaReducer";
+import questionReducer from "./questionsReducer";
+import repliesReducer from "./repliesReducer";
 
 function configureStore(initialState = {}) {
     const reducer = combineReducers({
@@ -19,7 +21,9 @@ function configureStore(initialState = {}) {
             loginReducer
         ),
         usuarios: usuariosReducer,
-        alerta: alertaReducer
+        alerta: alertaReducer,
+        questions: questionReducer,
+        replies: repliesReducer
     });
 
     // const store = createStore(persistReducer({
