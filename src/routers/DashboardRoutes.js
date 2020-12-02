@@ -8,13 +8,12 @@ import EdituserScreen from "../components/users/EdituserScreen";
 import styled from 'styled-components';
 import IraformScreen from "../components/questions/IraformScreen";
 import Dexie from "dexie";
-import {getUserLogin} from '../actions/estadoLoginActions';
 import {
     BrowserView
 } from "react-device-detect";
-import {useDispatch, useSelector} from "react-redux";
+import {LoginScreen} from "../components/auth/LoginScreen";
 
-const Contenedor = styled.div`      
+const Contenedor = styled.div`{
   height:auto;
   display: grid;  
   grid-template-areas:
@@ -35,35 +34,27 @@ const Main = styled.div `
   margin: 50px 25px 0 25px;  
 `
 
-export const DashboardRoutes = (props) => {
-  const dispatch = useDispatch();
-  const loadUserLogin = () => dispatch(getUserLogin());
-  loadUserLogin();
-  const userLogin = useSelector(state => state.form.login);
-    console.log("Usuario logueado .----")
-    console.log(userLogin);
+export const DashboardRoutes = () => {
   return (
-    <React.Fragment>
-        <Contenedor>
-           <Headers>
-               <BrowserView>
-                   <Header user={userLogin} />
-                </BrowserView>
-           </Headers>
-            <SideBar>
+      <React.Fragment>
+          <Contenedor>
+              <Headers>
+                  <BrowserView>
+                      <Header />
+                  </BrowserView>
+              </Headers>
+              <SideBar>
 
-            </SideBar>
-           <Main>
-                <Switch>
-                    <Route exact path="/" render={(props) => (<NavBar info={props} toggleMenu='true'>{" "} <UsersScreen info={props} />{" "} </NavBar>)}/>
-                    <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props} toggleMenu='true'> <NewuserScreen info={props} /> </NavBar>}/>
-                    <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props} toggleMenu='true'> <EdituserScreen info={props} /> </NavBar>}/>
-                    <Route exact path="/iraForm" render={ (props) => <NavBar info={props} toggleMenu='true'> <IraformScreen db={new Dexie('FormDatabase')} /> </NavBar> } />
-
-              </Switch>
-
-           </Main>
-        </Contenedor>
-    </React.Fragment>
+              </SideBar>
+              <Main>
+                  <Switch>
+                      <Route exact path="/" render={(props) => (<NavBar info={props} toggleMenu='true'>{" "} <UsersScreen info={props} />{" "} </NavBar>)}/>
+                      <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props} toggleMenu='true'> <NewuserScreen info={props} /> </NavBar>}/>
+                      <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props} toggleMenu='true'> <EdituserScreen info={props} /> </NavBar>}/>
+                      <Route exact path="/iraForm" render={ (props) => <NavBar info={props} toggleMenu='true'> <IraformScreen db={new Dexie('FormDatabase')} /> </NavBar> } />
+                  </Switch>
+              </Main>
+          </Contenedor>
+      </React.Fragment>
   );
 };
