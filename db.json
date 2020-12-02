@@ -1,20 +1,52 @@
 {
   "usuarios": [
     {
+      "nombreusuario": "jhonn",
+      "constraseña": "123",
+      "rol": "ADMIN",
+      "primerapellido": "Jhonn",
+      "segundoapellido": "Ecopetrol",
+      "primernombre": "Prieto",
+      "segundonombre": "Prieto",
+      "cedula": "111111",
+      "tipodocumento": "CC",
+      "telefono": "3046197991",
+      "correo": "johnn.prieto@ecopetrol.com.co",
+      "direccion": "Calle 2",
+      "direccion2": "calle 3",
+      "id": 1
+    },
+    {
       "nombreusuario": "cafajardop",
       "constraseña": "123",
       "rol": "USER",
-      "primerapellido": "",
-      "segundoapellido": "",
-      "primernombre": "",
-      "segundonombre": "",
-      "cedula": "",
-      "tipodocumento": "",
-      "telefono": "",
-      "correo": "",
-      "direccion": "",
-      "direccion2": "",
-      "id": 1
+      "primerapellido": "carlos",
+      "segundoapellido": "andres",
+      "primernombre": "fajardo",
+      "segundonombre": "pedraza",
+      "cedula": "1014204900",
+      "tipodocumento": "RC",
+      "telefono": "3184043192",
+      "correo": "cafajardop03@gmail.com",
+      "direccion": "calle 2",
+      "direccion2": "calle 4",
+      "id": 2
+    },
+    {
+      "nombreusuario": "holamundo",
+      "constraseña": "cafajardop",
+      "rol": "USER",
+      "primerapellido": "carlos",
+      "segundoapellido": "camilo",
+      "primernombre": "fajardo",
+      "segundonombre": "Prieto",
+      "cedula": "222222",
+      "tipodocumento": "CC",
+      "telefono": "3184043192",
+      "correo": "logos@gmail.com",
+      "direccion": "Calle 2",
+      "direccion2": "nueva direccion",
+      "id": 3
     }
   ],
   "roles": [
