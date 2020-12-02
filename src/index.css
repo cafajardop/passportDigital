@@ -141,3 +141,7 @@ h1 a.text-light:hover {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.navbar-light .navbar-brand {
+  color: white;
+}

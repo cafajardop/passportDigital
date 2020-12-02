@@ -7,8 +7,7 @@ import { AppRouter } from "./routers/AppRouter";
 
 const { store } = configureStore();
 
-export const PassportApp = () => {
-
+function PassportAp() {
   return(
     <Provider store={store}>
        <AppRouter/>
@@ -16,6 +15,7 @@ export const PassportApp = () => {
   ); 
 };
 
+export default PassportAp;
 /**1. React router dom npm i react-router-dom */
 /**2. Instalar json-server npm install -g json-server
  * desplegar el json.server

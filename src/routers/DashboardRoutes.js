@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 import Header from "../components/shared/Header";
 import UsersScreen from "../components/users/UsersScreen";
 import NavBar from "../components/shared/NavBar";
@@ -8,6 +8,10 @@ import EdituserScreen from "../components/users/EdituserScreen";
 import styled from 'styled-components';
 import IraformScreen from "../components/questions/IraformScreen";
 import Dexie from "dexie";
+import {
+    BrowserView,
+    MobileView
+} from "react-device-detect";
 
 const Contenedor = styled.div`      
   height:auto;
@@ -35,7 +39,9 @@ export const DashboardRoutes = (props) => {
     <>
         <Contenedor>
            <Headers>
-              <Header/>
+               <BrowserView>
+                   <Header/>
+                </BrowserView>
            </Headers>
             <SideBar>
 
