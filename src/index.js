@@ -3,10 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-import { PassportApp } from "./PassportApp";
+import PassportApp from "./PassportApp";
 
 ReactDOM.render(
-<PassportApp />, 
+    <React.StrictMode>
+        <PassportApp />
+    </React.StrictMode>,
 document.getElementById("root"));
 
 serviceWorkerRegistration.register();

@@ -10,7 +10,7 @@ import {
   mostrarAlertaAction,
   ocultarAlertaAction,
 } from "../../actions/alertaActions";
-import { mostrarEstadoLoginAction } from "../../actions/estadoLoginActions";
+import { mostrarEstadoLoginAction, logOutAction } from "../../actions/estadoLoginActions";
 import { getAlertMessages } from "../../selectors/getAlertMessages";
 
 export const LoginScreen = ({ history }) => {
@@ -24,10 +24,11 @@ export const LoginScreen = ({ history }) => {
 
   /** */
   useEffect(()=>{
+    /*Limpiar sesion*/
+    dispatch(logOutAction());
     /**Consultar api */
     const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
     cargarUsuarios();
-    // eslint-disable-next-line
   },[]);
 
   /**Acceder al state del store */

@@ -9,7 +9,8 @@ const UsersScreen = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
+    console.log("activa useeffect");
     /**Consultar api */
     const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
     cargarUsuarios();
@@ -18,12 +19,12 @@ const UsersScreen = () => {
   const nombreusuarioLogin = localStorage.getItem('userLocal');  
 
   const usuarios = useSelector(state => state.usuarios.usuarios);  
-  const filter = usuarios.filter(user => user.nombreusuario === nombreusuarioLogin)
+  const filter = usuarios.filter(user => user.nombreusuario === nombreusuarioLogin);
   const [ user ] = filter;
-  const {rol } = user;
+  const {rol} = user;
 
   return (    
-    <>        
+    <div>
         {rol ==="ADMIN" ?
           <ListUsersScreen/>
         :        
@@ -32,7 +33,7 @@ const UsersScreen = () => {
             usuario={user}
           />
         }
-    </>
+    </div>
    );
 }
 
