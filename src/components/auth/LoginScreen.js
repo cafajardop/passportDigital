@@ -35,7 +35,7 @@ export const LoginScreen = ({ history }) => {
   const cargando = useSelector((state) => state.usuarios.state);
   const error = useSelector((state) => state.usuarios.error);
   const alerta = useSelector((state) => state.alerta.alerta);
-
+  
   /**Obtener el año */
   const year = getFullYear();
 
@@ -56,13 +56,13 @@ export const LoginScreen = ({ history }) => {
     }
 
     /**Buscar el usuario en la lista*/
-    /* const filter =  usuarios.find(user => user.nombreusuario?.toLocaleLowerCase() ===  nombreusuario.toLocaleLowerCase()); */
     const filter = usuarios.filter(user => user.nombreusuario === nombreusuarioLogin)
     if(filter.length !== 0){
-      const [ obj ] = filter;
-      const {constraseña } = obj;
       
-      if(constraseña !== constraseñaLogin){
+      const [ user ] = filter;
+      const {constraseña} = user;
+      
+      if(constraseña !== constraseñaLogin) {
         const alerta =  getAlertMessages("Contraseña Inválida");
       
         dispatch(mostrarAlertaAction(alerta));      
@@ -71,6 +71,15 @@ export const LoginScreen = ({ history }) => {
         }, 3000);
         return;
       }
+
+      /**Si no hay errores */
+    dispatch(ocultarAlertaAction());
+    dispatch(mostrarEstadoLoginAction(false));
+    
+    localStorage.setItem('userLocal', nombreusuarioLogin);
+    
+    history.push("/");
+
     }else{
       const alerta =  getAlertMessages("Usuario no existe");
       
@@ -79,24 +88,18 @@ export const LoginScreen = ({ history }) => {
           dispatch(ocultarAlertaAction());        
         }, 3000);
       return;
-    }
-
-    /**Si no hay errores */
-    dispatch(ocultarAlertaAction());
-    dispatch(mostrarEstadoLoginAction(false));
-
-    history.push("/");
+    }    
   };
 
   return (    
       <div className="contenedor-form-signin">
         <form onSubmit={submitNuevoUsuario} className="form-signin">
           <img
-            className="rounded mb-4"
+            className="form-img rounded mb-4"
             src={logo}
             alt=""
-            width="250"
-            height="65"
+            width="200"
+            height="80"
           />
           <h1 className="h3 mb-3 font-weight-normal">Pasaporte Digital</h1>
           {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}

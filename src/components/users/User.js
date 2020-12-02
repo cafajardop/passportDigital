@@ -8,13 +8,24 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usua
 
  const User = ({usuario}) => {
 
-   const {id,primerapellido,segundoapellido, primernombre, segundonombre,cedula,tipodocumento, telefono, correo} = usuario;
+   const {id,nombreusuario,primerapellido,segundoapellido, primernombre, segundonombre,cedula,tipodocumento, telefono, correo} = usuario;
 
    const dispatch = useDispatch();
    const history = useHistory();/**Habilitar history para redirección */
+   const user = localStorage.getItem('userLocal');
 
    /**Confirmacion de eliminar el usuario */
    const confirmarEliminarUsuario = id => {
+
+    if(nombreusuario === user){
+      Swal.fire({
+        icon: "error",
+        title: "No se puede eliminar asi mismo",
+        text: "Hubo un error",
+      });
+      return;
+    }
+
     Swal.fire({
       title: 'Esta seguro?',
       text: "Un usuario que se elimina no se puede recuperar!",
@@ -53,7 +64,7 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usua
           <td className="acciones">
             <button
                 onClick={()=> redireccionarNuevo()}
-                className="btn-ecopetrol"
+                className="btn-ecopetrol"                
                 >Agregar
             </button>
 

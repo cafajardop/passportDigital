@@ -139,6 +139,12 @@ export function editarUsuarioAction(usuario){
   return async (dispatch) =>{
     dispatch(editarUsuario(usuario));
     http.put(`usuarios/${usuario.id}`, usuario).then(resp => {
+      
+      Swal.fire(
+        'Actualizado!',
+        'El usuario se Actualizo correctamente.',
+        'success'
+      )
       dispatch(editarUsuarioExito(usuario));
     }).catch(err => {
       console.log(err);

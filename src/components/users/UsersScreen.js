@@ -1,10 +1,9 @@
-import React, {Fragment, useEffect} from 'react';
-import { Link } from 'react-router-dom';
-
+import React, {useEffect} from 'react';
 /**Redux */
 import {useSelector,useDispatch} from 'react-redux';
 import {obtenerUsuariosAction} from '../../actions/usuarioActions';
-import User from './User'
+import ListUsersScreen from './ListUsersScreen';
+import ProfileuserScreen from './ProfileuserScreen';
 
 const UsersScreen = () => {
 
@@ -16,54 +15,24 @@ const UsersScreen = () => {
     cargarUsuarios();
   },[]);
 
-  const usuarios = useSelector(state => state.usuarios.usuarios);
-  const error = useSelector(state => state.usuarios.error);
-  const cargando = useSelector(state => state.usuarios.loading);
+  const nombreusuarioLogin = localStorage.getItem('userLocal');  
 
-  return (
-    <Fragment>
-      <h2 className="text-center mt-4">Listado de Funcionarios</h2>
-      <hr/>
-          { usuarios.length === 0
-          ?
-          <div className="col-md-12 align-self-center text-right">
-              <div className="mb-2">
-                  <Link
-                    to={"/usuarios/nuevo"}
-                    className="btn btn-success btn-sm mr-2">
-                      Agregar &#43;
-                  </Link>
-              </div>
-            </div>
-          : null }
+  const usuarios = useSelector(state => state.usuarios.usuarios);  
+  const filter = usuarios.filter(user => user.nombreusuario === nombreusuarioLogin)
+  const [ user ] = filter;
+  const {rol } = user;
 
-      { error ? <p className="font-weight-bold alert alert-danger text-centermt-4">Hubo un error</p>: null}
-      { cargando ? <p className="text-center">Cargando...</p>: null}
-
-      <table className="table table">
-        <thead>
-            <tr>
-              <th scope="col">Nombres</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Documento Identidad</th>
-              <th scope="col">Cedula</th>
-              <th scope="col">Telefono</th>
-              <th scope="col">Correo</th>
-              <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-          { usuarios.length === 0 ? (<tr><td colSpan={3}>No hay usuarios</td></tr>) : (
-            usuarios.map(usuario => (
-              <User
-                key={usuario.id}
-                usuario={usuario}
-              />
-            ))
-          )}
-        </tbody>
-      </table>
-    </Fragment>
+  return (    
+    <>        
+        {rol ==="ADMIN" ?
+          <ListUsersScreen/>
+        :        
+          <ProfileuserScreen
+            key={user.id}
+            usuario={user}
+          />
+        }
+    </>
    );
 }
 

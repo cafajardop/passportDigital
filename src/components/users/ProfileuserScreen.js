@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React,{useState,useEffect} from "react";
 import { editarUsuarioAction } from "../../actions/usuarioActions";
-import { useHistory } from "react-router-dom"; /**Redireccionamiento  */
-import TypeDocument from '../../hooks/useTypeDocument';
+import TypeDocument from "../../hooks/useTypeDocument";
+import { useDispatch, useSelector } from "react-redux";
+import {obtenerUsuarioEditarAction} from '../../actions/usuarioActions';
 
-const EdituserScreen = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
+const ProfileuserScreen = ({usuario}) => {
+  
+  const dispatch = useDispatch();  
+  dispatch( obtenerUsuarioEditarAction(usuario));
 
-  /**Nuevo state */
-  const [usuario, guardarUsuario] = useState({
+  const [usuarioprofile, guardarUsuario] = useState({
     nombreusuario: "",
     rol: "",
     primerapellido: "",
@@ -24,24 +24,12 @@ const EdituserScreen = () => {
     direccion2: "",
   });
 
-  const {
-    nombreusuario,
-    rol,
-    primerapellido,
-    segundoapellido,
-    primernombre,
-    segundonombre,
-    cedula,
-    tipodocumento,
-    telefono,
-    correo,
-    direccion,
-    direccion2,
-  } = usuario;
+  const { nombreusuario,rol,primerapellido,segundoapellido, primernombre, segundonombre,
+          cedula,tipodocumento,telefono, correo, direccion, direccion2} = usuarioprofile; 
 
-  /**Consumir hook tipo documento */
+  /**Hook tipo documento */  
   const documento = TypeDocument();
-
+  
   /**User a editar */
   const usuarioEditar = useSelector((state) => state.usuarios.usuarioEditar);
 
@@ -53,31 +41,25 @@ const EdituserScreen = () => {
   /**Leer los datos del formulario */
   const onChangeFormulario = (e) => {
     guardarUsuario({
-      ...usuario,
+      ...usuarioprofile,
       [e.target.name]: e.target.value,
     });
   };
 
   const submitEditarUsuario = (e) => {
     e.preventDefault();
-
-    dispatch(editarUsuarioAction(usuario));
-
-    history.push("/");
-  };
-
-  const redireccionarNuevo = () => {
-    history.push("/");
+    dispatch(editarUsuarioAction(usuarioprofile));
   };
 
   return (
-    <div className="col-sm-12 order-sm-1">
+    <>
+     <div className="col-sm-12 order-sm-1">
       <h2 className="mb-3 align-self-center text-center mt-4">
         {" "}
         Datos del Funcionario{" "}
       </h2>
       <hr />
-      <form onSubmit={submitEditarUsuario}>
+      <form onSubmit={submitEditarUsuario}> 
         <div className="form-row">
           <div className="form-group col-sm-6">
             <label>Usuario</label>
@@ -244,20 +226,12 @@ const EdituserScreen = () => {
             <button type="submit" className="btn-ecopetrol">
               Guardar
             </button>
-          </div>
-
-          <div className="form-group">
-            <button
-              onClick={() => redireccionarNuevo()}
-              className="btn-ecopetrol"
-            >
-              Cancelar
-            </button>
-          </div>
+          </div>          
         </div>
       </form>
     </div>
+    </>
   );
 };
 
-export default EdituserScreen;
+export default ProfileuserScreen;

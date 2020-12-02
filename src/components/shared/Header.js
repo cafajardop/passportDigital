@@ -1,58 +1,63 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom'
-import logo from '../../resources/images/logo-head-ecopetrol.png';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../../resources/images/logo-head-ecopetrol.png";
 
 const Header = () => {
+  
+  const user = localStorage.getItem('userLocal');
+ 
+  const redireccionarNuevo = () => {
+    localStorage.removeItem("userLocal");
+  };
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+      <Link className="navbar-brand"    
+        to="/">
+        Pasaporte Digital
+      </Link>
 
-        <Link
-            className="navbar-brand"
-            to="/">
-            Pasaporte Digital
-        </Link>
+      <a className="navbar-brand " href="#">
+        <img src={logo} className="rounded" width="125" height="35" alt="" />
+      </a>
 
-        <a className="navbar-brand " href="#" >
-          <img src={logo} className="rounded" width="125" height="35" alt=""/>
-        </a>
+      <div className="navbar-collapse">
+        <div className="navbar-nav">
+          <NavLink
+            activeClassName="active"
+            className="nav-item nav-link"
+            exact
+            to="/UsersScreen"
+          >
+            Reportes
+          </NavLink>
 
-        <div className="navbar-collapse">
-            <div className="navbar-nav">
-
-                <NavLink
-                    activeClassName="active"
-                    className="nav-item nav-link"
-                    exact
-                    to="/UsersScreen"
-                >
-                    Reportes
-                </NavLink>
-
-                <NavLink
-                    activeClassName="active"
-                    className="nav-item nav-link"
-                    exact
-                    to="/UsersScreen"
-                >
-                    Documentación
-                </NavLink>
-            </div>
+          <NavLink
+            activeClassName="active"
+            className="nav-item nav-link"
+            exact
+            to="/UsersScreen"
+          >
+            Documentación
+          </NavLink>
         </div>
+      </div>
 
-        <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul className="navbar-nav ml-auto">
-                <NavLink
-                    activeClassName="active"
-                    className="nav-item nav-link"
-                    exact
-                    to="/passportDigital"
-                >
-                    Cerrar Sesión
-                </NavLink>
-            </ul>
-        </div>
+      <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul className="navbar-nav ml-auto">
+          <NavLink
+            activeClassName="active"
+            className="nav-item nav-link"
+            exact
+            to="/passportDigital"
+            onClick={() => redireccionarNuevo()}
+          >
+          Bienvenido {user.toLocaleUpperCase()}  -  Cerrar Sesión
+          </NavLink>
+        </ul>
+      </div>
     </nav>
-)
-}
+  );
+};
 
 export default Header;
