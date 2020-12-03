@@ -5,6 +5,7 @@ import configureStore from "./reducers/index";
 import { Provider } from "react-redux";
 import { AppRouter } from "./routers/AppRouter";
 
+
 const { store } = configureStore();
 
 function PassportAp() {

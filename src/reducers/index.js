@@ -7,6 +7,7 @@ import usuariosReducer from "./usuariosReducer";
 import alertaReducer from "./alertaReducer";
 import questionReducer from "./questionsReducer";
 import repliesReducer from "./repliesReducer";
+import { authReducer } from "./authReducer";
 
 function configureStore(initialState = {}) {
     const reducer = combineReducers({
@@ -23,7 +24,8 @@ function configureStore(initialState = {}) {
         usuarios: usuariosReducer,
         alerta: alertaReducer,
         questions: questionReducer,
-        replies: repliesReducer
+        replies: repliesReducer,
+        autho: authReducer
     });
 
     // const store = createStore(persistReducer({

@@ -1,11 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../resources/images/logo-head-ecopetrol.png";
-import {useDispatch, useSelector} from "react-redux";
-import {getUserLogin} from "../../actions/estadoLoginActions";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserLogin } from "../../actions/estadoLoginActions";
 
 const Header = () => {
- 
   const redireccionarNuevo = () => {
     localStorage.removeItem("userLocal");
   };
@@ -13,12 +12,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const loadUserLogin = () => dispatch(getUserLogin());
   loadUserLogin();
-  const user = useSelector(state => state.form.login);
+  const user = useSelector((state) => state.form.login);
 
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-      <Link className="navbar-brand"    
-        to="/">
+      <Link className="navbar-brand" to="/">
         Pasaporte Digital
       </Link>
 
@@ -50,14 +48,19 @@ const Header = () => {
 
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
+          <span className="nav-item nav-link text-light">
+              {user === null || user.login === null
+              ? ""
+              : `${user.nombreusuario}`}
+          </span>
+          
           <NavLink
             activeClassName="active"
             className="nav-item nav-link"
             exact
             to="/passportDigital"
             onClick={() => redireccionarNuevo()}
-          >
-          Bienvenido {user === null || user.login === null ? "" : user.nombreusuario?.toLocaleUpperCase()}  -  Cerrar Sesión
+          > Cerrar Sesión
           </NavLink>
         </ul>
       </div>
