@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/passportDigital/static/css/main.7b879f9e.chunk.css",
-    "main.js": "/passportDigital/static/js/main.fb239430.chunk.js",
-    "main.js.map": "/passportDigital/static/js/main.fb239430.chunk.js.map",
-    "runtime-main.js": "/passportDigital/static/js/runtime-main.f7979d89.js",
-    "runtime-main.js.map": "/passportDigital/static/js/runtime-main.f7979d89.js.map",
-    "static/css/2.73a3bfaa.chunk.css": "/passportDigital/static/css/2.73a3bfaa.chunk.css",
-    "static/js/2.d845e9cd.chunk.js": "/passportDigital/static/js/2.d845e9cd.chunk.js",
-    "static/js/2.d845e9cd.chunk.js.map": "/passportDigital/static/js/2.d845e9cd.chunk.js.map",
-    "static/js/3.c5379853.chunk.js": "/passportDigital/static/js/3.c5379853.chunk.js",
-    "static/js/3.c5379853.chunk.js.map": "/passportDigital/static/js/3.c5379853.chunk.js.map",
-    "index.html": "/passportDigital/index.html",
-    "service-worker.js": "/passportDigital/service-worker.js",
-    "service-worker.js.map": "/passportDigital/service-worker.js.map",
-    "static/css/2.73a3bfaa.chunk.css.map": "/passportDigital/static/css/2.73a3bfaa.chunk.css.map",
-    "static/css/main.7b879f9e.chunk.css.map": "/passportDigital/static/css/main.7b879f9e.chunk.css.map",
-    "static/js/2.d845e9cd.chunk.js.LICENSE.txt": "/passportDigital/static/js/2.d845e9cd.chunk.js.LICENSE.txt",
-    "static/media/logo-head-ecopetrol.4853d412.png": "/passportDigital/static/media/logo-head-ecopetrol.4853d412.png"
+    "main.css": "/static/css/main.6a77dbb8.chunk.css",
+    "main.js": "/static/js/main.3a1647f7.chunk.js",
+    "main.js.map": "/static/js/main.3a1647f7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.789b5164.js",
+    "runtime-main.js.map": "/static/js/runtime-main.789b5164.js.map",
+    "static/css/2.5a364fa0.chunk.css": "/static/css/2.5a364fa0.chunk.css",
+    "static/js/2.f489abd2.chunk.js": "/static/js/2.f489abd2.chunk.js",
+    "static/js/2.f489abd2.chunk.js.map": "/static/js/2.f489abd2.chunk.js.map",
+    "static/js/3.3ed218a5.chunk.js": "/static/js/3.3ed218a5.chunk.js",
+    "static/js/3.3ed218a5.chunk.js.map": "/static/js/3.3ed218a5.chunk.js.map",
+    "index.html": "/index.html",
+    "service-worker.js": "/service-worker.js",
+    "service-worker.js.map": "/service-worker.js.map",
+    "static/css/2.5a364fa0.chunk.css.map": "/static/css/2.5a364fa0.chunk.css.map",
+    "static/css/main.6a77dbb8.chunk.css.map": "/static/css/main.6a77dbb8.chunk.css.map",
+    "static/js/2.f489abd2.chunk.js.LICENSE.txt": "/static/js/2.f489abd2.chunk.js.LICENSE.txt",
+    "static/media/logo-head-ecopetrol.4853d412.png": "/static/media/logo-head-ecopetrol.4853d412.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.f7979d89.js",
-    "static/css/2.73a3bfaa.chunk.css",
-    "static/js/2.d845e9cd.chunk.js",
-    "static/css/main.7b879f9e.chunk.css",
-    "static/js/main.fb239430.chunk.js"
+    "static/js/runtime-main.789b5164.js",
+    "static/css/2.5a364fa0.chunk.css",
+    "static/js/2.f489abd2.chunk.js",
+    "static/css/main.6a77dbb8.chunk.css",
+    "static/js/main.3a1647f7.chunk.js"
   ]
 }

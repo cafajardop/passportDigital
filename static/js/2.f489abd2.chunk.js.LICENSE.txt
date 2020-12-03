@@ -38,7 +38,7 @@ object-assign
  */
 
 /*!
- * surveyjs - Survey JavaScript library v1.8.17
+ * surveyjs - Survey JavaScript library v1.8.18
  * Copyright (c) 2015-2020 Devsoft Baltic OÜ  - http://surveyjs.io/
  * License: MIT (http://www.opensource.org/licenses/mit-license.php)
  */
