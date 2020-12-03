@@ -13,7 +13,7 @@ import {
 import { mostrarEstadoLoginAction, logOutAction } from "../../actions/estadoLoginActions";
 import { getAlertMessages } from "../../selectors/getAlertMessages";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({history}) => {
     
   /**State del componente */
   const [nombreusuarioLogin, guardarnombreusuario] = useState("");
@@ -78,6 +78,8 @@ export const LoginScreen = () => {
     dispatch(mostrarEstadoLoginAction(user));
     
     localStorage.setItem('userLocal', nombreusuarioLogin);
+
+    history.push("/");
 
     }else{
       const alerta =  getAlertMessages("Usuario no existe");
