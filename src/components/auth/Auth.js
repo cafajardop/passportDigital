@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 class Auth extends Component {
 
     componentDidMount() {
-        if(this.props.posts.form !== null && this.props.posts.form.login !== undefined)
-            this.props.eventLogin(this.props.posts.form.login);
+        //if(this.props.posts.form !== null && this.props.posts.form.login !== undefined)
+         //   this.props.eventLogin(this.props.posts.form.login);
     }
 
     render() {

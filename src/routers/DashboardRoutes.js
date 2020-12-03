@@ -11,7 +11,7 @@ import Dexie from "dexie";
 import {
     BrowserView
 } from "react-device-detect";
-import {LoginScreen} from "../components/auth/LoginScreen";
+import Timer from '../components/questions/Timer';
 
 const Contenedor = styled.div`{
   height:auto;
@@ -52,6 +52,7 @@ export const DashboardRoutes = () => {
                       <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props} toggleMenu='true'> <NewuserScreen info={props} /> </NavBar>}/>
                       <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props} toggleMenu='true'> <EdituserScreen info={props} /> </NavBar>}/>
                       <Route exact path="/iraForm" render={ (props) => <NavBar info={props} toggleMenu='true'> <IraformScreen db={new Dexie('FormDatabase')} /> </NavBar> } />
+                      <Route exact path="/timer" component={Timer}/>
                   </Switch>
               </Main>
           </Contenedor>

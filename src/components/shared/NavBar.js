@@ -44,6 +44,11 @@ function NavBar(props) {
                                     Nuevo Usuario
                                 </NavText>
                             </NavItem>
+                            <NavItem eventKey="timer">
+                                <NavText>
+                                    Notificacion Timer
+                                </NavText>
+                            </NavItem>
                         </NavItem>
                         <NavItem eventKey="iraForm">
                             <NavIcon>
@@ -75,6 +80,7 @@ function NavBar(props) {
                             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="/usuarios/nuevo">Nuevo Usuario</NavDropdown.Item>
                                 <NavDropdown.Divider />
+                                <NavDropdown.Item href="/timer">Notificacion temporizador</NavDropdown.Item>
                             </NavDropdown>
                             <Nav.Link href="iraForm">Formulario</Nav.Link>
                             <Nav.Link href="passportDigital">Cerrar Sesion</Nav.Link>
