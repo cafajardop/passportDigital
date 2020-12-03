@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as Survey from "survey-react";
 import "survey-react/modern.css";
-import { Card, Row } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 Survey.StylesManager.applyTheme("bootstrap");
 
 
@@ -9,7 +9,6 @@ class Questions extends Component {
 
     render() {
         const survey = new Survey.Model(this.props.questions);
-        console.log("preguntas cargadas");
         survey.completeText = "Finalizar";
         survey.completedHtml = "<span>Encuesta finalizada correctamente</span>";
         const handleSetAnswers = this.props.handleSetAnswers;

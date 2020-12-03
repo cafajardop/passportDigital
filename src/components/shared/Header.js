@@ -14,8 +14,6 @@ const Header = () => {
   const loadUserLogin = () => dispatch(getUserLogin());
   loadUserLogin();
   const user = useSelector(state => state.form.login);
-  console.log("Usuario logueado .----");
-  console.log(user);
 
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">

@@ -11,7 +11,6 @@ const UsersScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("activa useeffect");
     /**Consultar api */
     const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
     cargarUsuarios();
@@ -20,8 +19,6 @@ const UsersScreen = () => {
   },[]);
 
   const userLogin = useSelector(state => state.form.login);
-  console.log("obtencion de usuario en screen")
-  console.log(userLogin);
 
   return (
     <div>

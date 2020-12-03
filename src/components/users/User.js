@@ -23,8 +23,6 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usua
    const dispatch = useDispatch();
    const history = useHistory();/**Habilitar history para redirección */
    const userLogin = useSelector(state => state.form.login);
-   console.log("login user probando 123")
-   console.log(userLogin);
 
    /**Confirmacion de eliminar el usuario */
    const confirmarEliminarUsuario = id => {
