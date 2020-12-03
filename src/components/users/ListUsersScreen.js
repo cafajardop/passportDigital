@@ -26,6 +26,16 @@ const ListUsersScreen = () => {
       <h2 className="text-center mt-4">Listado de Funcionarios</h2>
       <hr/>
 
+        <div className="col-md-12 align-self-center text-right">
+            <div className="mb-2">
+                <Link
+                    to={"/usuarios/nuevo"}
+                    className="btn btn-success btn-sm mr-2">
+                    Agregar &#43;
+                </Link>
+            </div>
+        </div>
+
       { error ? <p className="font-weight-bold alert alert-danger text-centermt-4">Hubo un error</p>: null}
       { cargando ? <p className="text-center">Cargando...</p>: null}
 

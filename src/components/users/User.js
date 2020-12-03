@@ -73,12 +73,6 @@ import {borrarUsuarioAction,obtenerUsuarioEditarAction} from '../../actions/usua
           <td>{correo}</td>
           <td className="acciones">
             <button
-                onClick={()=> redireccionarNuevo()}
-                className="btn-ecopetrol"                
-                >Agregar
-            </button>
-
-            <button
                 onClick={()=> redireccionarEdicion(usuario)}
                 className="btn-ecopetrol"
                 >Editar
