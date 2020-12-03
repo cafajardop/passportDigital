@@ -59,7 +59,7 @@ const Header = () => {
             to="/passportDigital"
             onClick={() => redireccionarNuevo()}
           >
-          Bienvenido {user === null || user.login === null ? "" : user.nombreusuario.toLocaleUpperCase()}  -  Cerrar Sesión
+          Bienvenido {user === null || user.login === null ? "" : user.nombreusuario?.toLocaleUpperCase()}  -  Cerrar Sesión
           </NavLink>
         </ul>
       </div>
