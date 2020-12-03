@@ -1,9 +1,12 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from '../../resources/images/logo-head-ecopetrol.png';
+import logo from "../../resources/images/logo-head-ecopetrol.png";
 import { getFullYear } from "../../selectors/getFullYear";
-import axios from 'axios'
+import axios from "axios";
+import {  
+  MobileView
+} from "react-device-detect";
 
 /**Actions Redux */
 import {
@@ -13,14 +16,13 @@ import {
 import { registroUsuarioAction } from "../../actions/usuarioActions";
 
 export const RegisterScreen = ({ history }) => {
-
   /**State del componente */
   const [repetirconstraseña, guardarrepetircontraseña] = useState("");
   const [registerusuario, guardarregisterusuario] = useState({
     ingreso: false,
-    nombreusuario:"",
-    constraseña:"",    
-    rol:"USER",
+    nombreusuario: "",
+    constraseña: "",
+    rol: "USER",
     primerapellido: "",
     segundoapellido: "",
     primernombre: "",
@@ -31,13 +33,10 @@ export const RegisterScreen = ({ history }) => {
     correo: "",
     direccion: "",
     direccion2: "",
-    observacion:""
+    observacion: "",
   });
 
-  const {
-    nombreusuario,
-    constraseña 
-  } = registerusuario;
+  const { nombreusuario, constraseña } = registerusuario;
 
   const [filtrarusuarios, filtrarguardarusuarios] = useState([]);
   useEffect(() => {
@@ -57,8 +56,8 @@ export const RegisterScreen = ({ history }) => {
   const error = useSelector((state) => state.usuarios.error);
   const alerta = useSelector((state) => state.alerta.alerta);
 
-  const onChange = (e) => {    
-    guardarregisterusuario({      
+  const onChange = (e) => {
+    guardarregisterusuario({
       ...registerusuario,
       [e.target.name]: e.target.value,
     });
@@ -76,7 +75,11 @@ export const RegisterScreen = ({ history }) => {
     e.preventDefault();
 
     /**Validar Formulario */
-    if (nombreusuario.trim() === "" || constraseña.trim() === "" || repetirconstraseña.trim()==="") {
+    if (
+      nombreusuario.trim() === "" ||
+      constraseña.trim() === "" ||
+      repetirconstraseña.trim() === ""
+    ) {
       const alerta = {
         msg: "Campos Obligatorios",
         classes: "alert alert-danger text-center text-uppercase p3",
@@ -86,36 +89,40 @@ export const RegisterScreen = ({ history }) => {
       return;
     }
 
-    if(constraseña.trim() !== repetirconstraseña.trim()){
+    if (constraseña.trim() !== repetirconstraseña.trim()) {
       const alerta = {
         msg: "Las contraseñas no coinciden",
         classes: "alert alert-danger text-center text-uppercase p3",
       };
-      dispatch(mostrarAlertaAction(alerta));      
+      dispatch(mostrarAlertaAction(alerta));
       setTimeout(() => {
-        dispatch(ocultarAlertaAction());        
+        dispatch(ocultarAlertaAction());
       }, 3000);
       return;
     }
-    
+
     /**Validar que no exista el usuario en la BD */
-    const filter =  filtrarusuarios.filter(user => user.nombreusuario?.toLocaleLowerCase().includes(nombreusuario.toLocaleLowerCase()));
-      if(filter.length !== 0){
-        const alerta = {
-          msg: "El usuario ya existe inicie sesión",
-          classes: "alert alert-danger text-center text-uppercase p3",
-        };
-        dispatch(mostrarAlertaAction(alerta));
-        setTimeout(() => {
-          dispatch(ocultarAlertaAction());
-          history.push("/passportDigital");
-        }, 3000);
-        return;
+    const filter = filtrarusuarios.filter((user) =>
+      user.nombreusuario
+        ?.toLocaleLowerCase()
+        .includes(nombreusuario.toLocaleLowerCase())
+    );
+    if (filter.length !== 0) {
+      const alerta = {
+        msg: "El usuario ya existe inicie sesión",
+        classes: "alert alert-danger text-center text-uppercase p3",
+      };
+      dispatch(mostrarAlertaAction(alerta));
+      setTimeout(() => {
+        dispatch(ocultarAlertaAction());
+        history.push("/passportDigital");
+      }, 3000);
+      return;
     }
 
     /**Si no hay errores */
     dispatch(ocultarAlertaAction());
-    
+
     /**Resgistra usuario */
     registrarUsuario({
       ...registerusuario,
@@ -124,68 +131,79 @@ export const RegisterScreen = ({ history }) => {
     history.push("/passportDigital");
   };
 
-  return (    
-      <div className="contenedor-form-signin">
-        <form 
-          onSubmit={submitRegistroUsuario} 
-          className="form-signin"
-          autoComplete="off"
+  return (
+    <div className="container-fluid container-full-height">
+      <div class="row row-full-height">
+        
+        <div
+          class="hidden-sm col-sm-6 col-md-9 col-full-height login-main-content "
+          style={{
+            backgroundImage: "url('../assets/logo-login.png')",
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+
+        <div className="contenedor-form-signin col-sm-6 col-md-3 col-full-height">
+          <form
+            onSubmit={submitRegistroUsuario}
+            className="form-signin"
+            autoComplete="off"
           >
-          <img
-            className="rounded mb-4"
-            src={logo}
-            alt=""
-            width="200"
-            height="80"
-          />
-          <h1 className="h3 mb-3 font-weight-normal">Pasaporte Digital</h1>
-          {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
-          {cargando ? <p>Cargando..</p> : null} {error ? (<p className="alert alert-danger p2 mt-4 text-center"> Hubo un error </p>) : null}
+          
+            <h1 className="h3 mb-3 font-weight-normal">Pasaporte Digital</h1>
+            {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
+            {cargando ? <p>Cargando..</p> : null}{" "}
+            {error ? (
+              <p className="alert alert-danger p2 mt-4 text-center">
+                {" "}
+                Hubo un error{" "}
+              </p>
+            ) : null}
+            <input
+              type="text"
+              className="form-control"
+              placeholder="alguien@example.com"
+              name="nombreusuario"
+              value={nombreusuario}
+              onChange={onChange}
+            />
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Contraseña"
+              name="constraseña"
+              value={constraseña}
+              onChange={onChange}
+            />
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Repetir Contraseña"
+              name="repetirconstraseña"
+              value={repetirconstraseña}
+              onChange={(e) => guardarrepetircontraseña(e.target.value)}
+            />
+            <div className="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me" /> Recordarme
+              </label>
+            </div>
+            <button
+              className="btn btn-lg btn-primary btn-block mb-2"
+              type="submit"
+            >
+              Ingresar
+            </button>
+            <Link to={"/passportDigital"} type="text">
+              {" "}
+              Iniciar Sesión{" "}
+            </Link>
+            <p className="mt-5 mb-3 text-muted">&copy; {year}</p>
+          </form>          
+        </div>
 
-          <input
-            type="text"
-            className="form-control"
-            placeholder="alguien@example.com"
-            name="nombreusuario"
-            value={nombreusuario}
-            onChange={onChange}
-          />
-
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Contraseña"
-            name="constraseña"
-            value={constraseña}
-            onChange={onChange}
-          />
-
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Repetir Contraseña"
-            name="repetirconstraseña"
-            value={repetirconstraseña}
-            onChange={(e)=> guardarrepetircontraseña(e.target.value)}
-          />
-
-          <div className="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me" /> Recordarme
-            </label>
-          </div>
-
-          <button
-            className="btn btn-lg btn-primary btn-block mb-2"
-            type="submit"
-          >
-            Ingresar
-          </button>
-
-          <Link to={"/passportDigital"} type="text">{" "}Iniciar Sesión{" "}</Link>
-
-          <p className="mt-5 mb-3 text-muted">&copy; {year}</p>
-        </form>
       </div>
+    </div>
   );
 };
