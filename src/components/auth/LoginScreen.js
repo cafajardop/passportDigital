@@ -16,6 +16,9 @@ import {
   logOutAction,
 } from "../../actions/estadoLoginActions";
 import { getAlertMessages } from "../../selectors/getAlertMessages";
+import LeftPanel from "./leftPanel";
+import HeadTitle from "./HeadTitle";
+import FootImageLogin from "./FootImageLogin";
 
 export const LoginScreen = ({ history }) => {
   /**State del componente */
@@ -105,17 +108,10 @@ export const LoginScreen = ({ history }) => {
       </div>
     </div>
 
-    <div className="container-fluid container-full-height">
-      <div className="row row-full-height">
+      <div className="container-fluid container-full-height">
+        <div className="row row-full-height">
 
-        <div className="hidden-xs col-sm-8 col-md-8 col-lg-8 col-xl-9 col-full-height login-main-content">
-          <img src={logo} className="img-fluid img-ecopetrol" alt="logo ecopetrol" />
-          <div className="row w-100 text-left-login ml-4">
-            <div className="col-12 mt-4"><h3>Pasaporte Digital</h3></div>
-            <div className="col-12"><span>Por un acceso mas seguro para todos</span></div>
-          </div>
-          <img src={ilustration} className="img-fluid ilustration" alt="ilustracion inicial" />
-        </div>
+        <LeftPanel />
 
         <div className="contenedor-form-signin col-sm-4 col-md-4 col-lg-4 col-xl-3 col-full-height">
             
@@ -124,12 +120,7 @@ export const LoginScreen = ({ history }) => {
               className="form-signin"
               autoComplete="off"
             >
-              <div className="dv-head-options">
-                <span style={{textAlign:"center", marginInlineStart:"center"}}>¿No tienes una cuenta?</span><br/>
-                <Link to={"/Registro"} type="text" style={{textAlign:"center"}}>
-                  Registrese
-                </Link>
-              </div>
+              <HeadTitle title="¿No tienes una cuenta?" linkText="Registrese" linkUrl="Registro"/>
 
               <h5 className="h3 mb-3 mt-3">Registrate en pasaporte digital</h5>
               {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
@@ -189,12 +180,9 @@ export const LoginScreen = ({ history }) => {
           </div>
         </div>
 
-        <div className="col-sm-12 col-md-12 foot-image-login">
-          <img src={logo} className="img-fluid img-ecopetrol" alt="logo ecopetrol" />
-          <img src={ilustration} className="img-fluid mt-5" alt="ilustracion inicial" />
-        </div>
+        <FootImageLogin/>
 
       </div>
-      </React.Fragment>
+    </React.Fragment>
   );
 };

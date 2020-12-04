@@ -19,38 +19,56 @@
       "ingreso": true
     },
     {
-      "ingreso": true,
+      "ingreso": false,
       "nombreusuario": "cafajardop",
       "constraseña": "cafajardop",
       "rol": "USER",
-      "primerapellido": "carlos",
-      "segundoapellido": "andres",
-      "primernombre": "fajardo",
-      "segundonombre": "pedraza",
-      "cedula": "1014204900",
+      "primerapellido": "Fajardo",
+      "segundoapellido": "Pedraza",
+      "primernombre": "Carlos",
+      "segundonombre": "Andres",
+      "cedula": "1029039489",
       "tipodocumento": "CC",
-      "telefono": "3111",
-      "correo": "cafajardop03@gmail.com",
-      "direccion": "calle",
-      "direccion2": "calle",
-      "observacion": "el usuario queda como adminstrador",
+      "telefono": "32178912356",
+      "correo": "cfajardop@gmail.cmom",
+      "direccion": "cll falsa 123",
+      "direccion2": "calle falsa456",
+      "observacion": "lala",
       "id": 2
     },
     {
       "ingreso": false,
-      "nombreusuario": "julian",
-      "constraseña": "cafajardop",
-      "rol": "USER",
-      "primerapellido": "Julian ",
-      "segundoapellido": "andres",
-      "primernombre": "Ospina",
-      "segundonombre": "Ospina",
-      "cedula": "123132132",
+      "nombreusuario": "dvalbuenar",
+      "constraseña": "abcd1234",
+      "rol": "ADMIN",
+      "primerapellido": "Valbuena",
+      "segundoapellido": "Rozo",
+      "primernombre": "Dnaiel",
+      "segundonombre": "Camilo",
+      "cedula": "1023928372",
       "tipodocumento": "CC",
-      "telefono": "1231321",
-      "correo": "cafajardop03@gmail.com",
-      "direccion": "direcion",
-      "direccion2": "direcion",
+      "telefono": "3218150119",
+      "correo": "dddd@gmail.com",
+      "direccion": "Carrera 34 b #36 13 sur",
+      "direccion2": "villa mayor antigua",
+      "observacion": "",
+      "id": 3
+    },
+    {
+      "ingreso": false,
+      "nombreusuario": "dvalbuenar",
+      "constraseña": "abcd1234",
+      "rol": "USER",
+      "primerapellido": "",
+      "segundoapellido": "",
+      "primernombre": "",
+      "segundonombre": "",
+      "cedula": "",
+      "tipodocumento": "",
+      "telefono": "",
+      "correo": "",
+      "direccion": "",
+      "direccion2": "",
       "observacion": "",
       "id": 4
     }
@@ -114,15 +132,12 @@
         "choices": [
           "None",
           "Ford",
-          "Vauxhall",
           "Volkswagen",
           "Nissan",
           "Audi",
           "Mercedes-Benz",
           "BMW",
-          "Peugeot",
-          "Toyota",
-          "Citroen"
+          "Peugeot"
         ]
       },
       {
@@ -183,6 +198,75 @@
         "Picazon"
       ],
       "id": 3
+    },
+    {
+      "sintoms": [
+        "Tos",
+        "Picazon"
+      ],
+      "car": "None",
+      "name": "Kararoto3",
+      "temp": 61,
+      "id": 4
+    },
+    {
+      "car": "Ford",
+      "name": "Kararoto",
+      "temp": 7,
+      "sintoms": [
+        "Picazon"
+      ],
+      "id": 5
+    },
+    {
+      "car": "Volkswagen",
+      "name": "Kararoto3",
+      "temp": -14,
+      "sintoms": [
+        "Picazon",
+        "Mocos"
+      ],
+      "id": 6
+    },
+    {
+      "car": "Volkswagen",
+      "name": "Kararoto3",
+      "temp": -14,
+      "sintoms": [
+        "Picazon",
+        "Mocos"
+      ],
+      "id": 7
+    },
+    {
+      "car": "None",
+      "name": "Kararoto",
+      "temp": 8,
+      "sintoms": [
+        "Picazon"
+      ],
+      "id": 8
+    },
+    {
+      "car": "Audi",
+      "name": "Kakaroto",
+      "temp": -16,
+      "sintoms": [
+        "Picazon",
+        "Mocos"
+      ],
+      "id": 9
+    },
+    {
+      "name": "CArlos",
+      "car": "Citroen",
+      "temp": 30,
+      "sintoms": [
+        "Mocos",
+        "Picazon",
+        "Tos"
+      ],
+      "id": 10
     }
   ]
 }

@@ -14,6 +14,9 @@ import {
   ocultarAlertaAction,
 } from "../../actions/alertaActions";
 import { registroUsuarioAction } from "../../actions/usuarioActions";
+import LeftPanel from "./leftPanel";
+import HeadTitle from "./HeadTitle";
+import FootImageLogin from "./FootImageLogin";
 
 export const RegisterScreen = ({ history }) => {
   /**State del componente */
@@ -35,6 +38,8 @@ export const RegisterScreen = ({ history }) => {
     direccion2: "",
     observacion: "",
   });
+  const [password, showPassword] = useState('password');
+  const [password2, showPassword2] = useState('password');
 
   const { nombreusuario, constraseña } = registerusuario;
 
@@ -143,12 +148,8 @@ export const RegisterScreen = ({ history }) => {
     
     <div className="container-fluid container-full-height">      
       <div className="row row-full-height">
-        
-      <div className="hidden-xs col-sm-8 col-md-8 col-lg-8 col-xl-9 col-full-height login-main-content"
-              style={{backgroundImage:"url('../passportDigital/assets/logo-login.png')", 
-                      backgroundSize:"100% 100%", 
-                      backgroundRepeat:"no-repeat"}}>
-        </div>
+
+        <LeftPanel />
 
         <div className="contenedor-form-signin col-sm-4 col-md-4 col-lg-4 col-xl-3 col-full-height">
           <form
@@ -157,12 +158,7 @@ export const RegisterScreen = ({ history }) => {
             autoComplete="off"
           >
 
-            <div style={{marginBottom: "20%"}}>
-            <span style={{textAlign:"center", marginInlineStart:"center"}}>¿Tienes una cuenta?</span><br/>
-              <Link to={"/passportDigital"} type="text">
-                Iniciar Sesión
-              </Link>
-            </div>
+            <HeadTitle title="¿Tienes una cuenta?" linkText="Iniciar Sesión" linkUrl="passportDigital"/>
 
             <h5 className="h3 mb-3 mt-3" style={{fontSize:"12"}}>Registrate en pasaporte digital</h5>
             {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
@@ -174,33 +170,51 @@ export const RegisterScreen = ({ history }) => {
             ) : null}
             
             <div className="text-left">
-              <label htmlFor="txt-user">Correo electrónico</label>
+              <label htmlFor="txt-pass">Correo electrónico</label>
               <input
-                type="text"
-                className="form-control"
-                placeholder="alguien@example.com"
-                name="nombreusuario"
-                value={nombreusuario}
-                onChange={onChange}
+                  id="txt-pass"
+                  type={'text'}
+                  className="form-control"
+                  placeholder="alguien@example.com"
+                  name="nombreusuario"
+                  value={nombreusuario}
+                  onChange={onChange}
               />
-              <label htmlFor="txt-pass">Contraseña</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Contraseña"
-                name="constraseña"
-                value={constraseña}
-                onChange={onChange}
-              />
+
+              <label htmlFor="txt-pass2">Contraseña</label>
+              <div className="input-group">
+                <input
+                    id="txt-pass2"
+                    type={password}
+                    className="form-control"
+                    placeholder="Contraseña"
+                    name="constraseña"
+                    value={constraseña}
+                    onChange={onChange}
+                />
+                <div className="input-group-addon">
+                  <a onClick={(e) => showPassword(password === 'password' ? 'text' : 'password')}>
+                    <i className={ password === 'password' ? 'fa fa-eye-slash' : 'fa fa-eye' } aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+
               <label htmlFor="txt-pass">Repetir Contraseña</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Repetir Contraseña"
-                name="repetirconstraseña"
-                value={repetirconstraseña}
-                onChange={(e) => guardarrepetircontraseña(e.target.value)}
-              />
+              <div className="input-group">
+                <input
+                    type={password2}
+                    className="form-control"
+                    placeholder="Repetir Contraseña"
+                    name="repetirconstraseña"
+                    value={repetirconstraseña}
+                    onChange={(e) => guardarrepetircontraseña(e.target.value)}
+                />
+                <div className="input-group-addon">
+                  <a onClick={(e) => showPassword2(password2 === 'password' ? 'text' : 'password')}>
+                    <i className={ password2 === 'password' ? 'fa fa-eye-slash' : 'fa fa-eye' } aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
             </div>
 
 
@@ -216,10 +230,12 @@ export const RegisterScreen = ({ history }) => {
               <input type="checkbox" value="remember-me" /> Recordar sesion
             </label>
           </div>
-          <small className="mt-5 mb-3 text-muted">Al aceptar usted acepta nuestras politicas de privacidad & términos de servicios</small>
+          <small className="mt-5 mb-3 text-muted">Al continuar usted acepta nuestras politicas de privacidad & términos de servicios</small>
           
           </form>
         </div>
+
+        <FootImageLogin/>
 
       </div>
     </div>

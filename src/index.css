@@ -34,9 +34,7 @@ body {
   .foot-image-login {
     display: none;
   }
-  .contenedor-form-signin{
-    height: 100%!important;
-  }
+
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
