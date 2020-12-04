@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import TypeDocument from "../../hooks/useTypeDocument";
 import { useHistory } from "react-router-dom";
 
 /**Actions Redux */
@@ -39,15 +39,7 @@ const NewuserScreen = (props) => {
     direccion2,
   } = usuario;
 
-  const [documento, guardardocumento] = useState([]);
-  useEffect(() => {
-    const obtenerTipoDocumento = async () => {
-      const url = "http://localhost:4000/tipodocumento";
-      const tipdocumentos = await axios.get(url);
-      guardardocumento(tipdocumentos.data);
-    };
-    obtenerTipoDocumento();
-  }, []);
+  const documento = TypeDocument();
 
   /**Acceder al state del store */
   const cargando = useSelector((state) => state.usuarios.state);
@@ -174,8 +166,8 @@ const NewuserScreen = (props) => {
                 >
                   <option value="">-- Seleccione --</option>
                   {documento.map((categoria) => (
-                    <option key={categoria.id} value={categoria.value}>
-                      {categoria.value}
+                  <option key={categoria.IdTip} value={categoria.Descripcion}>
+                    {categoria.Descripcion}
                     </option>
                   ))}
                 </select>

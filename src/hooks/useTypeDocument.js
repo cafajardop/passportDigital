@@ -6,7 +6,7 @@ export default function TypeDocument() {
 
   useEffect(() => {
     const obtenerTipoDocumento = async () => {
-      const url = "http://localhost:4000/tipodocumento";
+      const url = "http://cropsonline-001-site4.atempurl.com/TipoDocumento/GetType";
       const tipdocumentos = await axios.get(url);
       guardardocumento(tipdocumentos.data);
     };

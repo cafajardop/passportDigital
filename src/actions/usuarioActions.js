@@ -65,8 +65,9 @@ const agregarUsuarioError = (estado) => ({
 export function obtenerUsuariosAction() {
   return async (dispatch) => {
     dispatch(obtenerUsuarios());
-    http.get("usuarios").then(response => {
-      dispatch(getUsuariosExito(response.data));
+    http.get("usuariopasaporte").then(response => {
+      console.log(response.data.usuarios);
+      dispatch(getUsuariosExito(response.data.usuarios));
     }).catch(err => {
       console.log(err);
       dispatch(getUsuariosError());
@@ -170,11 +171,12 @@ const editarUsuarioError = () => ({
 });
 
 /**Registro Usuario */
-export function registroUsuarioAction(usuario) {
+export function registroUsuarioAction(usuario) {  
+  console.log(usuario);
   return async (dispatch) => {
     dispatch(registrorUsuario());
     /**Consulta a la base de datos */
-    http.post("usuarios", usuario).then( resp => {
+    http.post("usuariopasaporte", usuario).then( resp => {
       
       Swal.fire(
         "Correcto",
@@ -185,6 +187,8 @@ export function registroUsuarioAction(usuario) {
       setTimeout(() => {
         dispatch(registroUsuarioExito(usuario));
       }, 3000);
+
+      console.log(resp);
 
     }).catch(err => {
       console.log(err);

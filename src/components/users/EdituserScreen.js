@@ -181,8 +181,8 @@ const EdituserScreen = () => {
             >
               <option value="">-- Seleccione --</option>
               {documento.map((categoria) => (
-                <option key={categoria.id} value={categoria.value}>
-                  {categoria.value}
+                <option key={categoria.IdTip} value={categoria.Descripcion}>
+                  {categoria.Descripcion}
                 </option>
               ))}
             </select>
