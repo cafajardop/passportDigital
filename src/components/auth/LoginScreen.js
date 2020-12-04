@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getFullYear } from "../../selectors/getFullYear";
 import { obtenerUsuariosAction } from "../../actions/usuarioActions";
+import logo from '../../resources/images/logo-head-ecopetrol.png';
+import ilustration from '../../resources/images/ilustration-login.png';
 
 /**Actions Redux */
 import {
@@ -106,10 +108,13 @@ export const LoginScreen = ({ history }) => {
     <div className="container-fluid container-full-height">
       <div className="row row-full-height">
 
-        <div className="hidden-xs col-sm-8 col-md-8 col-lg-8 col-xl-9 col-full-height login-main-content"
-              style={{backgroundImage:"url('../passportDigital/assets/logo-login.png')", 
-                      backgroundSize:"100% 100%", 
-                      backgroundRepeat:"no-repeat"}}>
+        <div className="hidden-xs col-sm-8 col-md-8 col-lg-8 col-xl-9 col-full-height login-main-content">
+          <img src={logo} className="img-fluid img-ecopetrol" alt="logo ecopetrol" />
+          <div className="row w-100 text-left-login ml-4">
+            <div className="col-12 mt-4"><h3>Pasaporte Digital</h3></div>
+            <div className="col-12"><span>Por un acceso mas seguro para todos</span></div>
+          </div>
+          <img src={ilustration} className="img-fluid ilustration" alt="ilustracion inicial" />
         </div>
 
         <div className="contenedor-form-signin col-sm-4 col-md-4 col-lg-4 col-xl-3 col-full-height">
@@ -119,14 +124,14 @@ export const LoginScreen = ({ history }) => {
               className="form-signin"
               autoComplete="off"
             >
-              <div style={{marginBottom: "20%"}}>
+              <div className="dv-head-options">
                 <span style={{textAlign:"center", marginInlineStart:"center"}}>¿No tienes una cuenta?</span><br/>
                 <Link to={"/Registro"} type="text" style={{textAlign:"center"}}>
                   Registrese
                 </Link>
               </div>
 
-              <h5 className="h3 mb-3 mt-3" style={{fontSize:"12"}}>Registrate en pasaporte digital</h5>
+              <h5 className="h3 mb-3 mt-3">Registrate en pasaporte digital</h5>
               {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
               {cargando ? <p>Cargando..</p> : null}{" "}              
               {error ? (
@@ -178,20 +183,15 @@ export const LoginScreen = ({ history }) => {
                   <input type="checkbox" value="remember-me" /> Recordar sesion
                 </label>
               </div>
-              <small className="mt-5 mb-3 text-muted">Al aceptar usted acepta nuestras politicas de privacidad & términos de servicios</small>
+              <small className="mt-5 mb-3 text-muted">Al continuar usted acepta nuestras politicas de privacidad & términos de servicios</small>
             
             </form>
           </div>
         </div>
 
-        <div className="col-sm-12 col-md-12 foot-image-login"
-             style={{
-               backgroundImage: "url('../passportDigital/assets/logo-login.png')",
-               backgroundSize: "100% 100%",
-               backgroundRepeat: "no-repeat",
-               minHeight: "300px",
-               width: "100%"
-             }}>
+        <div className="col-sm-12 col-md-12 foot-image-login">
+          <img src={logo} className="img-fluid img-ecopetrol" alt="logo ecopetrol" />
+          <img src={ilustration} className="img-fluid mt-5" alt="ilustracion inicial" />
         </div>
 
       </div>

@@ -20,6 +20,12 @@ body {
   .head-login {
     display: flex!important;
   }
+  .hidden-xs img.ilustration {
+    display: none!important;
+  }
+  .text-left-login {
+    display: none!important;
+  }
 }
 
 /*media queries login*/
@@ -29,7 +35,7 @@ body {
     display: none;
   }
   .contenedor-form-signin{
-    height: 100%;
+    height: 100%!important;
   }
 }
 
@@ -54,10 +60,38 @@ body {
   }
 }
 
+.login-main-content {
+  background-color: #0E0C5A;
+}
+
+  .login-main-content img.img-ecopetrol {
+    width: 25%;
+    margin: 3rem;
+  }
+  .login-main-content img.ilustration {
+    width: 72%;
+    margin-left: 10%;
+  }
+
+  .text-left-login {
+    color: white;
+    margin-bottom: 7rem;
+  }
+
 .foot-image-login {
   position: absolute;
   margin-left: -14px;
+  background-color: #0E0C5A;
+  /*background-image: url('../passportDigital/assets/logo-login.png'),
+  backgroundSize: "100% 100%",
+  backgroundRepeat: "no-repeat",*/
+  min-height: 300px;
+  width: 100%
 }
+  .foot-image-login img.img-ecopetrol {
+    width: 35%;
+    margin: 2rem;
+  }
 
 .head-login {
   position: fixed;
@@ -75,8 +109,9 @@ body {
   }
 
   .form-signin .h3, h3 {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
     float: left;
+    font-weight: bold;
   }
 
   .form-signin a {
@@ -103,6 +138,10 @@ body {
   border-left: none;
 }
 
+.dv-head-options {
+  margin-bottom: 18%;
+}
+
 /*media queries fin login*/
 
 @media screen and (max-width:800px){
@@ -116,6 +155,10 @@ body {
   }
   .card .form-control {
     width: 90%;
+  }
+
+  small {
+    font-size: 58%;
   }
 }
 
@@ -255,7 +298,6 @@ h1 a.text-light:hover {
 
 #txt-pass {
   border-right: none;
-
 }
 
 .navbar-light .navbar-brand {
