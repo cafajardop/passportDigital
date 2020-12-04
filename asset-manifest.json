@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/passportDigital/static/css/main.6a77dbb8.chunk.css",
-    "main.js": "/passportDigital/static/js/main.24e1dbe7.chunk.js",
-    "main.js.map": "/passportDigital/static/js/main.24e1dbe7.chunk.js.map",
-    "runtime-main.js": "/passportDigital/static/js/runtime-main.0ef5174b.js",
-    "runtime-main.js.map": "/passportDigital/static/js/runtime-main.0ef5174b.js.map",
-    "static/css/2.5a364fa0.chunk.css": "/passportDigital/static/css/2.5a364fa0.chunk.css",
-    "static/js/2.2222f1e0.chunk.js": "/passportDigital/static/js/2.2222f1e0.chunk.js",
-    "static/js/2.2222f1e0.chunk.js.map": "/passportDigital/static/js/2.2222f1e0.chunk.js.map",
-    "static/js/3.3ed218a5.chunk.js": "/passportDigital/static/js/3.3ed218a5.chunk.js",
-    "static/js/3.3ed218a5.chunk.js.map": "/passportDigital/static/js/3.3ed218a5.chunk.js.map",
+    "main.css": "/passportDigital/static/css/main.a2b7f24e.chunk.css",
+    "main.js": "/passportDigital/static/js/main.c4860cba.chunk.js",
+    "main.js.map": "/passportDigital/static/js/main.c4860cba.chunk.js.map",
+    "runtime-main.js": "/passportDigital/static/js/runtime-main.35d2618e.js",
+    "runtime-main.js.map": "/passportDigital/static/js/runtime-main.35d2618e.js.map",
+    "static/css/2.73a3bfaa.chunk.css": "/passportDigital/static/css/2.73a3bfaa.chunk.css",
+    "static/js/2.3a031be5.chunk.js": "/passportDigital/static/js/2.3a031be5.chunk.js",
+    "static/js/2.3a031be5.chunk.js.map": "/passportDigital/static/js/2.3a031be5.chunk.js.map",
+    "static/js/3.14b5691e.chunk.js": "/passportDigital/static/js/3.14b5691e.chunk.js",
+    "static/js/3.14b5691e.chunk.js.map": "/passportDigital/static/js/3.14b5691e.chunk.js.map",
     "index.html": "/passportDigital/index.html",
     "service-worker.js": "/passportDigital/service-worker.js",
     "service-worker.js.map": "/passportDigital/service-worker.js.map",
-    "static/css/2.5a364fa0.chunk.css.map": "/passportDigital/static/css/2.5a364fa0.chunk.css.map",
-    "static/css/main.6a77dbb8.chunk.css.map": "/passportDigital/static/css/main.6a77dbb8.chunk.css.map",
-    "static/js/2.2222f1e0.chunk.js.LICENSE.txt": "/passportDigital/static/js/2.2222f1e0.chunk.js.LICENSE.txt",
-    "static/media/logo-head-ecopetrol.4853d412.png": "/passportDigital/static/media/logo-head-ecopetrol.4853d412.png"
+    "static/css/2.73a3bfaa.chunk.css.map": "/passportDigital/static/css/2.73a3bfaa.chunk.css.map",
+    "static/css/main.a2b7f24e.chunk.css.map": "/passportDigital/static/css/main.a2b7f24e.chunk.css.map",
+    "static/js/2.3a031be5.chunk.js.LICENSE.txt": "/passportDigital/static/js/2.3a031be5.chunk.js.LICENSE.txt",
+    "static/media/logo-head-ecopetrol.887f3af5.png": "/passportDigital/static/media/logo-head-ecopetrol.887f3af5.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.0ef5174b.js",
-    "static/css/2.5a364fa0.chunk.css",
-    "static/js/2.2222f1e0.chunk.js",
-    "static/css/main.6a77dbb8.chunk.css",
-    "static/js/main.24e1dbe7.chunk.js"
+    "static/js/runtime-main.35d2618e.js",
+    "static/css/2.73a3bfaa.chunk.css",
+    "static/js/2.3a031be5.chunk.js",
+    "static/css/main.a2b7f24e.chunk.css",
+    "static/js/main.c4860cba.chunk.js"
   ]
 }
