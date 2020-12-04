@@ -19,6 +19,7 @@ export const LoginScreen = ({ history }) => {
   /**State del componente */
   const [nombreusuarioLogin, guardarnombreusuario] = useState("");
   const [constraseñaLogin, guardarconstraseña] = useState("");
+  const [password, showPassword] = useState('password');
 
   /**Utilizar dispatch y crear funcion */
   const dispatch = useDispatch();
@@ -148,15 +149,22 @@ export const LoginScreen = ({ history }) => {
                 />
 
                 <label htmlFor="txt-pass">Contraseña</label>
-                <input
-                    id="txt-pass"
-                    type="password"
-                    className="form-control"
-                    placeholder="Contraseña"
-                    name="constraseñaLogin"
-                    value={constraseñaLogin}
-                    onChange={(e) => guardarconstraseña(e.target.value)}
-                />
+                <div className="input-group" id="show_hide_password">
+                  <input
+                      id="txt-pass"
+                      type={password}
+                      className="form-control"
+                      placeholder="Contraseña"
+                      name="constraseñaLogin"
+                      value={constraseñaLogin}
+                      onChange={(e) => guardarconstraseña(e.target.value)}
+                  />
+                  <div className="input-group-addon">
+                    <a onClick={(e) => showPassword(password === 'password' ? 'text' : 'password')}>
+                      <i className={ password === 'password' ? 'fa fa-eye-slash' : 'fa fa-eye' } aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
               </div>
 
               <button
