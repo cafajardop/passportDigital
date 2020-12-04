@@ -105,7 +105,7 @@ export const LoginScreen = ({ history }) => {
       <div className="row row-full-height">
 
         <div className="hidden-xs col-sm-8 col-md-8 col-lg-8 col-xl-9 col-full-height login-main-content"
-              style={{backgroundImage:"url('../assets/logo-login.png')", 
+              style={{backgroundImage:"url('../passportDigital/assets/logo-login.png')", 
                       backgroundSize:"100% 100%", 
                       backgroundRepeat:"no-repeat"}}>
         </div>
@@ -126,12 +126,12 @@ export const LoginScreen = ({ history }) => {
               <h5 className="h3 mb-3 mt-3" style={{fontSize:"12"}}>Registrate en pasaporte digital</h5>
               {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
               {cargando ? <p>Cargando..</p> : null}{" "}
-              {error ? (
+              {/* {error ? (
                 <p className="alert alert-danger p2 mt-4 text-center">
                   {" "}
                   Hubo un error{" "}
                 </p>
-              ) : null}
+              ) : null} */}
 
               <div className="text-left">
                 <label htmlFor="txt-user">Correo electrónico</label>
@@ -176,7 +176,7 @@ export const LoginScreen = ({ history }) => {
 
         <div className="col-sm-12 col-md-12 foot-image-login"
              style={{
-               backgroundImage: "url('../assets/logo-login.png')",
+               backgroundImage: "url('../passportDigital/assets/logo-login.png')",
                backgroundSize: "100% 100%",
                backgroundRepeat: "no-repeat",
                minHeight: "300px",
