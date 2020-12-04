@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from "../../resources/images/logo-head-ecopetrol.png";
 import { getFullYear } from "../../selectors/getFullYear";
 import { obtenerUsuariosAction } from "../../actions/usuarioActions";
 
@@ -95,12 +94,14 @@ export const LoginScreen = ({ history }) => {
 
   return (
     <React.Fragment>
+
     <div className="head-login">
       <div className="row w-100 mt-3">
         <div className="col-12 mt-5"><h3>Pasaporte Digital</h3></div>
         <div className="col-12"><span>Por un acceso mas seguro para todos</span></div>
       </div>
     </div>
+
     <div className="container-fluid container-full-height">
       <div className="row row-full-height">
 
@@ -111,6 +112,7 @@ export const LoginScreen = ({ history }) => {
         </div>
 
         <div className="contenedor-form-signin col-sm-4 col-md-4 col-lg-4 col-xl-3 col-full-height">
+            
             <form
               onSubmit={submitNuevoUsuario}
               className="form-signin"
@@ -125,13 +127,13 @@ export const LoginScreen = ({ history }) => {
 
               <h5 className="h3 mb-3 mt-3" style={{fontSize:"12"}}>Registrate en pasaporte digital</h5>
               {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
-              {cargando ? <p>Cargando..</p> : null}{" "}
-              {/* {error ? (
+              {cargando ? <p>Cargando..</p> : null}{" "}              
+              {error ? (
                 <p className="alert alert-danger p2 mt-4 text-center">
                   {" "}
                   Hubo un error{" "}
                 </p>
-              ) : null} */}
+              ) : null}
 
               <div className="text-left">
                 <label htmlFor="txt-user">Correo electrónico</label>
@@ -157,19 +159,19 @@ export const LoginScreen = ({ history }) => {
                 />
               </div>
 
-
               <button
                 className="btn btn-lg btn-login btn-block mb-2"
                 type="submit"
-              >
-                Ingresar
+              >Ingresar
               </button>
+
               <div className="checkbox mb-3">
                 <label>
                   <input type="checkbox" value="remember-me" /> Recordar sesion
                 </label>
               </div>
               <small className="mt-5 mb-3 text-muted">Al aceptar usted acepta nuestras politicas de privacidad & términos de servicios</small>
+            
             </form>
           </div>
         </div>

@@ -132,78 +132,97 @@ export const RegisterScreen = ({ history }) => {
   };
 
   return (
-    <div className="container-fluid container-full-height">
-      <div class="row row-full-height">
-        
-        <div
-          class="hidden-sm col-sm-6 col-md-9 col-full-height login-main-content "
-          style={{
-            backgroundImage: "url('../assets/logo-login.png')",
-            backgroundSize: "100% 100%",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
+    <React.Fragment>
+    <div className="head-login">
+      <div className="row w-100 mt-3">
+        <div className="col-12 mt-5"><h3>Pasaporte Digital</h3></div>
+        <div className="col-12"><span>Por un acceso mas seguro para todos</span></div>
+      </div>
+    </div>
 
-        <div className="contenedor-form-signin col-sm-6 col-md-3 col-full-height">
+    
+    <div className="container-fluid container-full-height">      
+      <div className="row row-full-height">
+        
+      <div className="hidden-xs col-sm-8 col-md-8 col-lg-8 col-xl-9 col-full-height login-main-content"
+              style={{backgroundImage:"url('../passportDigital/assets/logo-login.png')", 
+                      backgroundSize:"100% 100%", 
+                      backgroundRepeat:"no-repeat"}}>
+        </div>
+
+        <div className="contenedor-form-signin col-sm-4 col-md-4 col-lg-4 col-xl-3 col-full-height">
           <form
             onSubmit={submitRegistroUsuario}
             className="form-signin"
             autoComplete="off"
           >
-          
-            <h1 className="h3 mb-3 font-weight-normal">Pasaporte Digital</h1>
+
+            <div style={{marginBottom: "20%"}}>
+            <span style={{textAlign:"center", marginInlineStart:"center"}}>¿Tienes una cuenta?</span><br/>
+              <Link to={"/passportDigital"} type="text">
+                Iniciar Sesión
+              </Link>
+            </div>
+
+            <h5 className="h3 mb-3 mt-3" style={{fontSize:"12"}}>Registrate en pasaporte digital</h5>
             {alerta ? <p className={alerta.classes}>{alerta.msg}</p> : null}
             {cargando ? <p>Cargando..</p> : null}{" "}
             {error ? (
-              <p className="alert alert-danger p2 mt-4 text-center">
-                {" "}
-                Hubo un error{" "}
+              <p className="alert alert-danger p2 mt-4 text-center">                
+                Hubo un error
               </p>
             ) : null}
-            <input
-              type="text"
-              className="form-control"
-              placeholder="alguien@example.com"
-              name="nombreusuario"
-              value={nombreusuario}
-              onChange={onChange}
-            />
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Contraseña"
-              name="constraseña"
-              value={constraseña}
-              onChange={onChange}
-            />
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Repetir Contraseña"
-              name="repetirconstraseña"
-              value={repetirconstraseña}
-              onChange={(e) => guardarrepetircontraseña(e.target.value)}
-            />
-            <div className="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me" /> Recordarme
-              </label>
+            
+            <div className="text-left">
+              <label htmlFor="txt-user">Correo electrónico</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="alguien@example.com"
+                name="nombreusuario"
+                value={nombreusuario}
+                onChange={onChange}
+              />
+              <label htmlFor="txt-pass">Contraseña</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Contraseña"
+                name="constraseña"
+                value={constraseña}
+                onChange={onChange}
+              />
+              <label htmlFor="txt-pass">Repetir Contraseña</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Repetir Contraseña"
+                name="repetirconstraseña"
+                value={repetirconstraseña}
+                onChange={(e) => guardarrepetircontraseña(e.target.value)}
+              />
             </div>
+
+
             <button
-              className="btn btn-lg btn-primary btn-block mb-2"
+              className="btn btn-lg btn-login btn-block mb-2"
               type="submit"
             >
               Ingresar
             </button>
-            <Link to={"/passportDigital"} type="text">
-              {" "}
-              Iniciar Sesión{" "}
-            </Link>
-            <p className="mt-5 mb-3 text-muted">&copy; {year}</p>
-          </form>          
+
+          <div className="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me" /> Recordar sesion
+            </label>
+          </div>
+          <small className="mt-5 mb-3 text-muted">Al aceptar usted acepta nuestras politicas de privacidad & términos de servicios</small>
+          
+          </form>
         </div>
 
       </div>
     </div>
+    </React.Fragment>
   );
 };
