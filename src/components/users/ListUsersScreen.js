@@ -1,27 +1,36 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect,useMemo,useState} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 /**Redux */
 import {useSelector,useDispatch} from 'react-redux';
 import {obtenerUsuariosAction} from '../../actions/usuarioActions';
 import User from './User'
+import clientAxios from '../../config/axios';
+
 
 const ListUsersScreen = () => {
-
-  const dispatch = useDispatch();
-
+  const URL = clientAxios.baseURL;
+  const [consultar, guardarConsultar] = useState(false);
+  const [usuarioseffect, guardarobtenerusuario] = useState([]);
+  
   useEffect(()=>{
-    /**Consultar api */
-    const cargarUsuarios = () => dispatch (obtenerUsuariosAction());
-    cargarUsuarios();
-  },[]);
+    const obtenerUsuarios = async () => {
 
-  const usuarios = useSelector(state => state.usuarios.usuarios);
+      if(!consultar){
+        const url = `${URL}usuariopasaporte`;
+        const usuariosObtener = await axios.get(url);                    
+        guardarobtenerusuario(usuariosObtener.data.usuarios);
+        guardarConsultar(true)
+      }
+    };
+    obtenerUsuarios();
+  },[consultar])
+  
   const error = useSelector(state => state.usuarios.error);
   const cargando = useSelector(state => state.usuarios.loading);
-
-  return (
-    
+     
+  return (   
     <Fragment>
       <h2 className="text-center mt-4">Listado de Funcionarios</h2>
       <hr/>
@@ -52,11 +61,12 @@ const ListUsersScreen = () => {
             </tr>
         </thead>
         <tbody>
-          { usuarios.length === 0 ? (<tr><td colSpan={3}>No hay usuarios</td></tr>) : (
-            usuarios.map(usuario => (
+          { usuarioseffect.length === 0 ? (<tr><td colSpan={3}>No hay usuarios</td></tr>) : (
+            usuarioseffect.map(usuario => (
               <User
-                key={usuario.id}
+                key={usuario._id}
                 usuario={usuario}
+                guardarConsultar={guardarConsultar}
               />
             ))
           )}
@@ -64,9 +74,6 @@ const ListUsersScreen = () => {
       </table>
     </Fragment>
    );
-
-
-
 }
 
 export default ListUsersScreen;

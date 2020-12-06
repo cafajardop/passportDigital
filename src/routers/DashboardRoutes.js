@@ -12,6 +12,8 @@ import {
     BrowserView
 } from "react-device-detect";
 import Timer from '../components/questions/Timer';
+import ProfileuserScreen from "../components/users/ProfileuserScreen";
+import ListUsersScreen from "../components/users/ListUsersScreen";
 
 const Contenedor = styled.div`{
   height:auto;
@@ -47,11 +49,13 @@ export const DashboardRoutes = () => {
 
               </SideBar>
               <Main>
-                  <Switch>
+                  <Switch>                    
                       <Route exact path="/" render={(props) => (<NavBar info={props} toggleMenu='true'>{" "} <UsersScreen info={props} />{" "} </NavBar>)}/>
                       <Route exact path="/usuarios/nuevo" render={(props) => <NavBar info={props} toggleMenu='true'> <NewuserScreen info={props} /> </NavBar>}/>
                       <Route exact path="/usuarios/editar/:id" render={(props) => <NavBar info={props} toggleMenu='true'> <EdituserScreen info={props} /> </NavBar>}/>
                       <Route exact path="/iraForm" render={ (props) => <NavBar info={props} toggleMenu='true'> <IraformScreen db={new Dexie('FormDatabase')} /> </NavBar> } />
+                      <Route exact path="/perfilusuario" render={ (props) => <NavBar info={props} toggleMenu='true'> <ProfileuserScreen db={new Dexie('FormDatabase')} /> </NavBar> } />
+                      <Route exact path="/listadousuarios" render={ (props) => <NavBar info={props} toggleMenu='true'> <ListUsersScreen db={new Dexie('FormDatabase')} /> </NavBar> } />
                       <Route exact path="/timer" component={Timer}/>
                   </Switch>
               </Main>

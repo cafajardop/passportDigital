@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import clientAxios from '../config/axios';
 
 export default function RoleUsers() {
-  const [rol, guardarrol] = useState([]);
+  const URL = clientAxios.baseURL;
 
+  const [rol, guardarrol] = useState([]);
   useEffect(() => {
-    const obtenerRoles = async () => {
-      const url = "http://localhost:4000/roles";
+    const obtenerRoles = async () => {      
+      const url = `${URL}rolpasaporte`;
       const tipRol = await axios.get(url);
-      guardarrol(tipRol.data);
+      guardarrol(tipRol.data.rol);
     };
     obtenerRoles();
   }, []);

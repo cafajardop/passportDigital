@@ -25,7 +25,7 @@ export function crearNuevoUsuarioAction(usuario) {
   return async (dispatch) => {
     dispatch(agreagarUsuario());
     /**Consulta a la base de datos */
-    http.post("usuarios", usuario).then( resp => {
+    http.post("usuariopasaportenew", usuario).then( resp => {
       dispatch(agregarUsuarioExito(usuario));
       Swal.fire(
           "Correcto",
@@ -65,8 +65,7 @@ const agregarUsuarioError = (estado) => ({
 export function obtenerUsuariosAction() {
   return async (dispatch) => {
     dispatch(obtenerUsuarios());
-    http.get("usuariopasaporte").then(response => {
-      console.log(response.data.usuarios);
+    http.get("usuariopasaporte").then(response => {      
       dispatch(getUsuariosExito(response.data.usuarios));
     }).catch(err => {
       console.log(err);
@@ -95,7 +94,7 @@ const getUsuariosError = () => ({
 export function borrarUsuarioAction(id){
   return async (dispatch) => {
     dispatch(obtenerUsuarioEliminar(id));
-    http.delete(`usuarios/${id}`).then(resp => {
+    http.delete(`usuariopasaporte/${id}`).then(resp => {
       dispatch( eliminarUsuarioExito());
       Swal.fire(
           'Eliminado!',
@@ -136,11 +135,10 @@ const obtenerUsuarioEditar = usuario => ({
 });
 
 /**Actualiza un registro en la api y state */
-export function editarUsuarioAction(usuario){
-  console.log(usuario);
+export function editarUsuarioAction(usuario){  
   return async (dispatch) =>{
     dispatch(editarUsuario(usuario));
-    http.put(`usuarios/${usuario.id}`, usuario).then(resp => {
+    http.put(`usuariopasaporte/${usuario._id}`, usuario).then(resp => {
       
       Swal.fire(
         'Actualizado!',
@@ -171,8 +169,7 @@ const editarUsuarioError = () => ({
 });
 
 /**Registro Usuario */
-export function registroUsuarioAction(usuario) {  
-  console.log(usuario);
+export function registroUsuarioAction(usuario) {    
   return async (dispatch) => {
     dispatch(registrorUsuario());
     /**Consulta a la base de datos */
@@ -187,8 +184,6 @@ export function registroUsuarioAction(usuario) {
       setTimeout(() => {
         dispatch(registroUsuarioExito(usuario));
       }, 3000);
-
-      console.log(resp);
 
     }).catch(err => {
       console.log(err);

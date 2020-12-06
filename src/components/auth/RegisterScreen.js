@@ -1,61 +1,57 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import logo from "../../resources/images/logo-head-ecopetrol.png";
-import { getFullYear } from "../../selectors/getFullYear";
 import axios from "axios";
-import {  
-  MobileView
-} from "react-device-detect";
+import clientAxios from '../../config/axios';
 
 /**Actions Redux */
 import {
   mostrarAlertaAction,
   ocultarAlertaAction,
 } from "../../actions/alertaActions";
+
 import { registroUsuarioAction } from "../../actions/usuarioActions";
 import LeftPanel from "./leftPanel";
 import HeadTitle from "./HeadTitle";
 import FootImageLogin from "./FootImageLogin";
 
 export const RegisterScreen = ({ history }) => {
+  const URL = clientAxios.baseURL;
   /**State del componente */
   const [repetirconstraseña, guardarrepetircontraseña] = useState("");
   const [registerusuario, guardarregisterusuario] = useState({
-    ingreso: false,
     nombreusuario: "",
-    constraseña: "",
-    rol: "USER",
-    primerapellido: "",
-    segundoapellido: "",
     primernombre: "",
     segundonombre: "",
+    primerapellido: "",
+    segundoapellido: "",
+    telefono: "",
+    Password: "",
+    rol: "USER",
     cedula: "",
     tipodocumento: "",
-    telefono: "",
-    correo: "",
+    email: "",
     direccion: "",
     direccion2: "",
     observacion: "",
+    ingreso: false,
   });
+
   const [password, showPassword] = useState('password');
   const [password2, showPassword2] = useState('password');
 
-  const { nombreusuario, constraseña } = registerusuario;
+  const { email, Password } = registerusuario;
 
   const [filtrarusuarios, filtrarguardarusuarios] = useState([]);
+  
   useEffect(() => {
     const obtenerUsuarioName = async () => {
-      const url = "http://localhost:4000/usuarios";
+      const url = `${URL}usuariopasaporte`;      
       const user = await axios.get(url);
-      filtrarguardarusuarios(user.data);
+      filtrarguardarusuarios(user.data.usuarios);
     };
     obtenerUsuarioName();
   }, []);
-
-  /**Obtener el año */
-  const year = getFullYear();
-
+  
   /**Acceder al state del store */
   const cargando = useSelector((state) => state.usuarios.state);
   const error = useSelector((state) => state.usuarios.error);
@@ -78,11 +74,11 @@ export const RegisterScreen = ({ history }) => {
   /**Enviando Datos */
   const submitRegistroUsuario = (e) => {
     e.preventDefault();
-
-    /**Validar Formulario */
+    
+    /*  *Validar Formulario */
     if (
-      nombreusuario.trim() === "" ||
-      constraseña.trim() === "" ||
+      email.trim() === "" ||
+      Password.trim() === "" ||
       repetirconstraseña.trim() === ""
     ) {
       const alerta = {
@@ -94,7 +90,7 @@ export const RegisterScreen = ({ history }) => {
       return;
     }
 
-    if (constraseña.trim() !== repetirconstraseña.trim()) {
+    if (Password.trim() !== repetirconstraseña.trim()) {
       const alerta = {
         msg: "Las contraseñas no coinciden",
         classes: "alert alert-danger text-center text-uppercase p3",
@@ -105,18 +101,17 @@ export const RegisterScreen = ({ history }) => {
       }, 3000);
       return;
     }
-
     /**Validar que no exista el usuario en la BD */
     const filter = filtrarusuarios.filter((user) =>
-      user.nombreusuario
-        ?.toLocaleLowerCase()
-        .includes(nombreusuario.toLocaleLowerCase())
+      user.email?.toLocaleLowerCase().includes(email.toLocaleLowerCase())
     );
+
     if (filter.length !== 0) {
       const alerta = {
         msg: "El usuario ya existe inicie sesión",
         classes: "alert alert-danger text-center text-uppercase p3",
       };
+
       dispatch(mostrarAlertaAction(alerta));
       setTimeout(() => {
         dispatch(ocultarAlertaAction());
@@ -176,8 +171,8 @@ export const RegisterScreen = ({ history }) => {
                   type={'text'}
                   className="form-control"
                   placeholder="alguien@example.com"
-                  name="nombreusuario"
-                  value={nombreusuario}
+                  name="email"
+                  value={email}
                   onChange={onChange}
               />
 
@@ -188,8 +183,8 @@ export const RegisterScreen = ({ history }) => {
                     type={password}
                     className="form-control"
                     placeholder="Contraseña"
-                    name="constraseña"
-                    value={constraseña}
+                    name="Password"
+                    value={Password}
                     onChange={onChange}
                 />
                 <div className="input-group-addon">

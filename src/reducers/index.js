@@ -22,6 +22,7 @@ function configureStore(initialState = {}) {
             loginReducer
         ),
         usuarios: usuariosReducer,
+        usuario:loginReducer,
         alerta: alertaReducer,
         questions: questionReducer,
         replies: repliesReducer,

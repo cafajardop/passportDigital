@@ -1,58 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getFullYear } from "../../selectors/getFullYear";
-import { obtenerUsuariosAction } from "../../actions/usuarioActions";
-import logo from '../../resources/images/logo-head-ecopetrol.png';
-import ilustration from '../../resources/images/ilustration-login.png';
 
 /**Actions Redux */
-import {
-  mostrarAlertaAction,
-  ocultarAlertaAction,
-} from "../../actions/alertaActions";
-import {
-  mostrarEstadoLoginAction,
-  logOutAction,
-} from "../../actions/estadoLoginActions";
+import { mostrarAlertaAction, ocultarAlertaAction,} from "../../actions/alertaActions";
+import { obtenerUsuarioLoginAction} from "../../actions/estadoLoginActions";
 import { getAlertMessages } from "../../selectors/getAlertMessages";
 import LeftPanel from "./leftPanel";
 import HeadTitle from "./HeadTitle";
 import FootImageLogin from "./FootImageLogin";
 
+
 export const LoginScreen = ({ history }) => {
   /**State del componente */
-  const [nombreusuarioLogin, guardarnombreusuario] = useState("");
-  const [constraseñaLogin, guardarconstraseña] = useState("");
+  const [nombreusuarioLogin, guardarnombreusuario] = useState({
+    email:"",
+    Password:""
+  });
+
+  const {email,Password} = nombreusuarioLogin;
   const [password, showPassword] = useState('password');
 
-  /**Utilizar dispatch y crear funcion */
-  const dispatch = useDispatch();
-
-  /** */
-  useEffect(() => {
-    /*Limpiar sesion*/
-    dispatch(logOutAction());
-    /**Consultar api */
-    const cargarUsuarios = () => dispatch(obtenerUsuariosAction());
-    cargarUsuarios();
-  }, []);
-
-  /**Acceder al state del store */
-  const usuarios = useSelector((state) => state.usuarios.usuarios);
+  /**Acceder al state del store */  
   const cargando = useSelector((state) => state.usuarios.state);
   const error = useSelector((state) => state.usuarios.error);
   const alerta = useSelector((state) => state.alerta.alerta);
+  const usuario = useSelector((state) => state.usuario.usuario);  
+  
+  const onChange = (e) => {
+    guardarnombreusuario({
+      ...nombreusuarioLogin,
+      [e.target.name]: e.target.value,
+    });    
+  };
 
-  /**Obtener el año */
-  const year = getFullYear();
+     /**Hook tipo documento */  
+ /* const documento = TypeDocument(); */
+ 
+  /**Utilizar dispatch y crear funcion */
+  const dispatch = useDispatch();
+
+  /**Enviar la accion */
+  const obtenerUsuarioLogin = (usuario) =>
+    dispatch(obtenerUsuarioLoginAction(usuario));
 
   /**Enviando Datos */
-  const submitNuevoUsuario = (e) => {
+  const submitLoginUsuario = (e) => {
     e.preventDefault();
 
     /**Validar Formulario */
-    if (nombreusuarioLogin.trim() === "" || constraseñaLogin.trim() === "") {
+    if (email.trim() === "" || Password.trim() === "") {
       const alerta = getAlertMessages("Campos Obligatorios");
 
       dispatch(mostrarAlertaAction(alerta));
@@ -61,42 +57,26 @@ export const LoginScreen = ({ history }) => {
       }, 3000);
       return;
     }
-
-    /**Buscar el usuario en la lista*/
-    const filter = usuarios.filter(
-      (user) => user.nombreusuario === nombreusuarioLogin
-    );
-    if (filter.length !== 0) {
-      const [user] = filter;
-      const { constraseña } = user;
-
-      if (constraseña !== constraseñaLogin) {
-        const alerta = getAlertMessages("Contraseña Inválida");
-
-        dispatch(mostrarAlertaAction(alerta));
-        setTimeout(() => {
-          dispatch(ocultarAlertaAction());
-        }, 3000);
-        return;
-      }
-
       /**Si no hay errores */
       dispatch(ocultarAlertaAction());
-      dispatch(mostrarEstadoLoginAction(user));
+      /* dispatch(mostrarEstadoLoginAction(user)); */            
+      
+      /**Resgistra usuario */
+      obtenerUsuarioLogin({
+        ...nombreusuarioLogin,
+      });
 
-      localStorage.setItem("userLocal", nombreusuarioLogin);
-
-      history.push("/");
-    } else {
-      const alerta = getAlertMessages("Usuario no existe");
-
-      dispatch(mostrarAlertaAction(alerta));
-      setTimeout(() => {
-        dispatch(ocultarAlertaAction());
-      }, 3000);
-      return;
+      const token = localStorage.getItem('token');
+      
+      if(token){
+        const {rol} =  usuario.usuario
+        if(rol==="ADMIN"){
+          history.push("/listadousuarios");
+          return;
+        }
+        history.push("/perfilusuario");
+      }      
     }
-  };
 
   return (
     <React.Fragment>
@@ -116,7 +96,7 @@ export const LoginScreen = ({ history }) => {
         <div className="contenedor-form-signin col-sm-4 col-md-4 col-lg-4 col-xl-3 col-full-height">
             
             <form
-              onSubmit={submitNuevoUsuario}
+              onSubmit={submitLoginUsuario}
               className="form-signin"
               autoComplete="off"
             >
@@ -139,9 +119,9 @@ export const LoginScreen = ({ history }) => {
                     type="text"
                     className="form-control"
                     placeholder="alguien@example.com"
-                    name="nombreusuarioLogin"
-                    value={nombreusuarioLogin}
-                    onChange={(e) => guardarnombreusuario(e.target.value)}
+                    name="email"
+                    value={email}
+                    onChange={onChange}
                 />
 
                 <label htmlFor="txt-pass">Contraseña</label>
@@ -151,9 +131,9 @@ export const LoginScreen = ({ history }) => {
                       type={password}
                       className="form-control"
                       placeholder="Contraseña"
-                      name="constraseñaLogin"
-                      value={constraseñaLogin}
-                      onChange={(e) => guardarconstraseña(e.target.value)}
+                      name="Password"
+                      value={Password}
+                      onChange={onChange}
                   />
                   <div className="input-group-addon">
                     <a onClick={(e) => showPassword(password === 'password' ? 'text' : 'password')}>
@@ -174,8 +154,7 @@ export const LoginScreen = ({ history }) => {
                   <input type="checkbox" value="remember-me" /> Recordar sesion
                 </label>
               </div>
-              <small className="mt-5 mb-3 text-muted">Al continuar usted acepta nuestras politicas de privacidad & términos de servicios</small>
-            
+              <small className="mt-5 mb-3 text-muted">Al continuar usted acepta nuestras politicas de privacidad & términos de servicios</small>            
             </form>
           </div>
         </div>

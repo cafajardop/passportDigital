@@ -6,13 +6,17 @@ import { getUserLogin } from "../../actions/estadoLoginActions";
 
 const Header = () => {
   const redireccionarNuevo = () => {
-    localStorage.removeItem("userLocal");
+    localStorage.removeItem("menu");
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("token");
   };
 
   const dispatch = useDispatch();
   const loadUserLogin = () => dispatch(getUserLogin());
   loadUserLogin();
-  const user = useSelector((state) => state.form.login);
+  
+  const user = useSelector((state) => state.usuario.usuario);
+  const userlocal = JSON.parse(localStorage.getItem('usuario'));
 
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -49,9 +53,9 @@ const Header = () => {
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
           <span className="nav-item nav-link text-light">
-              {user === null || user.login === null
-              ? ""
-              : `${user.nombreusuario}`}
+            {user === null
+            ? userlocal.email
+            : `${userlocal.email}`}
           </span>
           
           <NavLink

@@ -4,28 +4,32 @@ import TypeDocument from "../../hooks/useTypeDocument";
 import { useDispatch, useSelector } from "react-redux";
 import {obtenerUsuarioEditarAction} from '../../actions/usuarioActions';
 
-const ProfileuserScreen = ({usuario}) => {
-  
+const ProfileuserScreen = () => {
+    
   const dispatch = useDispatch();  
-  dispatch( obtenerUsuarioEditarAction(usuario));
+  const usuario = useSelector((state) => state.usuario.usuario);  
+  dispatch( obtenerUsuarioEditarAction(usuario.usuario));
 
   const [usuarioprofile, guardarUsuario] = useState({
+    _id:"",
     nombreusuario: "",
-    rol: "",
-    primerapellido: "",
-    segundoapellido: "",
     primernombre: "",
     segundonombre: "",
+    primerapellido: "",
+    segundoapellido: "",
+    telefono: "",
+    rol: "",
     cedula: "",
     tipodocumento: "",
-    telefono: "",
-    correo: "",
+    email: "",
     direccion: "",
     direccion2: "",
+    observacion:"",
+    ingreso:""
   });
 
-  const { nombreusuario,rol,primerapellido,segundoapellido, primernombre, segundonombre,
-          cedula,tipodocumento,telefono, correo, direccion, direccion2} = usuarioprofile; 
+  const { _id,nombreusuario,primernombre, segundonombre, primerapellido,segundoapellido,
+          telefono,rol,cedula,tipodocumento, email, direccion, direccion2, observacion, ingreso} = usuarioprofile; 
 
   /**Hook tipo documento */  
   const documento = TypeDocument();
@@ -65,13 +69,13 @@ const ProfileuserScreen = ({usuario}) => {
         > 
         <div className="form-row">
           <div className="form-group col-sm-6">
-            <label>Usuario</label>
+            <label>Email</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Usuario"
-              name="nombreusuario"
-              value={nombreusuario}
+              placeholder="Email"
+              name="email"
+              value={email}
               onChange={onChangeFormulario}
               disabled
             />
@@ -153,9 +157,9 @@ const ProfileuserScreen = ({usuario}) => {
               onChange={onChangeFormulario}
             >
               <option value="">-- Seleccione --</option>
-              {documento.map((categoria) => (
-                <option key={categoria.id} value={categoria.value}>
-                  {categoria.value}
+              {documento.map((tipodoc) => (
+                <option key={tipodoc._id} value={tipodoc.tipodocumento}>
+                  {tipodoc.tipodocumento}
                 </option>
               ))}
             </select>
@@ -188,15 +192,15 @@ const ProfileuserScreen = ({usuario}) => {
 
         <div className="form-row">
           <div className="form-group col-sm-4">
-            <label>Correo</label>
+            <label>Usuario</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Correo"
-              name="correo"
-              value={correo}
-              onChange={onChangeFormulario}
-            />
+              placeholder="Usuario"
+              name="nombreusuario"
+              value={nombreusuario}
+              onChange={onChangeFormulario}              
+            />            
           </div>
 
           <div className="form-group col-sm-4">

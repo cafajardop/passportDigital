@@ -22,7 +22,7 @@ const EdituserScreen = () => {
     cedula: "",
     tipodocumento: "",
     telefono: "",
-    correo: "",
+    email: "",
     direccion: "",
     direccion2: "",
     observacion:""
@@ -38,7 +38,7 @@ const EdituserScreen = () => {
     cedula,
     tipodocumento,
     telefono,
-    correo,
+    email,
     direccion,
     direccion2,
     observacion
@@ -67,11 +67,11 @@ const EdituserScreen = () => {
   const submitEditarUsuario = (e) => {
     e.preventDefault();    
     dispatch(editarUsuarioAction(usuario));
-    history.push("/");
+    history.push("/listadousuarios");
   };
 
   const redireccionarNuevo = () => {
-    history.push("/");
+    history.push("/listadousuarios");
   };
 
   return (
@@ -86,16 +86,16 @@ const EdituserScreen = () => {
 
         <div className="form-row">
           <div className="form-group col-sm-6">
-            <label>Usuario</label>
+            <label>email</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Usuario"
-              name="nombreusuario"
-              value={nombreusuario}
+              placeholder="Email"
+              name="email"
+              value={email}
               onChange={onChangeFormulario}
               disabled
-            />
+            />            
           </div>
 
           <div className="form-group col-sm-6">
@@ -110,7 +110,7 @@ const EdituserScreen = () => {
             >
               <option value="">-- Seleccione --</option>
               {roles.map((roles) => (
-                <option key={roles.id} value={roles.rol}>
+                <option key={roles._id} value={roles.rol}>
                   {roles.rol}
                 </option>
               ))}
@@ -180,9 +180,9 @@ const EdituserScreen = () => {
               onChange={onChangeFormulario}
             >
               <option value="">-- Seleccione --</option>
-              {documento.map((categoria) => (
-                <option key={categoria.IdTip} value={categoria.Descripcion}>
-                  {categoria.Descripcion}
+              {documento.map((docu) => (
+                <option key={docu._id} value={docu.tipodocumento}>
+                  {docu.tipodocumento}
                 </option>
               ))}
             </select>
@@ -215,14 +215,15 @@ const EdituserScreen = () => {
 
         <div className="form-row">
           <div className="form-group col-sm-4">
-            <label>Correo</label>
+            <label>Usuario</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Correo"
-              name="correo"
-              value={correo}
+              placeholder="Usuario"
+              name="nombreusuario"
+              value={nombreusuario}
               onChange={onChangeFormulario}
+              
             />
           </div>
 
@@ -271,16 +272,17 @@ const EdituserScreen = () => {
             </button>
           </div>
 
-          <div className="form-group">
-            <button
-              onClick={() => redireccionarNuevo()}
-              className="btn-ecopetrol"
-            >
-              Cancelar
-            </button>
-          </div>
+            <div className="form-group">
+              <button
+                onClick={() => redireccionarNuevo()}
+                className="btn-ecopetrol"
+              >
+                Cancelar
+              </button>
+            </div>          
         </div>
       </form>
+      
     </div>
   );
 };
