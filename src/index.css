@@ -121,7 +121,7 @@ body {
 
   .form-signin label {
     font-weight: bold;
-
+    margin-right: 10px;
   }
 
 .input-group-addon {
